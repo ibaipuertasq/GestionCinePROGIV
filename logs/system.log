@@ -1,0 +1,60 @@
+[2025-05-13 20:35:21] [INFO] Sistema de logging inicializado
+[2025-05-13 20:35:21] [INFO] ===== Iniciando CineGestion =====
+[2025-05-13 20:35:21] [INFO] Base de datos inicializada correctamente.
+[2025-05-13 20:35:21] [INFO] Sistema de menús inicializado
+[2025-05-13 20:36:02] [INFO] Usuario autenticado: admin@cinegestion.com
+[2025-05-13 20:36:02] [INFO] Inicio de sesión exitoso para el usuario: admin@cinegestion.com
+[2025-05-13 20:36:23] [INFO] Cierre de sesión para el usuario: admin@cinegestion.com
+[2025-05-13 20:36:29] [INFO] Sistema de menús finalizado
+[2025-05-13 20:36:29] [INFO] ===== Finalizando CineGestion =====
+[2025-05-13 20:36:29] [INFO] Sistema de logging cerrado
+[2025-05-13 20:50:07] [INFO] Sistema de logging inicializado
+[2025-05-13 20:50:07] [INFO] ===== Iniciando CineGestion =====
+[2025-05-13 20:50:07] [INFO] Base de datos inicializada correctamente.
+[2025-05-13 20:50:10] [INFO] Inicializando datos de prueba...
+[2025-05-13 20:50:10] [INFO] Creando usuarios de prueba...
+[2025-05-13 20:50:10] [ERROR] Error al crear usuario
+[2025-05-13 20:50:10] [WARNING] El administrador ya existe o no se pudo crear
+[2025-05-13 20:50:10] [INFO] Usuario creado con ID: 2
+[2025-05-13 20:50:10] [INFO] Usuario creado con ID: 3
+[2025-05-13 20:50:10] [INFO] Usuario creado con ID: 4
+[2025-05-13 20:50:10] [INFO] Usuarios de prueba creados correctamente
+[2025-05-13 20:50:10] [INFO] Creando películas de prueba...
+[2025-05-13 20:50:10] [INFO] Película creada con ID: 1
+[2025-05-13 20:50:10] [INFO] Película creada con ID: 2
+[2025-05-13 20:50:10] [INFO] Película creada con ID: 3
+[2025-05-13 20:50:10] [INFO] Película creada con ID: 4
+[2025-05-13 20:50:10] [INFO] Película creada con ID: 5
+[2025-05-13 20:50:10] [INFO] Películas de prueba creadas correctamente
+[2025-05-13 20:50:10] [INFO] Creando salas de prueba...
+[2025-05-13 20:50:10] [INFO] Sala creada con ID: 1
+[2025-05-13 20:50:10] [INFO] Se crearon 50 asientos para la sala 1
+[2025-05-13 20:50:10] [INFO] Sala creada con ID: 2
+[2025-05-13 20:50:10] [INFO] Se crearon 80 asientos para la sala 2
+[2025-05-13 20:50:10] [INFO] Sala creada con ID: 3
+[2025-05-13 20:50:10] [INFO] Se crearon 120 asientos para la sala 3
+[2025-05-13 20:50:10] [INFO] Salas de prueba creadas correctamente
+[2025-05-13 20:50:10] [INFO] Creando sesiones de prueba...
+[2025-05-13 20:50:10] [INFO] Sesión creada con ID: 1
+[2025-05-13 20:50:10] [INFO] Sesión creada con ID: 2
+[2025-05-13 20:50:10] [INFO] Sesión creada con ID: 3
+[2025-05-13 20:50:10] [INFO] Sesión creada con ID: 4
+[2025-05-13 20:50:10] [ERROR] La sala no está disponible en el horario especificado
+[2025-05-13 20:50:10] [ERROR] No se pudo crear sesion5
+[2025-05-13 20:50:10] [ERROR] Error al inicializar datos de prueba.
+[2025-05-13 20:50:10] [INFO] Sistema de menús inicializado
+[2025-05-13 20:50:34] [INFO] Usuario autenticado: carlos@example.com
+[2025-05-13 20:50:34] [INFO] Inicio de sesión exitoso para el usuario: carlos@example.com
+[2025-05-13 20:50:48] [ERROR] Error mostrado al usuario: Valor inválido. Intente de nuevo.
+[2025-05-13 20:50:52] [INFO] Cierre de sesión para el usuario: carlos@example.com
+[2025-05-13 20:51:30] [INFO] Usuario autenticado: admin@cinegestion.com
+[2025-05-13 20:51:30] [INFO] Inicio de sesión exitoso para el usuario: admin@cinegestion.com
+[2025-05-13 20:51:34] [INFO] Se listaron 5 películas
+[2025-05-13 20:52:02] [INFO] Película actualizada con ID: 3
+[2025-05-13 20:52:07] [INFO] Se listaron 5 películas
+[2025-05-13 22:03:35] [ERROR] Error mostrado al usuario: Valor inválido. Intente de nuevo.
+[2025-05-13 22:03:35] [ERROR] Error mostrado al usuario: Valor inválido. Intente de nuevo.
+[2025-05-13 22:03:42] [INFO] Cierre de sesión para el usuario: admin@cinegestion.com
+[2025-05-13 22:03:45] [INFO] Sistema de menús finalizado
+[2025-05-13 22:03:45] [INFO] ===== Finalizando CineGestion =====
+[2025-05-13 22:03:45] [INFO] Sistema de logging cerrado
