@@ -58,3 +58,110 @@
 [2025-05-13 22:03:45] [INFO] Sistema de menús finalizado
 [2025-05-13 22:03:45] [INFO] ===== Finalizando CineGestion =====
 [2025-05-13 22:03:45] [INFO] Sistema de logging cerrado
+[2025-05-14 18:06:19] [INFO] Sistema de logging inicializado
+[2025-05-14 18:06:19] [INFO] ===== Iniciando CineGestion =====
+[2025-05-14 18:06:19] [INFO] Base de datos inicializada correctamente.
+[2025-05-14 18:06:21] [INFO] Inicializando datos de prueba...
+[2025-05-14 18:06:21] [INFO] Creando usuarios de prueba...
+[2025-05-14 18:06:21] [ERROR] Error al crear usuario
+[2025-05-14 18:06:21] [WARNING] El administrador ya existe o no se pudo crear
+[2025-05-14 18:06:21] [ERROR] Error al crear usuario
+[2025-05-14 18:06:21] [ERROR] No se pudo crear cliente1
+[2025-05-14 18:06:21] [ERROR] Error al inicializar datos de prueba.
+[2025-05-14 18:06:21] [INFO] Sistema de menús inicializado
+[2025-05-14 18:06:42] [WARNING] Intento de autenticación fallido: contraseña incorrecta para el usuario juan@example.com
+[2025-05-14 18:06:42] [WARNING] Intento de inicio de sesión fallido para el usuario: juan@example.com
+[2025-05-14 18:06:42] [ERROR] Error mostrado al usuario: Correo o contraseña incorrectos
+[2025-05-14 18:06:56] [INFO] Usuario autenticado: juan@example.com
+[2025-05-14 18:06:56] [INFO] Inicio de sesión exitoso para el usuario: juan@example.com
+[2025-05-14 18:07:04] [ERROR] Error mostrado al usuario: Valor inválido. Intente de nuevo.
+[2025-05-14 18:07:14] [INFO] Cierre de sesión para el usuario: juan@example.com
+[2025-05-14 18:07:37] [INFO] Usuario autenticado: admin@cinegestion.com
+[2025-05-14 18:07:37] [INFO] Inicio de sesión exitoso para el usuario: admin@cinegestion.com
+[2025-05-14 18:07:42] [INFO] Se listaron 3 salas
+[2025-05-14 18:07:58] [INFO] Se listaron 50 asientos para la sala 1
+[2025-05-14 18:08:19] [ERROR] Error mostrado al usuario: Valor inválido. Intente de nuevo.
+[2025-05-14 18:08:53] [ERROR] Error mostrado al usuario: Valor inválido. Intente de nuevo.
+[2025-05-14 18:09:36] [INFO] Sistema de logging inicializado
+[2025-05-14 18:09:36] [INFO] ===== Iniciando CineGestion =====
+[2025-05-14 18:09:36] [INFO] Base de datos inicializada correctamente.
+[2025-05-14 18:09:44] [INFO] Inicializando datos de prueba...
+[2025-05-14 18:09:44] [INFO] Creando usuarios de prueba...
+[2025-05-14 18:09:44] [ERROR] Error al crear usuario
+[2025-05-14 18:09:44] [WARNING] El administrador ya existe o no se pudo crear
+[2025-05-14 18:09:44] [ERROR] Error al crear usuario
+[2025-05-14 18:09:44] [ERROR] No se pudo crear cliente1
+[2025-05-14 18:09:44] [ERROR] Error al inicializar datos de prueba.
+[2025-05-14 18:09:44] [INFO] Sistema de menús inicializado
+[2025-05-14 18:10:19] [INFO] Usuario autenticado: juan@example.com
+[2025-05-14 18:10:19] [INFO] Inicio de sesión exitoso para el usuario: juan@example.com
+[2025-05-14 18:12:34] [ERROR] Error mostrado al usuario: Valor inválido. Intente de nuevo.
+[2025-05-14 18:27:30] [INFO] Sistema de logging inicializado
+[2025-05-14 18:27:30] [INFO] ===== Iniciando CineGestion =====
+[2025-05-14 18:27:30] [INFO] Base de datos inicializada correctamente.
+[2025-05-14 18:27:32] [INFO] Inicializando datos de prueba...
+[2025-05-14 18:27:32] [INFO] Creando usuarios de prueba...
+[2025-05-14 18:27:32] [ERROR] Error al crear usuario
+[2025-05-14 18:27:32] [WARNING] El administrador ya existe o no se pudo crear
+[2025-05-14 18:27:32] [ERROR] Error al crear usuario
+[2025-05-14 18:27:32] [ERROR] No se pudo crear cliente1
+[2025-05-14 18:27:32] [ERROR] Error al inicializar datos de prueba.
+[2025-05-14 18:27:32] [INFO] Sistema de menús inicializado
+[2025-05-14 18:28:10] [INFO] Usuario autenticado: juan@example.com
+[2025-05-14 18:28:10] [INFO] Inicio de sesión exitoso para el usuario: juan@example.com
+[2025-05-14 18:28:13] [INFO] Se listaron 5 películas
+[2025-05-14 18:28:13] [INFO] Se encontraron 1 sesiones para la película 1
+[2025-05-14 18:28:13] [INFO] Se encontraron 1 sesiones para la película 2
+[2025-05-14 18:28:13] [INFO] Se encontraron 1 sesiones para la película 3
+[2025-05-14 18:28:13] [INFO] Se encontraron 1 sesiones para la película 4
+[2025-05-14 18:28:28] [INFO] Se listaron 5 películas
+[2025-05-14 18:28:36] [INFO] Se encontraron 1 sesiones para la película 4
+[2025-05-14 18:28:41] [INFO] Se listaron 50 asientos para la sala 1
+[2025-05-14 18:28:41] [INFO] Se listaron 50 asientos para la sala 1
+[2025-05-14 18:29:01] [ERROR] Error al iniciar transacción para crear billete
+[2025-05-14 18:29:01] [ERROR] Error al crear el billete 0
+[2025-05-14 18:29:01] [ERROR] Error mostrado al usuario: Error al procesar la compra
+[2025-05-14 18:30:08] [INFO] Cierre de sesión para el usuario: juan@example.com
+[2025-05-14 18:32:35] [ERROR] Error mostrado al usuario: Valor inválido. Intente de nuevo.
+[2025-05-14 18:32:37] [INFO] Sistema de menús finalizado
+[2025-05-14 18:32:37] [INFO] ===== Finalizando CineGestion =====
+[2025-05-14 18:32:37] [INFO] Sistema de logging cerrado
+[2025-05-14 18:32:47] [INFO] Sistema de logging inicializado
+[2025-05-14 18:32:47] [INFO] ===== Iniciando CineGestion =====
+[2025-05-14 18:32:47] [INFO] Base de datos inicializada correctamente.
+[2025-05-14 18:32:52] [INFO] Inicializando datos de prueba...
+[2025-05-14 18:32:52] [INFO] Creando usuarios de prueba...
+[2025-05-14 18:32:52] [ERROR] Error al crear usuario
+[2025-05-14 18:32:52] [WARNING] El administrador ya existe o no se pudo crear
+[2025-05-14 18:32:52] [ERROR] Error al crear usuario
+[2025-05-14 18:32:52] [ERROR] No se pudo crear cliente1
+[2025-05-14 18:32:52] [ERROR] Error al inicializar datos de prueba.
+[2025-05-14 18:32:52] [INFO] Sistema de menús inicializado
+[2025-05-14 18:32:56] [ERROR] Error mostrado al usuario: Valor inválido. Intente de nuevo.
+[2025-05-14 18:33:04] [INFO] Sistema de logging inicializado
+[2025-05-14 18:33:04] [INFO] ===== Iniciando CineGestion =====
+[2025-05-14 18:33:04] [INFO] Base de datos inicializada correctamente.
+[2025-05-14 18:33:18] [INFO] Inicializando datos de prueba...
+[2025-05-14 18:33:18] [INFO] Creando usuarios de prueba...
+[2025-05-14 18:33:18] [ERROR] Error al crear usuario
+[2025-05-14 18:33:18] [WARNING] El administrador ya existe o no se pudo crear
+[2025-05-14 18:33:18] [ERROR] Error al crear usuario
+[2025-05-14 18:33:18] [ERROR] No se pudo crear cliente1
+[2025-05-14 18:33:18] [ERROR] Error al inicializar datos de prueba.
+[2025-05-14 18:33:18] [INFO] Sistema de menús inicializado
+[2025-05-14 18:34:08] [INFO] Usuario autenticado: carlos@example.com
+[2025-05-14 18:34:08] [INFO] Inicio de sesión exitoso para el usuario: carlos@example.com
+[2025-05-14 18:34:10] [INFO] Se listaron 5 películas
+[2025-05-14 18:34:10] [INFO] Se encontraron 1 sesiones para la película 1
+[2025-05-14 18:34:10] [INFO] Se encontraron 1 sesiones para la película 2
+[2025-05-14 18:34:10] [INFO] Se encontraron 1 sesiones para la película 3
+[2025-05-14 18:34:10] [INFO] Se encontraron 1 sesiones para la película 4
+[2025-05-14 18:34:14] [INFO] Se listaron 5 películas
+[2025-05-14 18:34:18] [INFO] Se encontraron 1 sesiones para la película 4
+[2025-05-14 18:34:21] [INFO] Se listaron 50 asientos para la sala 1
+[2025-05-14 18:34:21] [INFO] Se listaron 50 asientos para la sala 1
+[2025-05-14 18:34:29] [INFO] Estado del asiento 1 actualizado a Ocupado
+[2025-05-14 18:34:29] [INFO] Estado del asiento 2 actualizado a Ocupado
+[2025-05-14 18:34:34] [INFO] Se listaron 1 ventas para el usuario 4
+[2025-05-14 18:34:47] [ERROR] Error mostrado al usuario: Valor inválido. Intente de nuevo.
+[2025-05-14 18:34:52] [INFO] Cierre de sesión para el usuario: carlos@example.com

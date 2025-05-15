@@ -4,7 +4,11 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**",
-                "${workspaceFolder}/lib"
+                "${workspaceFolder}/lib",
+                "${workspaceFolder}/hito3/common",
+                "${workspaceFolder}/hito3/server/src",
+                "${workspaceFolder}/hito3/client/src",
+                "${workspaceFolder}/hito2/src"
             ],
             "defines": [
                 "_DEBUG",

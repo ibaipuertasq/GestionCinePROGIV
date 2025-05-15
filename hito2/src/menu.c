@@ -14,6 +14,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <math.h>
 
 #ifdef _WIN32
 #include <windows.h>
@@ -70,6 +71,528 @@ static void mostrar_encabezado(const char* titulo) {
         printf("-");
     }
     printf("+\n\n");
+}
+
+// Funciones para cliente (añadir a menu.c)
+
+// Función para mostrar la cartelera
+static void cliente_ver_cartelera() {
+    menu_limpiar_pantalla();
+    mostrar_encabezado("CARTELERA");
+    
+    // Obtener películas disponibles
+    Pelicula* peliculas = NULL;
+    int num_peliculas = 0;
+    
+    if (!pelicula_listar(&peliculas, &num_peliculas)) {
+        menu_mostrar_error("Error al cargar las películas");
+        menu_pausar();
+        return;
+    }
+    
+    if (num_peliculas == 0) {
+        printf("No hay películas en cartelera actualmente.\n");
+        menu_pausar();
+        return;
+    }
+    
+    printf("PELÍCULAS EN CARTELERA:\n\n");
+    
+    // Mostrar cada película con sus sesiones
+    for (int i = 0; i < num_peliculas; i++) {
+        printf("\n%d. %s\n", i + 1, peliculas[i].titulo);
+        printf("   Género: %s | Duración: %d minutos\n", peliculas[i].genero, peliculas[i].duracion);
+        
+        // Obtener sesiones para esta película
+        Sesion* sesiones = NULL;
+        int num_sesiones = 0;
+        
+        if (sesion_buscar_por_pelicula(peliculas[i].id, &sesiones, &num_sesiones)) {
+            if (num_sesiones > 0) {
+                printf("   Sesiones disponibles:\n");
+                
+                for (int j = 0; j < num_sesiones; j++) {
+                    // Obtener sala
+                    Sala sala;
+                    sala_obtener_por_id(sesiones[j].sala_id, &sala);
+                    
+                    // Contar asientos libres
+                    int asientos_libres = sala_contar_asientos_libres(sala.id);
+                    
+                    // Formatear hora (quitar los segundos y la fecha completa)
+                    char hora_inicio[6], hora_fin[6];
+                    strncpy(hora_inicio, sesiones[j].hora_inicio + 11, 5);
+                    hora_inicio[5] = '\0';
+                    strncpy(hora_fin, sesiones[j].hora_fin + 11, 5);
+                    hora_fin[5] = '\0';
+                    
+                    // Extraer solo la fecha (YYYY-MM-DD)
+                    char fecha[11];
+                    strncpy(fecha, sesiones[j].hora_inicio, 10);
+                    fecha[10] = '\0';
+                    
+                    printf("     - Sesión ID: %d | Fecha: %s | Hora: %s-%s | Sala: %d | Asientos libres: %d\n",
+                           sesiones[j].id, fecha, hora_inicio, hora_fin, sala.id, asientos_libres);
+                }
+            } else {
+                printf("   No hay sesiones disponibles para esta película.\n");
+            }
+            
+            sesion_liberar_lista(sesiones, num_sesiones);
+        } else {
+            printf("   Error al cargar las sesiones.\n");
+        }
+        
+        printf("\n-------------------------------------------------\n");
+    }
+    
+    pelicula_liberar_lista(peliculas, num_peliculas);
+    
+    menu_pausar();
+}
+
+// Función para mostrar los asientos de una sala para una sesión específica
+static void cliente_mostrar_asientos(int sesion_id) {
+    Sesion sesion;
+    if (!sesion_obtener_por_id(sesion_id, &sesion)) {
+        menu_mostrar_error("Sesión no encontrada");
+        return;
+    }
+    
+    Sala sala;
+    if (!sala_obtener_por_id(sesion.sala_id, &sala)) {
+        menu_mostrar_error("Información de sala no disponible");
+        return;
+    }
+    
+    Asiento* asientos = NULL;
+    int num_asientos = 0;
+    
+    if (!asiento_listar_por_sala(sala.id, &asientos, &num_asientos)) {
+        menu_mostrar_error("Error al cargar los asientos");
+        return;
+    }
+    
+    // Determinar el número de filas y columnas para una visualización agradable
+    // Asumiendo una sala rectangular con asientos numerados consecutivamente
+    int filas = (int)sqrt(sala.numero_asientos) + 1;
+    int columnas = (sala.numero_asientos / filas) + 1;
+    
+    // Imprimimos la pantalla
+    printf("\n\n");
+    printf("                  PANTALLA\n");
+    printf("       ");
+    for (int j = 0; j < columnas * 4 - 2; j++) printf("-");
+    printf("\n\n\n");
+    
+    // Imprimimos los asientos organizados en filas y columnas
+    for (int fila = 0; fila < filas; fila++) {
+        printf("%3d   ", fila + 1);  // Número de fila
+        
+        for (int col = 0; col < columnas; col++) {
+            int asiento_idx = fila * columnas + col;
+            
+            if (asiento_idx < num_asientos) {
+                // Verificar si el asiento está disponible para esta sesión
+                bool disponible = billete_esta_disponible(sesion_id, asientos[asiento_idx].id);
+                
+                if (disponible) {
+                    printf("[%2d] ", asientos[asiento_idx].numero);
+                } else {
+                    printf(" XX  ");  // Asiento ocupado
+                }
+            } else {
+                printf("     ");  // No hay asiento
+            }
+        }
+        printf("\n");
+    }
+    
+    printf("\nLeyenda: [##] Asiento libre, XX Asiento ocupado\n\n");
+    
+    asiento_liberar_lista(asientos, num_asientos);
+}
+
+// Función para comprar entradas
+// Función para comprar entradas (versión corregida)
+static void cliente_comprar_entradas() {
+    menu_limpiar_pantalla();
+    mostrar_encabezado("COMPRAR ENTRADAS");
+    
+    // Obtener películas disponibles para mostrar al usuario
+    Pelicula* peliculas = NULL;
+    int num_peliculas = 0;
+    
+    if (!pelicula_listar(&peliculas, &num_peliculas) || num_peliculas == 0) {
+        menu_mostrar_error("No hay películas disponibles");
+        menu_pausar();
+        return;
+    }
+    
+    printf("PELÍCULAS DISPONIBLES:\n\n");
+    for (int i = 0; i < num_peliculas; i++) {
+        printf("%d. %s (%s, %d min)\n", i + 1, peliculas[i].titulo, peliculas[i].genero, peliculas[i].duracion);
+    }
+    
+    int opcion_pelicula = menu_leer_entero("Seleccione una película", 1, num_peliculas);
+    int pelicula_id = peliculas[opcion_pelicula - 1].id;
+    
+    // Liberar la memoria de las películas
+    pelicula_liberar_lista(peliculas, num_peliculas);
+    
+    // Obtener sesiones para la película seleccionada
+    Sesion* sesiones = NULL;
+    int num_sesiones = 0;
+    
+    if (!sesion_buscar_por_pelicula(pelicula_id, &sesiones, &num_sesiones) || num_sesiones == 0) {
+        menu_mostrar_error("No hay sesiones disponibles para esta película");
+        menu_pausar();
+        return;
+    }
+    
+    printf("\nSESIONES DISPONIBLES:\n\n");
+    for (int i = 0; i < num_sesiones; i++) {
+        // Obtener información de la sala
+        Sala sala;
+        sala_obtener_por_id(sesiones[i].sala_id, &sala);
+        
+        // Formatear fecha y hora para mejor visualización
+        char fecha[11], hora_inicio[6], hora_fin[6];
+        strncpy(fecha, sesiones[i].hora_inicio, 10);
+        fecha[10] = '\0';
+        strncpy(hora_inicio, sesiones[i].hora_inicio + 11, 5);
+        hora_inicio[5] = '\0';
+        strncpy(hora_fin, sesiones[i].hora_fin + 11, 5);
+        hora_fin[5] = '\0';
+        
+        int asientos_libres = sala_contar_asientos_libres(sala.id);
+        
+        printf("%d. Fecha: %s | Hora: %s-%s | Sala: %d | Asientos libres: %d\n",
+               i + 1, fecha, hora_inicio, hora_fin, sala.id, asientos_libres);
+    }
+    
+    int opcion_sesion = menu_leer_entero("Seleccione una sesión", 1, num_sesiones);
+    int sesion_id = sesiones[opcion_sesion - 1].id;
+    int sala_id = sesiones[opcion_sesion - 1].sala_id;
+    
+    // Liberar la memoria de las sesiones
+    sesion_liberar_lista(sesiones, num_sesiones);
+    
+    // Mostrar los asientos y permitir la selección
+    menu_limpiar_pantalla();
+    mostrar_encabezado("SELECCIONAR ASIENTOS");
+    
+    cliente_mostrar_asientos(sesion_id);
+    
+    // Obtener asientos disponibles
+    Asiento* asientos = NULL;
+    int num_asientos = 0;
+    
+    if (!asiento_listar_por_sala(sala_id, &asientos, &num_asientos)) {
+        menu_mostrar_error("Error al listar asientos");
+        menu_pausar();
+        return;
+    }
+    
+    // Preguntar cuántas entradas desea comprar
+    int num_entradas = menu_leer_entero("¿Cuántas entradas desea comprar?", 1, 10);
+    
+    // Array para almacenar los billetes
+    Billete* billetes = (Billete*)malloc(num_entradas * sizeof(Billete));
+    if (!billetes) {
+        menu_mostrar_error("Error de memoria");
+        asiento_liberar_lista(asientos, num_asientos);
+        menu_pausar();
+        return;
+    }
+    
+    // Seleccionar asientos uno por uno
+    for (int i = 0; i < num_entradas; i++) {
+        printf("\nEntrada #%d:\n", i + 1);
+        int numero_asiento = menu_leer_entero("Ingrese el número de asiento", 1, num_asientos);
+        
+        // Buscar el asiento correspondiente
+        int asiento_id = -1;
+        for (int j = 0; j < num_asientos; j++) {
+            if (asientos[j].numero == numero_asiento) {
+                asiento_id = asientos[j].id;
+                break;
+            }
+        }
+        
+        if (asiento_id == -1) {
+            menu_mostrar_error("Asiento no encontrado");
+            i--;  // Repetir esta iteración
+            continue;
+        }
+        
+        // Verificar si el asiento está disponible
+        if (!billete_esta_disponible(sesion_id, asiento_id)) {
+            menu_mostrar_error("El asiento seleccionado no está disponible");
+            i--;  // Repetir esta iteración
+            continue;
+        }
+        
+        // Añadir el billete
+        memset(&billetes[i], 0, sizeof(Billete));
+        billetes[i].sesion_id = sesion_id;
+        billetes[i].asiento_id = asiento_id;
+        billetes[i].precio = billete_calcular_precio_base(sesion_id);
+    }
+    
+    // Mostrar resumen de la compra
+    menu_limpiar_pantalla();
+    mostrar_encabezado("RESUMEN DE COMPRA");
+    
+    double total = 0.0;
+    printf("Asientos seleccionados:\n");
+    for (int i = 0; i < num_entradas; i++) {
+        // Buscar el número de asiento
+        int numero_asiento = 0;
+        for (int j = 0; j < num_asientos; j++) {
+            if (asientos[j].id == billetes[i].asiento_id) {
+                numero_asiento = asientos[j].numero;
+                break;
+            }
+        }
+        
+        printf("- Asiento %d: %.2f€\n", numero_asiento, billetes[i].precio);
+        total += billetes[i].precio;
+    }
+    
+    printf("\nTotal: %.2f€\n", total);
+    
+    if (menu_confirmar("¿Confirmar compra?")) {
+        // Iniciar la transacción para toda la venta
+        if (!db_begin_transaction()) {
+            menu_mostrar_error("Error al iniciar la transacción");
+            free(billetes);
+            asiento_liberar_lista(asientos, num_asientos);
+            menu_pausar();
+            return;
+        }
+        
+        // Procesar billetes manualmente
+        bool error = false;
+        
+        for (int i = 0; i < num_entradas && !error; i++) {
+            // Insertar el billete en la base de datos
+            char sql[512];
+            snprintf(sql, sizeof(sql),
+                    "INSERT INTO Billete (Sesion_ID, Asiento_ID, Precio) "
+                    "VALUES (%d, %d, %.2f);",
+                    billetes[i].sesion_id, billetes[i].asiento_id, billetes[i].precio);
+            
+            if (!db_execute(sql)) {
+                log_error("Error al crear billete");
+                error = true;
+                break;
+            }
+            
+            billetes[i].id = db_last_insert_id();
+            
+            // Marcar el asiento como ocupado
+            if (!asiento_reservar(billetes[i].asiento_id)) {
+                log_error("Error al reservar el asiento");
+                error = true;
+                break;
+            }
+        }
+        
+        if (error) {
+            db_rollback_transaction();
+            menu_mostrar_error("Error al procesar los billetes");
+            free(billetes);
+            asiento_liberar_lista(asientos, num_asientos);
+            menu_pausar();
+            return;
+        }
+        
+        // Crear la venta
+        Venta venta = {0};
+        venta.usuario_id = auth_obtener_usuario_actual()->id;
+        venta.descuento = 0.0;  // No aplicamos descuento por defecto
+        time_t now = time(NULL);
+        struct tm* tm_info = localtime(&now);
+        strftime(venta.fecha, sizeof(venta.fecha), "%Y-%m-%d %H:%M:%S", tm_info);
+        venta.precio_total = total;
+        
+        // Insertar la venta
+        char sql[512];
+        snprintf(sql, sizeof(sql),
+                "INSERT INTO Venta (Usuario_ID, Fecha, Descuento, PrecioTotal) "
+                "VALUES (%d, '%s', %.2f, %.2f);",
+                venta.usuario_id, venta.fecha, venta.descuento, venta.precio_total);
+        
+        if (!db_execute(sql)) {
+            log_error("Error al crear la venta");
+            db_rollback_transaction();
+            menu_mostrar_error("Error al procesar la venta");
+            free(billetes);
+            asiento_liberar_lista(asientos, num_asientos);
+            menu_pausar();
+            return;
+        }
+        
+        venta.id = db_last_insert_id();
+        
+        // Asociar billetes a la venta
+        for (int i = 0; i < num_entradas; i++) {
+            snprintf(sql, sizeof(sql),
+                    "INSERT INTO Venta_Billetes (Venta_ID, Billete_ID) "
+                    "VALUES (%d, %d);",
+                    venta.id, billetes[i].id);
+            
+            if (!db_execute(sql)) {
+                log_error("Error al asociar billete a venta");
+                db_rollback_transaction();
+                menu_mostrar_error("Error al asociar billetes");
+                free(billetes);
+                asiento_liberar_lista(asientos, num_asientos);
+                menu_pausar();
+                return;
+            }
+        }
+        
+        // Confirmar la transacción
+        if (!db_commit_transaction()) {
+            log_error("Error al confirmar transacción");
+            db_rollback_transaction();
+            menu_mostrar_error("Error al finalizar la compra");
+            free(billetes);
+            asiento_liberar_lista(asientos, num_asientos);
+            menu_pausar();
+            return;
+        }
+        
+        menu_mostrar_exito("¡Compra realizada con éxito!");
+    } else {
+        printf("Compra cancelada\n");
+    }
+    
+    // Liberar memoria
+    free(billetes);
+    asiento_liberar_lista(asientos, num_asientos);
+    
+    menu_pausar();
+}
+
+// Mostrar información detallada de una venta
+static void cliente_mostrar_detalle_venta(int venta_id) {
+    menu_limpiar_pantalla();
+    mostrar_encabezado("DETALLE DE COMPRA");
+    
+    Venta venta;
+    if (!venta_obtener_por_id(venta_id, &venta)) {
+        menu_mostrar_error("Venta no encontrada");
+        menu_pausar();
+        return;
+    }
+    
+    printf("Fecha: %s\n", venta.fecha);
+    if (venta.descuento > 0) {
+        printf("Descuento aplicado: %.2f%%\n", venta.descuento);
+    }
+    printf("Total: %.2f€\n\n", venta.precio_total);
+    
+    // Obtener billetes de esta venta
+    Billete* billetes = NULL;
+    int num_billetes = 0;
+    
+    if (!venta_obtener_billetes(venta_id, &billetes, &num_billetes)) {
+        menu_mostrar_error("Error al obtener detalles de la compra");
+        menu_pausar();
+        return;
+    }
+    
+    printf("ENTRADAS:\n\n");
+    printf("%-5s %-20s %-20s %-10s %-10s\n", 
+           "ID", "Película", "Fecha y Hora", "Sala", "Asiento");
+    printf("-------------------------------------------------------------------------\n");
+    
+    for (int i = 0; i < num_billetes; i++) {
+        Sesion sesion;
+        if (!sesion_obtener_por_id(billetes[i].sesion_id, &sesion)) {
+            continue;
+        }
+        
+        Pelicula pelicula;
+        if (!pelicula_obtener_por_id(sesion.pelicula_id, &pelicula)) {
+            continue;
+        }
+        
+        Asiento asiento;
+        if (!asiento_obtener_por_id(billetes[i].asiento_id, &asiento)) {
+            continue;
+        }
+        
+        // Formatear fecha y hora
+        char fecha[11], hora[6];
+        strncpy(fecha, sesion.hora_inicio, 10);
+        fecha[10] = '\0';
+        strncpy(hora, sesion.hora_inicio + 11, 5);
+        hora[5] = '\0';
+        
+        printf("%-5d %-20s %-20s %-10d %-10d\n", 
+               billetes[i].id, 
+               pelicula.titulo, 
+               fecha, 
+               sesion.sala_id, 
+               asiento.numero);
+    }
+    
+    billete_liberar_lista(billetes, num_billetes);
+    menu_pausar();
+}
+
+// Función para ver compras realizadas
+static void cliente_ver_compras() {
+    menu_limpiar_pantalla();
+    mostrar_encabezado("MIS COMPRAS");
+    
+    // Obtener el ID del usuario actual
+    int usuario_id = auth_obtener_usuario_actual()->id;
+    
+    // Obtener las ventas del usuario
+    Venta* ventas = NULL;
+    int num_ventas = 0;
+    
+    if (!venta_listar_por_usuario(usuario_id, &ventas, &num_ventas)) {
+        menu_mostrar_error("Error al cargar las compras");
+        menu_pausar();
+        return;
+    }
+    
+    if (num_ventas == 0) {
+        printf("No has realizado ninguna compra aún.\n");
+        menu_pausar();
+        return;
+    }
+    
+    printf("HISTORIAL DE COMPRAS:\n\n");
+    printf("%-5s %-20s %-10s\n", "ID", "Fecha", "Total");
+    printf("---------------------------------------------\n");
+    
+    for (int i = 0; i < num_ventas; i++) {
+        // Formatear fecha (solo mostrar fecha, no hora)
+        char fecha[11];
+        strncpy(fecha, ventas[i].fecha, 10);
+        fecha[10] = '\0';
+        
+        printf("%-5d %-20s %.2f€\n", 
+               ventas[i].id, 
+               fecha, 
+               ventas[i].precio_total);
+    }
+    
+    printf("\n");
+    int opcion = menu_leer_entero("Seleccione una compra para ver detalles (0 para volver)", 0, num_ventas);
+    
+    if (opcion > 0) {
+        cliente_mostrar_detalle_venta(ventas[opcion - 1].id);
+    }
+    
+    venta_liberar_lista(ventas, num_ventas);
 }
 
 // Función privada para mostrar el pie de página
@@ -326,13 +849,13 @@ static void mostrar_menu_cliente() {
         
         switch (opcion) {
             case 1:
-                // Ver cartelera (a implementar)
+                cliente_ver_cartelera();
                 break;
             case 2:
-                // Comprar entradas (a implementar)
+                cliente_comprar_entradas();
                 break;
             case 3:
-                // Mis compras (a implementar)
+                cliente_ver_compras();
                 break;
             case 4:
                 auth_logout();
