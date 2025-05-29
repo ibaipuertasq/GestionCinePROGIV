@@ -51,6 +51,13 @@
         "ratio": "cpp",
         "mutex": "cpp",
         "thread": "cpp",
-        "iomanip": "cpp"
+        "iomanip": "cpp",
+        "map": "cpp",
+        "database.h": "c",
+        "memory.h": "c",
+        "stdio.h": "c",
+        "stdlib.h": "c",
+        "string.h": "c",
+        "logger.h": "c"
     }
 }
