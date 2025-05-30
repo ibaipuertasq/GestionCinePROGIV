@@ -615,3 +615,25 @@
 [2025-05-30 18:38:46] [INFO] Se listaron 150 asientos para la sala 3
 [2025-05-30 18:38:46] [ERROR] Error al iniciar transacción para crear billete
 [2025-05-30 18:38:46] [ERROR] Error al crear billete para asiento 1
+[2025-05-30 19:04:58] [INFO] Sistema de logging inicializado
+[2025-05-30 19:04:58] [INFO] ===== INICIANDO SERVIDOR DE CINE =====
+[2025-05-30 19:04:58] [INFO] === INICIANDO CARGA DE DATOS DE PRUEBA ===
+[2025-05-30 19:04:58] [INFO] Se listaron 7 películas
+[2025-05-30 19:04:58] [INFO] Ya existen datos en la base de datos, omitiendo carga de datos de prueba
+[2025-05-30 19:04:58] [INFO] Datos de prueba cargados exitosamente
+[2025-05-30 19:04:58] [INFO] Se listaron 5 usuarios
+[2025-05-30 19:04:58] [INFO] Se listaron 7 películas
+[2025-05-30 19:04:58] [INFO] Se listaron 4 salas
+[2025-05-30 19:04:58] [INFO] Sistema inicializado correctamente
+[2025-05-30 19:04:58] [INFO] Servidor escuchando en puerto 5000
+[2025-05-30 19:05:03] [INFO] Sistema de logging inicializado
+[2025-05-30 19:05:03] [INFO] ===== INICIANDO SERVIDOR DE CINE =====
+[2025-05-30 19:05:03] [INFO] === INICIANDO CARGA DE DATOS DE PRUEBA ===
+[2025-05-30 19:05:03] [INFO] Se listaron 7 películas
+[2025-05-30 19:05:03] [INFO] Ya existen datos en la base de datos, omitiendo carga de datos de prueba
+[2025-05-30 19:05:03] [INFO] Datos de prueba cargados exitosamente
+[2025-05-30 19:05:03] [INFO] Se listaron 5 usuarios
+[2025-05-30 19:05:03] [INFO] Se listaron 7 películas
+[2025-05-30 19:05:03] [INFO] Se listaron 4 salas
+[2025-05-30 19:05:03] [INFO] Sistema inicializado correctamente
+[2025-05-30 19:05:03] [INFO] Servidor escuchando en puerto 5000
