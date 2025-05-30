@@ -17,9 +17,113 @@
     #include <unistd.h>
 #endif
 
-
 #define PORT 5000
 #define MAX_BUFFER 4096
+
+// ============================================================================
+// CLIENTE DE RED CON RECONEXIÓN AUTOMÁTICA
+// ============================================================================
+
+class NetworkClient {
+private:
+    int sock;
+    bool connected;
+    
+    bool reconectar() {
+        if (connected) {
+            close(sock);
+            connected = false;
+        }
+        
+        return conectar();
+    }
+    
+public:
+    NetworkClient() : sock(0), connected(false) {}
+    
+    ~NetworkClient() {
+        if (connected) {
+            desconectar();
+        }
+    }
+    
+    bool conectar() {
+        struct sockaddr_in serv_addr;
+        
+        if ((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
+            std::cout << "❌ Error creando socket" << std::endl;
+            return false;
+        }
+        
+        serv_addr.sin_family = AF_INET;
+        serv_addr.sin_port = htons(PORT);
+        
+        #ifdef _WIN32
+            serv_addr.sin_addr.s_addr = inet_addr("127.0.0.1");
+            if (serv_addr.sin_addr.s_addr == INADDR_NONE) {
+                std::cout << "❌ Dirección inválida" << std::endl;
+                return false;
+            }
+        #else
+            if(inet_pton(AF_INET, "127.0.0.1", &serv_addr.sin_addr) <= 0) {
+                std::cout << "❌ Dirección inválida" << std::endl;
+                return false;
+            }
+        #endif
+        
+        if (connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0) {
+            std::cout << "❌ Error conectando al servidor" << std::endl;
+            return false;
+        }
+        
+        connected = true;
+        return true;
+    }
+    
+    std::string enviarComando(const std::string& comando) {
+        // Intentar hasta 3 veces con reconexión
+        for (int intento = 0; intento < 3; intento++) {
+            if (!connected && !reconectar()) {
+                return "ERROR:No se pudo conectar al servidor";
+            }
+            
+            // Enviar comando
+            if (send(sock, comando.c_str(), comando.length(), 0) < 0) {
+                std::cout << "⚠️  Error enviando, reintentando..." << std::endl;
+                connected = false;
+                continue;
+            }
+            
+            // Recibir respuesta
+            char buffer[MAX_BUFFER] = {0};
+            int bytes_received = recv(sock, buffer, MAX_BUFFER - 1, 0);
+            
+            if (bytes_received > 0) {
+                buffer[bytes_received] = '\0';
+                
+                // El servidor desconecta después de cada comando
+                close(sock);
+                connected = false;
+                
+                return std::string(buffer);
+            } else {
+                std::cout << "⚠️  Sin respuesta del servidor, reintentando..." << std::endl;
+                connected = false;
+            }
+        }
+        
+        return "ERROR:Sin respuesta del servidor después de varios intentos";
+    }
+    
+    void desconectar() {
+        if (connected) {
+            close(sock);
+            connected = false;
+        }
+    }
+    
+    bool estaConectado() const { return connected; }
+};
 
 // ============================================================================
 // JERARQUÍA DE CLASES CON HERENCIA Y POLIMORFISMO
@@ -90,7 +194,6 @@ public:
               const std::string& telefono = "")
         : User(id, nombre, correo, telefono) {}
     
-    // Implementación específica para administrador
     void mostrar() const override {
         std::cout << "👑 ADMINISTRADOR: " << nombre << " (" << correo << ")" << std::endl;
         std::cout << "   Permisos: Gestión completa del sistema" << std::endl;
@@ -111,7 +214,6 @@ public:
     }
     
     bool puedeGestionar(const std::string& recurso) const override {
-        // Los administradores pueden gestionar todo
         return true;
     }
     
@@ -130,7 +232,6 @@ public:
                const std::string& telefono = "", double saldo = 0.0)
         : User(id, nombre, correo, telefono), saldo(saldo) {}
     
-    // Implementación específica para cliente
     void mostrar() const override {
         std::cout << "👤 CLIENTE: " << nombre << " (" << correo << ")" << std::endl;
         std::cout << "   Saldo disponible: " << saldo << "€" << std::endl;
@@ -149,7 +250,6 @@ public:
     }
     
     bool puedeGestionar(const std::string& recurso) const override {
-        // Los clientes solo pueden gestionar su perfil y compras
         return (recurso == "PERFIL" || recurso == "MIS_COMPRAS");
     }
     
@@ -157,7 +257,6 @@ public:
         menuCliente();
     }
     
-    // Métodos específicos del cliente
     bool tieneSaldoSuficiente(double precio) const {
         return saldo >= precio;
     }
@@ -172,7 +271,7 @@ public:
     void setSaldo(double nuevo_saldo) { saldo = nuevo_saldo; }
 };
 
-// Otras clases que heredan de Entity
+// Clase Movie
 class Movie : public Entity {
 private:
     std::string titulo;
@@ -189,7 +288,6 @@ public:
     
     std::string getTipo() const override { return "Movie"; }
     
-    // Getters
     const std::string& getTitulo() const { return titulo; }
     int getDuracion() const { return duracion; }
     const std::string& getGenero() const { return genero; }
@@ -270,92 +368,6 @@ public:
 };
 
 // ============================================================================
-// CLIENTE DE RED
-// ============================================================================
-
-class NetworkClient {
-private:
-    int sock;
-    bool connected;
-    
-public:
-    NetworkClient() : sock(0), connected(false) {}
-    
-    ~NetworkClient() {
-        if (connected) {
-            desconectar();
-        }
-    }
-    
-    bool conectar() {
-        
-        struct sockaddr_in serv_addr;
-        
-        if ((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
-            std::cout << "❌ Error creando socket" << std::endl;
-            return false;
-        }
-        
-        serv_addr.sin_family = AF_INET;
-        serv_addr.sin_port = htons(PORT);
-        
-        // CAMBIAR ESTA PARTE:
-        #ifdef _WIN32
-            serv_addr.sin_addr.s_addr = inet_addr("127.0.0.1");
-            if (serv_addr.sin_addr.s_addr == INADDR_NONE) {
-                std::cout << "❌ Dirección inválida" << std::endl;
-                return false;
-            }
-        #else
-            if(inet_pton(AF_INET, "127.0.0.1", &serv_addr.sin_addr) <= 0) {
-                std::cout << "❌ Dirección inválida" << std::endl;
-                return false;
-            }
-        #endif
-        
-        if (connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0) {
-            std::cout << "❌ Error conectando al servidor" << std::endl;
-            std::cout << "   Asegúrese de que el servidor esté ejecutándose" << std::endl;
-            return false;
-        }
-        
-        connected = true;
-        return true;
-    }
-    
-    std::string enviarComando(const std::string& comando) {
-        if (!connected) {
-            return "ERROR:No conectado al servidor";
-        }
-        
-        // Enviar comando usando send()
-        if (send(sock, comando.c_str(), comando.length(), 0) < 0) {
-            return "ERROR:Error enviando comando";
-        }
-        
-        // Recibir respuesta usando recv()
-        char buffer[MAX_BUFFER] = {0};
-        int bytes_received = recv(sock, buffer, MAX_BUFFER - 1, 0);
-        
-        if (bytes_received > 0) {
-            buffer[bytes_received] = '\0';
-            return std::string(buffer);
-        }
-        
-        return "ERROR:Sin respuesta del servidor";
-    }
-    
-    void desconectar() {
-        if (connected) {
-            close(sock);
-            connected = false;
-        }
-    }
-    
-    bool estaConectado() const { return connected; }
-};
-
-// ============================================================================
 // FACTORY PATTERN PARA CREAR USUARIOS
 // ============================================================================
 
@@ -376,17 +388,21 @@ public:
 };
 
 // ============================================================================
-// SISTEMA DE AUTENTICACIÓN
+// SISTEMA DE AUTENTICACIÓN CON ESTADO PERSISTENTE
 // ============================================================================
 
 class AuthenticationService {
 private:
     static std::unique_ptr<User> usuario_actual;
+    static std::string email_actual;
+    static std::string password_actual;
     
 public:
     static bool login(const std::string& email, const std::string& password, NetworkClient& cliente) {
         std::string comando = "LOGIN:" + email + ":" + password;
         std::string respuesta = cliente.enviarComando(comando);
+        
+        std::cout << "🔍 Debug - Respuesta del servidor: " << respuesta << std::endl;
         
         if (respuesta.substr(0, 3) == "OK:") {
             // Parsear respuesta: "OK:id:nombre:tipo:correo:telefono:saldo"
@@ -400,6 +416,10 @@ public:
                 std::string telefono = datos[5];
                 double saldo = (datos.size() > 6) ? std::stod(datos[6]) : 0.0;
                 
+                // Guardar credenciales para reautenticación automática
+                email_actual = email;
+                password_actual = password;
+                
                 // Usar Factory para crear el usuario correcto
                 usuario_actual = UserFactory::crearUsuario(tipo, id, nombre, correo, telefono, saldo);
                 
@@ -410,10 +430,19 @@ public:
         return false;
     }
     
+    static bool reautenticar(NetworkClient& cliente) {
+        if (email_actual.empty()) return false;
+        
+        std::cout << "🔄 Reautenticando..." << std::endl;
+        return login(email_actual, password_actual, cliente);
+    }
+    
     static void logout(NetworkClient& cliente) {
         if (usuario_actual) {
             cliente.enviarComando("LOGOUT");
             usuario_actual.reset();
+            email_actual.clear();
+            password_actual.clear();
         }
     }
     
@@ -449,8 +478,10 @@ private:
     }
 };
 
-// Definición de la variable estática
+// Definición de las variables estáticas
 std::unique_ptr<User> AuthenticationService::usuario_actual = nullptr;
+std::string AuthenticationService::email_actual = "";
+std::string AuthenticationService::password_actual = "";
 
 // ============================================================================
 // VARIABLES GLOBALES
@@ -459,12 +490,19 @@ std::unique_ptr<User> AuthenticationService::usuario_actual = nullptr;
 NetworkClient cliente;
 
 // ============================================================================
-// IMPLEMENTACIONES DE MÉTODOS ESTÁTICOS
+// IMPLEMENTACIONES DE MÉTODOS ESTÁTICOS CON REAUTENTICACIÓN
 // ============================================================================
 
 std::vector<Movie> Movie::obtenerTodas() {
     std::vector<Movie> peliculas;
+    
+    // Reautenticar antes de cada comando
+    if (AuthenticationService::isLoggedIn()) {
+        AuthenticationService::reautenticar(cliente);
+    }
+    
     std::string respuesta = cliente.enviarComando("GET_MOVIES");
+    std::cout << "🔍 Debug GET_MOVIES - Respuesta: " << respuesta << std::endl;
     
     if (respuesta.substr(0, 3) == "OK:") {
         std::string datos = respuesta.substr(3);
@@ -497,13 +535,25 @@ std::vector<Movie> Movie::obtenerTodas() {
 }
 
 bool Movie::crear(const std::string& titulo, int duracion, const std::string& genero) {
+    // Reautenticar antes de crear
+    if (AuthenticationService::isLoggedIn()) {
+        AuthenticationService::reautenticar(cliente);
+    }
+    
     std::string comando = "CREATE_MOVIE:" + titulo + ":" + std::to_string(duracion) + ":" + genero;
     std::string respuesta = cliente.enviarComando(comando);
+    std::cout << "🔍 Debug CREATE_MOVIE - Respuesta: " << respuesta << std::endl;
+    
     return respuesta.substr(0, 2) == "OK";
 }
 
 std::vector<Room> Room::obtenerTodas() {
     std::vector<Room> salas;
+    
+    if (AuthenticationService::isLoggedIn()) {
+        AuthenticationService::reautenticar(cliente);
+    }
+    
     std::string respuesta = cliente.enviarComando("GET_ROOMS");
     
     if (respuesta.substr(0, 3) == "OK:") {
@@ -536,6 +586,10 @@ std::vector<Room> Room::obtenerTodas() {
 }
 
 bool Room::crear(int num_asientos) {
+    if (AuthenticationService::isLoggedIn()) {
+        AuthenticationService::reautenticar(cliente);
+    }
+    
     std::string comando = "CREATE_ROOM:" + std::to_string(num_asientos);
     std::string respuesta = cliente.enviarComando(comando);
     return respuesta.substr(0, 2) == "OK";
@@ -543,6 +597,11 @@ bool Room::crear(int num_asientos) {
 
 std::vector<Session> Session::obtenerTodas() {
     std::vector<Session> sesiones;
+    
+    if (AuthenticationService::isLoggedIn()) {
+        AuthenticationService::reautenticar(cliente);
+    }
+    
     std::string respuesta = cliente.enviarComando("GET_SESSIONS");
     
     if (respuesta.substr(0, 3) == "OK:") {
@@ -578,6 +637,11 @@ std::vector<Session> Session::obtenerTodas() {
 
 std::vector<Session> Session::obtenerPorPelicula(int movie_id) {
     std::vector<Session> sesiones;
+    
+    if (AuthenticationService::isLoggedIn()) {
+        AuthenticationService::reautenticar(cliente);
+    }
+    
     std::string comando = "GET_SESSIONS_BY_MOVIE:" + std::to_string(movie_id);
     std::string respuesta = cliente.enviarComando(comando);
     
@@ -614,6 +678,11 @@ std::vector<Session> Session::obtenerPorPelicula(int movie_id) {
 
 std::vector<Sale> Sale::obtenerPorUsuario(int user_id) {
     std::vector<Sale> ventas;
+    
+    if (AuthenticationService::isLoggedIn()) {
+        AuthenticationService::reautenticar(cliente);
+    }
+    
     std::string comando = "GET_USER_PURCHASES:" + std::to_string(user_id);
     std::string respuesta = cliente.enviarComando(comando);
     
@@ -651,7 +720,7 @@ std::vector<Sale> Sale::obtenerPorUsuario(int user_id) {
 // ============================================================================
 
 void limpiarPantalla() {
-    system("clear");  // En Linux/Mac, usar "cls" en Windows
+    system("cls");
 }
 
 void pausar() {
@@ -722,7 +791,7 @@ bool login() {
     
     if (AuthenticationService::login(email, password, cliente)) {
         std::cout << "\n🎉 ¡Bienvenido!" << std::endl;
-        AuthenticationService::getUsuarioActual()->mostrar();  // Polimorfismo
+        AuthenticationService::getUsuarioActual()->mostrar();
         pausar();
         return true;
     } else {
@@ -762,7 +831,7 @@ void menuGestionPeliculas() {
                     std::cout << "📭 No hay películas registradas." << std::endl;
                 } else {
                     for (const auto& pelicula : peliculas) {
-                        pelicula.mostrar();  // Polimorfismo en acción
+                        pelicula.mostrar();
                     }
                 }
                 pausar();
@@ -810,7 +879,7 @@ void menuGestionSalas() {
                     std::cout << "📭 No hay salas registradas." << std::endl;
                 } else {
                     for (const auto& sala : salas) {
-                        sala.mostrar();  // Polimorfismo en acción
+                        sala.mostrar();
                     }
                 }
                 pausar();
@@ -856,7 +925,7 @@ void menuGestionSesiones() {
                     std::cout << "📭 No hay sesiones registradas." << std::endl;
                 } else {
                     for (const auto& sesion : sesiones) {
-                        sesion.mostrar();  // Polimorfismo en acción
+                        sesion.mostrar();
                     }
                 }
                 pausar();
@@ -866,7 +935,6 @@ void menuGestionSesiones() {
                 limpiarPantalla();
                 std::cout << "=== 🔍 SESIONES POR PELÍCULA ===" << std::endl;
                 
-                // Mostrar películas disponibles
                 auto peliculas = Movie::obtenerTodas();
                 if (peliculas.empty()) {
                     std::cout << "📭 No hay películas disponibles." << std::endl;
@@ -903,7 +971,7 @@ void menuAdmin() {
     while (true) {
         limpiarPantalla();
         std::cout << "=== 👑 MENÚ ADMINISTRADOR ===" << std::endl;
-        AuthenticationService::getUsuarioActual()->mostrar();  // Polimorfismo
+        AuthenticationService::getUsuarioActual()->mostrar();
         std::cout << "\n1. Gestionar Películas" << std::endl;
         std::cout << "2. Gestionar Salas" << std::endl;
         std::cout << "3. Gestionar Sesiones" << std::endl;
@@ -941,9 +1009,8 @@ void mostrarCartelera() {
         std::cout << "📭 No hay películas en cartelera." << std::endl;
     } else {
         for (const auto& pelicula : peliculas) {
-            pelicula.mostrar();  // Polimorfismo
+            pelicula.mostrar();
             
-            // Mostrar sesiones para cada película
             auto sesiones = Session::obtenerPorPelicula(pelicula.getId());
             if (!sesiones.empty()) {
                 std::cout << "  🎭 Sesiones disponibles:" << std::endl;
@@ -971,7 +1038,7 @@ void mostrarMisCompras() {
         std::cout << "📭 No has realizado ninguna compra." << std::endl;
     } else {
         for (const auto& compra : compras) {
-            compra.mostrar();  // Polimorfismo
+            compra.mostrar();
         }
     }
     pausar();
@@ -981,7 +1048,7 @@ void menuCliente() {
     while (true) {
         limpiarPantalla();
         std::cout << "=== 👤 MENÚ CLIENTE ===" << std::endl;
-        AuthenticationService::getUsuarioActual()->mostrar();  // Polimorfismo
+        AuthenticationService::getUsuarioActual()->mostrar();
         std::cout << "\n1. Ver Cartelera" << std::endl;
         std::cout << "2. Mis Compras" << std::endl;
         std::cout << "3. Cerrar sesión" << std::endl;
@@ -1007,7 +1074,6 @@ void menuCliente() {
 // ============================================================================
 
 int main() {
-        // Inicializar Winsock en Windows
     #ifdef _WIN32
     WSADATA wsaData;
     if (WSAStartup(MAKEWORD(2,2), &wsaData) != 0) {
@@ -1015,16 +1081,11 @@ int main() {
         return -1;
     }
     #endif
+    
     std::cout << "🎬 === CLIENTE SISTEMA DE CINE === 🎬" << std::endl;
-    std::cout << "Conectando al servidor..." << std::endl;
+    std::cout << "Preparando conexión al servidor..." << std::endl;
     
-    if (!cliente.conectar()) {
-        mostrarError("No se pudo conectar al servidor");
-        std::cout << "Asegúrese de que el servidor esté ejecutándose en puerto " << PORT << std::endl;
-        return -1;
-    }
-    
-    std::cout << "✅ ¡Conectado al servidor de cine!" << std::endl;
+    std::cout << "✅ ¡Sistema listo para conectar!" << std::endl;
     pausar();
     
     while (true) {
@@ -1036,7 +1097,6 @@ int main() {
             case 1:
                 if (login()) {
                     User* usuario = AuthenticationService::getUsuarioActual();
-                    // Polimorfismo: cada usuario ejecuta su menú específico
                     usuario->mostrarMenu();
                 }
                 break;
@@ -1045,9 +1105,13 @@ int main() {
                 cliente.enviarComando("QUIT");
                 cliente.desconectar();
                 std::cout << "\n👋 ¡Hasta luego!" << std::endl;
+                #ifdef _WIN32
+                WSACleanup();
+                #endif
                 return 0;
         }
     }
+    
     #ifdef _WIN32
     WSACleanup();
     #endif

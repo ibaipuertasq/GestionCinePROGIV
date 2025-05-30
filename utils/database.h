@@ -1,7 +1,7 @@
 #ifndef DATABASE_H
 #define DATABASE_H
 
-#include "lib/sqlite3.h"
+#include "../lib/sqlite3.h" 
 #include <stdbool.h>
 
 // Estructura para manejar la conexión a la base de datos

@@ -6,7 +6,6 @@
 #ifdef _WIN32
     #include <winsock2.h>
     #include <ws2tcpip.h>
-    #pragma comment(lib, "ws2_32.lib")
     #define close closesocket
 #else
     #include <sys/socket.h>
@@ -15,7 +14,6 @@
     #include <unistd.h>
 #endif
 
-// Incluir TODO tu código existente (sin cambios)
 #include "config.h"
 #include "auth.h"
 #include "models/usuario.h"
@@ -33,63 +31,93 @@
 #define PORT 5000
 #define MAX_BUFFER 4096
 
-// Función que procesa comandos usando TUS funciones existentes
+// Función que procesa comandos con DEBUG mejorado
 char* procesar_comando(char* comando) {
     char* respuesta = malloc(MAX_BUFFER);
     memset(respuesta, 0, MAX_BUFFER);
     
+    printf("🔍 DEBUG - Procesando comando: %s\n", comando);
+    
+    // Crear una copia del comando para strtok
+    char* comando_copia = malloc(strlen(comando) + 1);
+    strcpy(comando_copia, comando);
+    
     // Dividir comando por ':'
-    char* cmd = strtok(comando, ":");
+    char* cmd = strtok(comando_copia, ":");
     
     if (strcmp(cmd, "LOGIN") == 0) {
         char* email = strtok(NULL, ":");
         char* password = strtok(NULL, ":");
         
+        printf("🔍 DEBUG - Intento de login: %s / %s\n", email, password);
+        
         if (auth_login(email, password)) {
             Usuario* user = auth_obtener_usuario_actual();
-            // Formato mejorado: OK:id:nombre:tipo:correo:telefono:saldo
             snprintf(respuesta, MAX_BUFFER, "OK:%d:%s:%s:%s:%s:%.2f", 
                     user->id,
                     user->nombre, 
                     user->tipo == USUARIO_ADMINISTRADOR ? "admin" : "cliente",
                     user->correo,
                     user->telefono ? user->telefono : "",
-                    0.0);  // saldo por defecto
+                    0.0);
+            
+            printf("✅ DEBUG - Login exitoso para: %s (ID: %d)\n", user->nombre, user->id);
             log_info("Usuario %s logueado correctamente", user->nombre);
         } else {
             strcpy(respuesta, "ERROR:Credenciales incorrectas");
+            printf("❌ DEBUG - Login fallido para: %s\n", email);
             log_warning("Intento de login fallido para %s", email);
         }
     }
     else if (strcmp(cmd, "LOGOUT") == 0) {
         auth_logout();
         strcpy(respuesta, "OK:Sesión cerrada");
+        printf("🚪 DEBUG - Usuario deslogueado\n");
         log_info("Usuario deslogueado");
     }
     else if (strcmp(cmd, "GET_MOVIES") == 0) {
+        printf("🎬 DEBUG - Obteniendo películas...\n");
+        
         Pelicula* peliculas = NULL;
         int num_peliculas = 0;
         
         if (pelicula_listar(&peliculas, &num_peliculas)) {
+            printf("✅ DEBUG - Encontradas %d películas\n", num_peliculas);
             strcpy(respuesta, "OK:");
+            
             for (int i = 0; i < num_peliculas; i++) {
                 char temp[300];
                 snprintf(temp, sizeof(temp), "%d|%s|%d|%s;", 
                         peliculas[i].id, peliculas[i].titulo, 
                         peliculas[i].duracion, peliculas[i].genero);
                 strcat(respuesta, temp);
+                printf("  - Película %d: %s\n", peliculas[i].id, peliculas[i].titulo);
             }
+            
             pelicula_liberar_lista(peliculas, num_peliculas);
             log_info("Enviadas %d películas al cliente", num_peliculas);
         } else {
             strcpy(respuesta, "ERROR:No se pudieron obtener películas");
+            printf("❌ DEBUG - Error obteniendo películas\n");
             log_error("Error obteniendo lista de películas");
         }
     }
     else if (strcmp(cmd, "CREATE_MOVIE") == 0) {
-        if (!auth_sesion_activa() || !auth_es_administrador()) {
+        printf("🎬 DEBUG - Creando película...\n");
+        
+        // Verificar autenticación primero
+        if (!auth_sesion_activa()) {
+            printf("❌ DEBUG - No hay sesión activa\n");
+            strcpy(respuesta, "ERROR:Debe iniciar sesión");
+            free(comando_copia);
+            return respuesta;
+        }
+        
+        if (!auth_es_administrador()) {
+            printf("❌ DEBUG - Usuario no es administrador\n");
             strcpy(respuesta, "ERROR:Acceso denegado - Requiere permisos de administrador");
             log_warning("Intento de crear película sin permisos");
+            free(comando_copia);
             return respuesta;
         }
         
@@ -97,8 +125,15 @@ char* procesar_comando(char* comando) {
         char* duracion_str = strtok(NULL, ":");
         char* genero = strtok(NULL, ":");
         
+        printf("🔍 DEBUG - Datos película: título='%s', duración='%s', género='%s'\n", 
+               titulo ? titulo : "NULL", 
+               duracion_str ? duracion_str : "NULL", 
+               genero ? genero : "NULL");
+        
         if (!titulo || !duracion_str || !genero) {
             strcpy(respuesta, "ERROR:Parámetros incompletos");
+            printf("❌ DEBUG - Parámetros incompletos\n");
+            free(comando_copia);
             return respuesta;
         }
         
@@ -109,36 +144,48 @@ char* procesar_comando(char* comando) {
         
         if (pelicula_crear(&nueva_pelicula)) {
             snprintf(respuesta, MAX_BUFFER, "OK:%d", nueva_pelicula.id);
+            printf("✅ DEBUG - Película creada con ID %d\n", nueva_pelicula.id);
             log_info("Película '%s' creada con ID %d", nueva_pelicula.titulo, nueva_pelicula.id);
         } else {
             strcpy(respuesta, "ERROR:No se pudo crear la película");
+            printf("❌ DEBUG - Error creando película\n");
             log_error("Error creando película '%s'", titulo);
         }
     }
     else if (strcmp(cmd, "GET_ROOMS") == 0) {
+        printf("🏢 DEBUG - Obteniendo salas...\n");
+        
         Sala* salas = NULL;
         int num_salas = 0;
         
         if (sala_listar(&salas, &num_salas)) {
+            printf("✅ DEBUG - Encontradas %d salas\n", num_salas);
             strcpy(respuesta, "OK:");
+            
             for (int i = 0; i < num_salas; i++) {
                 char temp[100];
                 int asientos_libres = sala_contar_asientos_libres(salas[i].id);
                 snprintf(temp, sizeof(temp), "%d|%d|%d;", 
                         salas[i].id, salas[i].numero_asientos, asientos_libres);
                 strcat(respuesta, temp);
+                printf("  - Sala %d: %d asientos\n", salas[i].id, salas[i].numero_asientos);
             }
+            
             sala_liberar_lista(salas, num_salas);
             log_info("Enviadas %d salas al cliente", num_salas);
         } else {
             strcpy(respuesta, "ERROR:No se pudieron obtener salas");
+            printf("❌ DEBUG - Error obteniendo salas\n");
             log_error("Error obteniendo lista de salas");
         }
     }
     else if (strcmp(cmd, "CREATE_ROOM") == 0) {
+        printf("🏢 DEBUG - Creando sala...\n");
+        
         if (!auth_sesion_activa() || !auth_es_administrador()) {
             strcpy(respuesta, "ERROR:Acceso denegado - Requiere permisos de administrador");
             log_warning("Intento de crear sala sin permisos");
+            free(comando_copia);
             return respuesta;
         }
         
@@ -146,6 +193,7 @@ char* procesar_comando(char* comando) {
         
         if (!num_asientos_str) {
             strcpy(respuesta, "ERROR:Número de asientos requerido");
+            free(comando_copia);
             return respuesta;
         }
         
@@ -154,11 +202,13 @@ char* procesar_comando(char* comando) {
         
         if (nueva_sala.numero_asientos <= 0 || nueva_sala.numero_asientos > 1000) {
             strcpy(respuesta, "ERROR:Número de asientos inválido (1-1000)");
+            free(comando_copia);
             return respuesta;
         }
         
         if (sala_crear(&nueva_sala)) {
             snprintf(respuesta, MAX_BUFFER, "OK:%d", nueva_sala.id);
+            printf("✅ DEBUG - Sala creada con ID %d\n", nueva_sala.id);
             log_info("Sala creada con ID %d y %d asientos", nueva_sala.id, nueva_sala.numero_asientos);
         } else {
             strcpy(respuesta, "ERROR:No se pudo crear la sala");
@@ -166,11 +216,15 @@ char* procesar_comando(char* comando) {
         }
     }
     else if (strcmp(cmd, "GET_SESSIONS") == 0) {
+        printf("🎭 DEBUG - Obteniendo sesiones...\n");
+        
         Sesion* sesiones = NULL;
         int num_sesiones = 0;
         
         if (sesion_listar(&sesiones, &num_sesiones)) {
+            printf("✅ DEBUG - Encontradas %d sesiones\n", num_sesiones);
             strcpy(respuesta, "OK:");
+            
             for (int i = 0; i < num_sesiones; i++) {
                 char temp[300];
                 snprintf(temp, sizeof(temp), "%d|%d|%d|%s|%s;", 
@@ -179,6 +233,7 @@ char* procesar_comando(char* comando) {
                         sesiones[i].hora_fin);
                 strcat(respuesta, temp);
             }
+            
             sesion_liberar_lista(sesiones, num_sesiones);
             log_info("Enviadas %d sesiones al cliente", num_sesiones);
         } else {
@@ -191,6 +246,7 @@ char* procesar_comando(char* comando) {
         
         if (!movie_id_str) {
             strcpy(respuesta, "ERROR:ID de película requerido");
+            free(comando_copia);
             return respuesta;
         }
         
@@ -218,17 +274,18 @@ char* procesar_comando(char* comando) {
     else if (strcmp(cmd, "GET_USER_PURCHASES") == 0) {
         if (!auth_sesion_activa()) {
             strcpy(respuesta, "ERROR:Debe iniciar sesión");
+            free(comando_copia);
             return respuesta;
         }
         
         char* user_id_str = strtok(NULL, ":");
         int user_id = user_id_str ? atoi(user_id_str) : auth_obtener_usuario_actual()->id;
         
-        // Verificar que el usuario puede ver estas compras
         Usuario* current_user = auth_obtener_usuario_actual();
         if (current_user->tipo != USUARIO_ADMINISTRADOR && current_user->id != user_id) {
             strcpy(respuesta, "ERROR:No puede ver compras de otros usuarios");
             log_warning("Usuario %d intentó ver compras de usuario %d", current_user->id, user_id);
+            free(comando_copia);
             return respuesta;
         }
         
@@ -256,14 +313,16 @@ char* procesar_comando(char* comando) {
     }
     else {
         snprintf(respuesta, MAX_BUFFER, "ERROR:Comando no reconocido: %s", cmd);
+        printf("❌ DEBUG - Comando no reconocido: %s\n", cmd);
         log_warning("Comando no reconocido: %s", cmd);
     }
     
+    free(comando_copia);
+    printf("📤 DEBUG - Respuesta: %.100s%s\n", respuesta, strlen(respuesta) > 100 ? "..." : "");
     return respuesta;
 }
 
 int main() {
-    // Inicializar Winsock en Windows
     #ifdef _WIN32
     WSADATA wsaData;
     if (WSAStartup(MAKEWORD(2,2), &wsaData) != 0) {
@@ -271,9 +330,10 @@ int main() {
         return -1;
     }
     #endif
+    
     printf("=== SERVIDOR DE GESTIÓN DE CINE ===\n");
     
-    // Inicializar tu sistema completo (sin cambios)
+    // Inicializar sistema
     memory_init();
     
     Config config;
@@ -302,16 +362,56 @@ int main() {
         fprintf(stderr, "Error: No se pudo inicializar la base de datos\n");
         return -1;
     }
+    printf("✅ Base de datos inicializada correctamente\n");
     
     printf("Inicializando datos de prueba...\n");
-    if (!test_data_init()) {
-        log_warning("No se pudieron inicializar datos de prueba");
+    if (test_data_init()) {
+        printf("✅ Datos de prueba cargados exitosamente\n");
+        log_info("Datos de prueba cargados exitosamente");
+    } else {
+        printf("⚠️ Los datos de prueba no se cargaron (puede que ya existan)\n");
+        log_warning("Los datos de prueba no se cargaron");
     }
     
+    // Verificar datos
+    printf("Verificando datos en la base de datos...\n");
+    
+    Usuario* usuarios = NULL;
+    int num_usuarios = 0;
+    if (usuario_listar(&usuarios, &num_usuarios)) {
+        printf("✅ Usuarios en BD: %d\n", num_usuarios);
+        for (int i = 0; i < num_usuarios; i++) {
+            printf("   - %s (%s)\n", usuarios[i].correo, 
+                   usuarios[i].tipo == USUARIO_ADMINISTRADOR ? "Admin" : "Cliente");
+        }
+        usuario_liberar_lista(usuarios, num_usuarios);
+    }
+    
+    Pelicula* peliculas = NULL;
+    int num_peliculas = 0;
+    if (pelicula_listar(&peliculas, &num_peliculas)) {
+        printf("✅ Películas en BD: %d\n", num_peliculas);
+        for (int i = 0; i < num_peliculas && i < 3; i++) {
+            printf("   - %s (%d min)\n", peliculas[i].titulo, peliculas[i].duracion);
+        }
+        if (num_peliculas > 3) printf("   ... y %d más\n", num_peliculas - 3);
+        pelicula_liberar_lista(peliculas, num_peliculas);
+    }
+    
+    Sala* salas = NULL;
+    int num_salas = 0;
+    if (sala_listar(&salas, &num_salas)) {
+        printf("✅ Salas en BD: %d\n", num_salas);
+        for (int i = 0; i < num_salas; i++) {
+            printf("   - Sala %d: %d asientos\n", salas[i].id, salas[i].numero_asientos);
+        }
+        sala_liberar_lista(salas, num_salas);
+    }
+
     auth_init();
     log_info("Sistema inicializado correctamente");
     
-    // Código del servidor usando las plantillas proporcionadas
+    // Iniciar servidor de red
     int server_fd, new_socket;
     struct sockaddr_in address;
     int addrlen = sizeof(address);
@@ -323,9 +423,8 @@ int main() {
         return -1;
     }
 
-    // Permitir reutilizar el puerto
     int opt = 1;
-    if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt))) {
+    if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR, (const char*)&opt, sizeof(opt))) {
         perror("setsockopt");
         log_error("Error configurando socket");
     }
@@ -346,7 +445,7 @@ int main() {
         return -1;
     }
 
-    printf("✅ Servidor escuchando en puerto %d\n", PORT);
+    printf("\n✅ Servidor escuchando en puerto %d\n", PORT);
     printf("Esperando conexiones de clientes...\n\n");
     log_info("Servidor escuchando en puerto %d", PORT);
 
@@ -360,10 +459,10 @@ int main() {
             continue;
         }
         
-        printf("🔗 Cliente conectado\n");
+        printf("🔗 Cliente conectado desde %s\n", inet_ntoa(address.sin_addr));
         log_info("Cliente conectado desde %s", inet_ntoa(address.sin_addr));
 
-        // Leer comando del cliente usando recv()
+        // Leer comando del cliente
         memset(buffer, 0, MAX_BUFFER);
         int bytes_received = recv(new_socket, buffer, MAX_BUFFER - 1, 0);
         
@@ -371,10 +470,10 @@ int main() {
             buffer[bytes_received] = '\0';
             printf("📨 Comando recibido: %s\n", buffer);
 
-            // Procesar comando usando TUS funciones existentes
+            // Procesar comando
             char* respuesta = procesar_comando(buffer);
             
-            // Enviar respuesta usando send()
+            // Enviar respuesta
             send(new_socket, respuesta, strlen(respuesta), 0);
             printf("📤 Respuesta enviada: %.100s%s\n", 
                    respuesta, strlen(respuesta) > 100 ? "..." : "");
@@ -398,7 +497,7 @@ int main() {
 
     close(server_fd);
     
-    // Limpiar tu sistema
+    // Limpiar sistema
     log_info("===== CERRANDO SERVIDOR =====");
     db_close();
     log_close();
