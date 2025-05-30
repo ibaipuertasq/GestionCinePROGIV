@@ -648,3 +648,795 @@
 [2025-05-30 19:14:18] [INFO] Se listaron 4 salas
 [2025-05-30 19:14:18] [INFO] Sistema inicializado correctamente
 [2025-05-30 19:14:18] [INFO] Servidor escuchando en puerto 5000
+[2025-05-30 19:20:35] [INFO] Sistema de logging inicializado
+[2025-05-30 19:20:35] [INFO] ===== INICIANDO SERVIDOR DE CINE =====
+[2025-05-30 19:20:35] [INFO] === INICIANDO CARGA DE DATOS DE PRUEBA ===
+[2025-05-30 19:20:35] [INFO] Se listaron 7 películas
+[2025-05-30 19:20:35] [INFO] Ya existen datos en la base de datos, omitiendo carga de datos de prueba
+[2025-05-30 19:20:35] [INFO] Datos de prueba cargados exitosamente
+[2025-05-30 19:20:35] [INFO] Se listaron 5 usuarios
+[2025-05-30 19:20:35] [INFO] Se listaron 7 películas
+[2025-05-30 19:20:35] [INFO] Se listaron 4 salas
+[2025-05-30 19:20:35] [INFO] Sistema inicializado correctamente
+[2025-05-30 19:20:35] [INFO] Servidor escuchando en puerto 5000
+[2025-05-30 19:22:35] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:22:35] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:22:35] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:22:35] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:23:01] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:23:01] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:23:01] [INFO] Usuario deslogueado
+[2025-05-30 19:23:15] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:23:15] [WARNING] Intento de autenticación fallido: contraseña incorrecta para el usuario juan@gmail.com
+[2025-05-30 19:23:15] [WARNING] Intento de inicio de sesión fallido para el usuario: juan@gmail.com
+[2025-05-30 19:23:15] [WARNING] Intento de login fallido para juan@gmail.com
+[2025-05-30 19:23:36] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:23:36] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:23:36] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:23:36] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:24:11] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:24:11] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:24:11] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:24:11] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:24:11] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:24:11] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:24:11] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:24:11] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:24:11] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:24:11] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:24:11] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:24:11] [INFO] Se listaron 7 películas
+[2025-05-30 19:24:11] [INFO] Enviadas 7 peliculas al cliente
+[2025-05-30 19:24:11] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:24:11] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:24:11] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:24:11] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:24:11] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:24:11] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:24:11] [INFO] Se encontraron 2 sesiones para la película 1
+[2025-05-30 19:24:11] [INFO] Enviadas 2 sesiones para pelicula 1
+[2025-05-30 19:24:11] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:24:11] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:24:11] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:24:11] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:24:11] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:24:11] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:24:11] [INFO] Informacion de sala 3 enviada
+[2025-05-30 19:24:11] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:24:11] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:24:11] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:24:11] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:24:11] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:24:11] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:24:11] [INFO] Informacion de sala 3 enviada
+[2025-05-30 19:24:11] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:24:11] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:24:11] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:24:11] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:24:11] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:24:11] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:24:11] [INFO] Se encontraron 2 sesiones para la película 2
+[2025-05-30 19:24:11] [INFO] Enviadas 2 sesiones para pelicula 2
+[2025-05-30 19:24:11] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:24:11] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:24:11] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:24:11] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:24:11] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:24:11] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:24:11] [INFO] Informacion de sala 2 enviada
+[2025-05-30 19:24:11] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:24:11] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:24:11] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:24:11] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:24:11] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:24:11] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:24:11] [INFO] Informacion de sala 2 enviada
+[2025-05-30 19:24:11] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:24:11] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:24:11] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:24:11] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:24:11] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:24:11] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:24:11] [INFO] Se encontraron 1 sesiones para la película 3
+[2025-05-30 19:24:11] [INFO] Enviadas 1 sesiones para pelicula 3
+[2025-05-30 19:24:12] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:24:12] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:24:12] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:24:12] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:24:12] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:24:12] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:24:12] [INFO] Informacion de sala 1 enviada
+[2025-05-30 19:24:12] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:24:12] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:24:12] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:24:12] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:24:12] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:24:12] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:24:12] [INFO] Enviadas 0 sesiones para pelicula 4
+[2025-05-30 19:24:12] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:24:12] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:24:12] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:24:12] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:24:12] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:24:12] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:24:12] [INFO] Enviadas 0 sesiones para pelicula 5
+[2025-05-30 19:24:12] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:24:12] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:24:12] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:24:12] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:24:12] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:24:12] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:24:12] [INFO] Enviadas 0 sesiones para pelicula 6
+[2025-05-30 19:24:12] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:24:12] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:24:12] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:24:12] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:24:12] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:24:12] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:24:12] [INFO] Enviadas 0 sesiones para pelicula 7
+[2025-05-30 19:25:20] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:25:20] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:25:20] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:25:20] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:25:20] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:25:20] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:25:20] [INFO] Se listaron 7 películas
+[2025-05-30 19:25:20] [INFO] Enviadas 7 peliculas al cliente
+[2025-05-30 19:25:53] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:25:53] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:25:53] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:25:53] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:25:53] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:25:53] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:25:53] [INFO] Enviadas 0 sesiones para pelicula 4
+[2025-05-30 19:25:58] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:25:58] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:25:58] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:25:58] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:25:58] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:25:58] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:25:58] [INFO] Se listaron 7 películas
+[2025-05-30 19:25:58] [INFO] Enviadas 7 peliculas al cliente
+[2025-05-30 19:26:00] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:26:00] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:26:00] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:26:00] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:26:00] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:26:00] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:26:00] [INFO] Se encontraron 2 sesiones para la película 1
+[2025-05-30 19:26:00] [INFO] Enviadas 2 sesiones para pelicula 1
+[2025-05-30 19:26:00] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:26:00] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:26:00] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:26:00] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:26:00] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:26:00] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:26:00] [INFO] Informacion de sala 3 enviada
+[2025-05-30 19:26:00] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:26:00] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:26:00] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:26:00] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:26:00] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:26:00] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:26:00] [INFO] Informacion de sala 3 enviada
+[2025-05-30 19:26:20] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:26:20] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:26:20] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:26:20] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:26:20] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:26:20] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:26:20] [INFO] Asientos de sesión 1 enviados
+[2025-05-30 19:26:20] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:26:20] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:26:20] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:26:20] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:26:20] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:26:20] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:26:20] [INFO] Informacion de sala 3 enviada
+[2025-05-30 19:28:44] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:28:44] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:28:44] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:28:44] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:28:44] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:28:44] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:28:44] [INFO] Se listaron 150 asientos para la sala 3
+[2025-05-30 19:28:49] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:28:49] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:28:49] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:28:49] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:28:49] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:28:49] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:28:49] [INFO] Se listaron 150 asientos para la sala 3
+[2025-05-30 19:28:51] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:28:51] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:28:51] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:28:51] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:28:51] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:28:51] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:28:51] [INFO] Se listaron 150 asientos para la sala 3
+[2025-05-30 19:28:53] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:28:53] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:28:53] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:28:53] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:28:53] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:28:53] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:28:53] [INFO] Se listaron 150 asientos para la sala 3
+[2025-05-30 19:28:57] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:28:57] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:28:57] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:28:57] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:28:57] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:28:57] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:28:57] [INFO] Se listaron 150 asientos para la sala 3
+[2025-05-30 19:29:28] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:29:28] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:29:28] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:29:28] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:29:28] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:29:33] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:29:33] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:29:33] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:29:33] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:29:33] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:29:33] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:29:33] [INFO] Se listaron 7 películas
+[2025-05-30 19:29:33] [INFO] Enviadas 7 peliculas al cliente
+[2025-05-30 19:29:36] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:29:36] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:29:36] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:29:36] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:29:36] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:29:36] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:29:36] [INFO] Se encontraron 2 sesiones para la película 1
+[2025-05-30 19:29:36] [INFO] Enviadas 2 sesiones para pelicula 1
+[2025-05-30 19:29:36] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:29:36] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:29:36] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:29:36] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:29:36] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:29:36] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:29:36] [INFO] Informacion de sala 3 enviada
+[2025-05-30 19:29:36] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:29:36] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:29:36] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:29:36] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:29:36] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:29:36] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:29:36] [INFO] Informacion de sala 3 enviada
+[2025-05-30 19:29:39] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:29:39] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:29:39] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:29:39] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:29:39] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:29:39] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:29:39] [INFO] Asientos de sesión 1 enviados
+[2025-05-30 19:29:39] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:29:39] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:29:39] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:29:39] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:29:39] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:29:39] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:29:39] [INFO] Informacion de sala 3 enviada
+[2025-05-30 19:29:46] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:29:46] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:29:46] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:29:46] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:29:46] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:29:46] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:29:46] [INFO] Se listaron 150 asientos para la sala 3
+[2025-05-30 19:30:10] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:30:10] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:30:10] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:30:10] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:30:10] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:30:10] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:30:10] [INFO] Se listaron 150 asientos para la sala 3
+[2025-05-30 19:30:10] [ERROR] Error al iniciar transacción para crear billete
+[2025-05-30 19:30:10] [ERROR] Error al crear billete para asiento 1
+[2025-05-30 19:30:58] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:30:58] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:30:58] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:30:58] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:30:58] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:30:58] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:30:58] [INFO] Enviadas 0 compras para usuario 2
+[2025-05-30 19:31:02] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:31:02] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:31:02] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:31:02] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:31:02] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:31:02] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:31:02] [INFO] Se listaron 7 películas
+[2025-05-30 19:31:02] [INFO] Enviadas 7 peliculas al cliente
+[2025-05-30 19:31:05] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:31:05] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:31:05] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:31:05] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:31:05] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:31:05] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:31:05] [INFO] Se encontraron 2 sesiones para la película 2
+[2025-05-30 19:31:05] [INFO] Enviadas 2 sesiones para pelicula 2
+[2025-05-30 19:31:05] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:31:05] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:31:05] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:31:05] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:31:05] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:31:05] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:31:05] [INFO] Informacion de sala 2 enviada
+[2025-05-30 19:31:05] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:31:05] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:31:05] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:31:05] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:31:05] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:31:05] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:31:05] [INFO] Informacion de sala 2 enviada
+[2025-05-30 19:31:07] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:31:07] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:31:07] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:31:07] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:31:07] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:31:07] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:31:07] [INFO] Asientos de sesión 3 enviados
+[2025-05-30 19:31:07] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:31:07] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:31:07] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:31:07] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:31:07] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:31:07] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:31:07] [INFO] Informacion de sala 2 enviada
+[2025-05-30 19:31:11] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:31:11] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:31:11] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:31:11] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:31:11] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:31:11] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:31:11] [INFO] Se listaron 100 asientos para la sala 2
+[2025-05-30 19:31:13] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:31:13] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:31:13] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:31:13] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:31:13] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:31:13] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:31:13] [INFO] Se listaron 100 asientos para la sala 2
+[2025-05-30 19:31:13] [ERROR] Error al iniciar transacción para crear billete
+[2025-05-30 19:31:13] [ERROR] Error al crear billete para asiento 1
+[2025-05-30 19:42:26] [INFO] Sistema de logging inicializado
+[2025-05-30 19:42:26] [INFO] ===== INICIANDO SERVIDOR DE CINE =====
+[2025-05-30 19:42:26] [INFO] === INICIANDO CARGA DE DATOS DE PRUEBA ===
+[2025-05-30 19:42:26] [INFO] Se listaron 7 películas
+[2025-05-30 19:42:26] [INFO] Ya existen datos en la base de datos, omitiendo carga de datos de prueba
+[2025-05-30 19:42:26] [INFO] Datos de prueba cargados exitosamente
+[2025-05-30 19:42:26] [INFO] Se listaron 5 usuarios
+[2025-05-30 19:42:26] [INFO] Se listaron 7 películas
+[2025-05-30 19:42:26] [INFO] Se listaron 4 salas
+[2025-05-30 19:42:26] [INFO] Sistema inicializado correctamente
+[2025-05-30 19:42:26] [INFO] Servidor escuchando en puerto 5000
+[2025-05-30 19:42:51] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:42:51] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:42:51] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:42:51] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:42:56] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:42:56] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:42:56] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:42:56] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:42:56] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:42:56] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:42:56] [INFO] Se listaron 7 películas
+[2025-05-30 19:42:56] [INFO] Enviadas 7 peliculas al cliente
+[2025-05-30 19:42:58] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:42:58] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:42:58] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:42:58] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:42:58] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:42:58] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:42:58] [INFO] Se encontraron 2 sesiones para la película 1
+[2025-05-30 19:42:58] [INFO] Enviadas 2 sesiones para pelicula 1
+[2025-05-30 19:42:58] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:42:58] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:42:58] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:42:58] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:42:58] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:42:58] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:42:58] [INFO] Informacion de sala 3 enviada
+[2025-05-30 19:43:00] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:43:00] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:43:00] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:43:00] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:43:00] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:43:00] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:43:00] [INFO] Asientos de sesión 1 enviados
+[2025-05-30 19:43:01] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:43:01] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:43:01] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:43:01] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:43:01] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:43:01] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:43:01] [INFO] Informacion de sala 3 enviada
+[2025-05-30 19:43:04] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:43:04] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:43:04] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:43:04] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:43:04] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:43:04] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:43:04] [INFO] Se listaron 150 asientos para la sala 3
+[2025-05-30 19:43:06] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:43:06] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:43:06] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:43:06] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:43:06] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:43:06] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:43:06] [INFO] Se listaron 150 asientos para la sala 3
+[2025-05-30 19:43:06] [ERROR] Error al iniciar transacción para crear billete
+[2025-05-30 19:43:06] [ERROR] Error al crear billete para asiento 1
+[2025-05-30 19:43:23] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:43:23] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:43:23] [INFO] Usuario deslogueado
+[2025-05-30 19:43:26] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:43:26] [INFO] Cliente solicita desconexión
+[2025-05-30 19:43:26] [INFO] Servidor cerrado por comando QUIT
+[2025-05-30 19:43:26] [INFO] ===== CERRANDO SERVIDOR =====
+[2025-05-30 19:43:26] [INFO] Sistema de logging cerrado
+[2025-05-30 19:43:43] [INFO] Sistema de logging inicializado
+[2025-05-30 19:43:43] [INFO] ===== INICIANDO SERVIDOR DE CINE =====
+[2025-05-30 19:43:43] [INFO] === INICIANDO CARGA DE DATOS DE PRUEBA ===
+[2025-05-30 19:43:43] [INFO] Se listaron 7 películas
+[2025-05-30 19:43:43] [INFO] Ya existen datos en la base de datos, omitiendo carga de datos de prueba
+[2025-05-30 19:43:43] [INFO] Datos de prueba cargados exitosamente
+[2025-05-30 19:43:43] [INFO] Se listaron 5 usuarios
+[2025-05-30 19:43:43] [INFO] Se listaron 7 películas
+[2025-05-30 19:43:43] [INFO] Se listaron 4 salas
+[2025-05-30 19:43:43] [INFO] Sistema inicializado correctamente
+[2025-05-30 19:43:43] [INFO] Servidor escuchando en puerto 5000
+[2025-05-30 19:44:03] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:44:03] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:44:03] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:44:03] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:44:06] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:44:06] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:44:06] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:44:06] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:44:06] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:44:06] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:44:06] [INFO] Se listaron 7 películas
+[2025-05-30 19:44:06] [INFO] Enviadas 7 peliculas al cliente
+[2025-05-30 19:44:08] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:44:08] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:44:08] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:44:08] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:44:08] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:44:08] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:44:08] [INFO] Se encontraron 1 sesiones para la película 3
+[2025-05-30 19:44:08] [INFO] Enviadas 1 sesiones para pelicula 3
+[2025-05-30 19:44:08] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:44:08] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:44:08] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:44:08] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:44:08] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:44:08] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:44:08] [INFO] Informacion de sala 1 enviada
+[2025-05-30 19:44:13] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:44:13] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:44:13] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:44:13] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:44:13] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:44:13] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:44:13] [INFO] Asientos de sesión 5 enviados
+[2025-05-30 19:44:13] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:44:13] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:44:13] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:44:13] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:44:13] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:44:13] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:44:13] [INFO] Informacion de sala 1 enviada
+[2025-05-30 19:44:17] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:44:17] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:44:17] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:44:17] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:44:17] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:44:17] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:44:17] [INFO] Se listaron 50 asientos para la sala 1
+[2025-05-30 19:44:21] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:44:21] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:44:21] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:44:21] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:44:21] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:44:21] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:44:21] [INFO] Se listaron 50 asientos para la sala 1
+[2025-05-30 19:44:21] [ERROR] Error al iniciar transacción para crear billete
+[2025-05-30 19:44:21] [ERROR] Error al crear billete para asiento 1
+[2025-05-30 19:46:36] [INFO] Sistema de logging inicializado
+[2025-05-30 19:46:36] [INFO] ===== INICIANDO SERVIDOR DE CINE =====
+[2025-05-30 19:46:36] [INFO] === INICIANDO CARGA DE DATOS DE PRUEBA ===
+[2025-05-30 19:46:36] [INFO] Se listaron 7 películas
+[2025-05-30 19:46:36] [INFO] Ya existen datos en la base de datos, omitiendo carga de datos de prueba
+[2025-05-30 19:46:36] [INFO] Datos de prueba cargados exitosamente
+[2025-05-30 19:46:36] [INFO] Se listaron 5 usuarios
+[2025-05-30 19:46:36] [INFO] Se listaron 7 películas
+[2025-05-30 19:46:36] [INFO] Se listaron 4 salas
+[2025-05-30 19:46:36] [INFO] Sistema inicializado correctamente
+[2025-05-30 19:46:36] [INFO] Servidor escuchando en puerto 5000
+[2025-05-30 19:47:05] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:47:05] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:47:05] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:47:05] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:47:08] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:47:08] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:47:08] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:47:08] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:47:08] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:47:09] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:47:09] [INFO] Se listaron 7 películas
+[2025-05-30 19:47:09] [INFO] Enviadas 7 peliculas al cliente
+[2025-05-30 19:47:11] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:47:11] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:47:11] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:47:11] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:47:11] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:47:11] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:47:11] [INFO] Se encontraron 2 sesiones para la película 1
+[2025-05-30 19:47:11] [INFO] Enviadas 2 sesiones para pelicula 1
+[2025-05-30 19:47:11] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:47:11] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:47:11] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:47:11] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:47:11] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:47:11] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:47:11] [INFO] Informacion de sala 3 enviada
+[2025-05-30 19:47:13] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:47:13] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:47:13] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:47:13] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:47:13] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:47:13] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:47:13] [INFO] Asientos de sesión 1 enviados
+[2025-05-30 19:47:13] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:47:13] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:47:13] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:47:13] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:47:13] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:47:13] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:47:13] [INFO] Informacion de sala 3 enviada
+[2025-05-30 19:47:17] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:47:17] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:47:17] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:47:17] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:47:17] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:47:17] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:47:17] [INFO] Se listaron 150 asientos para la sala 3
+[2025-05-30 19:47:19] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:47:19] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:47:19] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:47:19] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:47:19] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:47:19] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:47:19] [INFO] Se listaron 150 asientos para la sala 3
+[2025-05-30 19:47:19] [ERROR] Error al iniciar transacción para crear billete
+[2025-05-30 19:47:19] [ERROR] Error al crear billete para asiento 2
+[2025-05-30 19:49:25] [INFO] Sistema de logging inicializado
+[2025-05-30 19:49:25] [INFO] ===== INICIANDO SERVIDOR DE CINE =====
+[2025-05-30 19:49:25] [INFO] === INICIANDO CARGA DE DATOS DE PRUEBA ===
+[2025-05-30 19:49:25] [INFO] Se listaron 7 películas
+[2025-05-30 19:49:25] [INFO] Ya existen datos en la base de datos, omitiendo carga de datos de prueba
+[2025-05-30 19:49:25] [INFO] Datos de prueba cargados exitosamente
+[2025-05-30 19:49:25] [INFO] Se listaron 5 usuarios
+[2025-05-30 19:49:25] [INFO] Se listaron 7 películas
+[2025-05-30 19:49:25] [INFO] Se listaron 4 salas
+[2025-05-30 19:49:25] [INFO] Sistema inicializado correctamente
+[2025-05-30 19:49:25] [INFO] Servidor escuchando en puerto 5000
+[2025-05-30 19:49:40] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:49:40] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:49:40] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:49:40] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:49:43] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:49:43] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:49:43] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:49:43] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:49:43] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:49:43] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:49:43] [INFO] Se listaron 7 películas
+[2025-05-30 19:49:43] [INFO] Enviadas 7 peliculas al cliente
+[2025-05-30 19:49:44] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:49:44] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:49:44] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:49:44] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:49:44] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:49:44] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:49:44] [INFO] Se encontraron 2 sesiones para la película 1
+[2025-05-30 19:49:44] [INFO] Enviadas 2 sesiones para pelicula 1
+[2025-05-30 19:49:44] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:49:44] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:49:44] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:49:44] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:49:44] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:49:44] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:49:44] [INFO] Informacion de sala 3 enviada
+[2025-05-30 19:49:45] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:49:45] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:49:45] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:49:45] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:49:45] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:49:45] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:49:45] [INFO] Asientos de sesión 1 enviados
+[2025-05-30 19:49:45] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:49:45] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:49:45] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:49:45] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:49:45] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:49:45] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:49:45] [INFO] Informacion de sala 3 enviada
+[2025-05-30 19:49:48] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:49:48] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:49:48] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:49:48] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:49:48] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:49:48] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:49:48] [INFO] Se listaron 150 asientos para la sala 3
+[2025-05-30 19:49:50] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:49:50] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:49:50] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:49:50] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:49:50] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:49:50] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:49:50] [INFO] Se listaron 150 asientos para la sala 3
+[2025-05-30 19:49:50] [ERROR] Error al iniciar transacción para crear billete
+[2025-05-30 19:49:50] [ERROR] Error al crear billete para asiento 3
+[2025-05-30 19:52:54] [INFO] Sistema de logging inicializado
+[2025-05-30 19:52:54] [INFO] ===== INICIANDO SERVIDOR DE CINE =====
+[2025-05-30 19:52:54] [INFO] === INICIANDO CARGA DE DATOS DE PRUEBA ===
+[2025-05-30 19:52:54] [INFO] Se listaron 7 películas
+[2025-05-30 19:52:54] [INFO] Ya existen datos en la base de datos, omitiendo carga de datos de prueba
+[2025-05-30 19:52:54] [INFO] Datos de prueba cargados exitosamente
+[2025-05-30 19:52:54] [INFO] Se listaron 5 usuarios
+[2025-05-30 19:52:54] [INFO] Se listaron 7 películas
+[2025-05-30 19:52:54] [INFO] Se listaron 4 salas
+[2025-05-30 19:52:54] [INFO] Sistema inicializado correctamente
+[2025-05-30 19:52:54] [INFO] Servidor escuchando en puerto 5000
+[2025-05-30 19:53:09] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:53:09] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:53:09] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:53:09] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:53:12] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:53:12] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:53:12] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:53:12] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:53:12] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:53:12] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:53:12] [INFO] Se listaron 7 películas
+[2025-05-30 19:53:13] [INFO] Enviadas 7 peliculas al cliente
+[2025-05-30 19:53:14] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:53:14] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:53:14] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:53:14] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:53:14] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:53:14] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:53:14] [INFO] Se encontraron 2 sesiones para la película 1
+[2025-05-30 19:53:14] [INFO] Enviadas 2 sesiones para pelicula 1
+[2025-05-30 19:53:14] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:53:14] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:53:14] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:53:14] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:53:14] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:53:14] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:53:14] [INFO] Informacion de sala 3 enviada
+[2025-05-30 19:53:16] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:53:16] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:53:16] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:53:16] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:53:16] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:53:16] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:53:16] [INFO] Asientos de sesión 1 enviados
+[2025-05-30 19:53:16] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:53:16] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:53:16] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:53:16] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:53:16] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:53:16] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:53:16] [INFO] Informacion de sala 3 enviada
+[2025-05-30 19:53:20] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:53:20] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:53:20] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:53:20] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:53:20] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:53:20] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:53:20] [INFO] Se listaron 150 asientos para la sala 3
+[2025-05-30 19:53:22] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:53:22] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:53:22] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:53:22] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:53:22] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:53:22] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:53:22] [INFO] Se listaron 150 asientos para la sala 3
+[2025-05-30 19:53:22] [ERROR] Error al iniciar transacción para crear billete
+[2025-05-30 19:53:22] [ERROR] Error al crear billete para asiento 1
+[2025-05-30 19:57:07] [INFO] Sistema de logging inicializado
+[2025-05-30 19:57:07] [INFO] ===== INICIANDO SERVIDOR DE CINE =====
+[2025-05-30 19:57:07] [INFO] === INICIANDO CARGA DE DATOS DE PRUEBA ===
+[2025-05-30 19:57:07] [INFO] Se listaron 7 películas
+[2025-05-30 19:57:07] [INFO] Ya existen datos en la base de datos, omitiendo carga de datos de prueba
+[2025-05-30 19:57:07] [INFO] Datos de prueba cargados exitosamente
+[2025-05-30 19:57:07] [INFO] Se listaron 5 usuarios
+[2025-05-30 19:57:07] [INFO] Se listaron 7 películas
+[2025-05-30 19:57:07] [INFO] Se listaron 4 salas
+[2025-05-30 19:57:07] [INFO] Sistema inicializado correctamente
+[2025-05-30 19:57:07] [INFO] Servidor escuchando en puerto 5000
+[2025-05-30 19:57:21] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:57:21] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:57:21] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:57:21] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:57:24] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:57:24] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:57:24] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:57:24] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:57:24] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:57:24] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:57:24] [INFO] Se listaron 7 películas
+[2025-05-30 19:57:24] [INFO] Enviadas 7 peliculas al cliente
+[2025-05-30 19:57:26] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:57:26] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:57:26] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:57:26] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:57:26] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:57:26] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:57:26] [INFO] Se encontraron 2 sesiones para la película 1
+[2025-05-30 19:57:26] [INFO] Enviadas 2 sesiones para pelicula 1
+[2025-05-30 19:57:26] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:57:26] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:57:26] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:57:26] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:57:26] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:57:26] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:57:26] [INFO] Informacion de sala 3 enviada
+[2025-05-30 19:57:28] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:57:28] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:57:28] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:57:28] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:57:28] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:57:28] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:57:28] [INFO] Asientos de sesión 1 enviados
+[2025-05-30 19:57:28] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:57:28] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:57:28] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:57:28] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:57:28] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:57:28] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:57:28] [INFO] Informacion de sala 3 enviada
+[2025-05-30 19:57:53] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:57:53] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:57:53] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:57:53] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:57:53] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:57:53] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:57:53] [INFO] Se listaron 150 asientos para la sala 3
+[2025-05-30 19:57:55] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:57:55] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:57:55] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:57:55] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:57:55] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:57:55] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:57:55] [INFO] Se listaron 150 asientos para la sala 3
+[2025-05-30 19:57:55] [INFO] Estado del asiento 151 actualizado a Ocupado
+[2025-05-30 19:57:55] [INFO] Billete creado con ID: 1
+[2025-05-30 19:57:55] [INFO] Compra completada: Usuario 2, Venta 1, 1 entradas
+[2025-05-30 19:58:45] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:58:45] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:58:45] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:58:45] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:58:45] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:58:45] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:58:45] [INFO] Se listaron 1 ventas para el usuario 2
+[2025-05-30 19:58:45] [INFO] Enviadas 1 compras para usuario 2
+[2025-05-30 19:59:08] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:59:08] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:59:08] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 19:59:08] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 19:59:08] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 19:59:08] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:59:08] [INFO] Detalles de venta 1 enviados a usuario 2
+[2025-05-30 19:59:26] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:59:26] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 19:59:26] [INFO] Usuario deslogueado
+[2025-05-30 19:59:29] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 19:59:29] [INFO] Cliente solicita desconexión
+[2025-05-30 19:59:29] [INFO] Servidor cerrado por comando QUIT
+[2025-05-30 19:59:29] [INFO] ===== CERRANDO SERVIDOR =====
+[2025-05-30 19:59:29] [INFO] Sistema de logging cerrado

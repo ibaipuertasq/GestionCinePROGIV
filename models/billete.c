@@ -72,10 +72,10 @@ bool billete_crear(Billete* billete) {
     }
     
     // Iniciar transacción
-    if (!db_begin_transaction()) {
+    /*if (!db_begin_transaction()) {
         log_error("Error al iniciar transacción para crear billete");
         return false;
-    }
+    }*/
     
     char sql[512];
     snprintf(sql, sizeof(sql),
@@ -85,7 +85,7 @@ bool billete_crear(Billete* billete) {
     
     if (!db_execute(sql)) {
         log_error("Error al crear billete");
-        db_rollback_transaction();
+        //db_rollback_transaction();
         return false;
     }
     
@@ -94,16 +94,16 @@ bool billete_crear(Billete* billete) {
     // Marcar el asiento como ocupado
     if (!asiento_reservar(billete->asiento_id)) {
         log_error("Error al reservar el asiento");
-        db_rollback_transaction();
+        //db_rollback_transaction();
         return false;
     }
     
     // Confirmar transacción
-    if (!db_commit_transaction()) {
+    /*if (!db_commit_transaction()) {
         log_error("Error al confirmar transacción para crear billete");
         db_rollback_transaction();
         return false;
-    }
+    }*/
     
     log_info("Billete creado con ID: %d", billete->id);
     return true;
