@@ -13,3 +13,5 @@ Para Clientes:
 Para Administradores:
     Correo: admin@cinegestion.com
     Contraseña: admin123
+
+Link github - https://github.com/ibaipuertasq/GestionCinePROGIV
