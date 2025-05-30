@@ -1680,7 +1680,7 @@ int main() {
     while (true) {
         mostrarMenuPrincipal();
         
-        int opcion = leerEntero("Seleccione una opcion", 1, 2);
+        int opcion = leerEntero("Seleccione una opcion", 1, 3);
         
         switch (opcion) {
             case 1:

@@ -1872,3 +1872,32 @@
 [2025-05-30 21:15:52] [INFO] Se listaron 8 usuarios
 [2025-05-30 21:16:13] [INFO] Cliente conectado desde 127.0.0.1
 [2025-05-30 21:16:13] [INFO] Usuario creado con ID: 10
+[2025-05-30 21:18:34] [INFO] Sistema de logging inicializado
+[2025-05-30 21:18:34] [INFO] ===== INICIANDO SERVIDOR DE CINE =====
+[2025-05-30 21:18:34] [INFO] === INICIANDO CARGA DE DATOS DE PRUEBA ===
+[2025-05-30 21:18:34] [INFO] Se listaron 8 películas
+[2025-05-30 21:18:34] [INFO] Ya existen datos en la base de datos, omitiendo carga de datos de prueba
+[2025-05-30 21:18:34] [INFO] Datos de prueba cargados exitosamente
+[2025-05-30 21:18:34] [INFO] Se listaron 9 usuarios
+[2025-05-30 21:18:34] [INFO] Se listaron 8 películas
+[2025-05-30 21:18:34] [INFO] Se listaron 4 salas
+[2025-05-30 21:18:34] [INFO] Sistema inicializado correctamente
+[2025-05-30 21:18:34] [INFO] Servidor escuchando en puerto 5000
+[2025-05-30 21:19:12] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 21:19:12] [INFO] Usuario creado con ID: 11
+[2025-05-30 21:22:56] [INFO] Sistema de logging inicializado
+[2025-05-30 21:22:56] [INFO] ===== INICIANDO SERVIDOR DE CINE =====
+[2025-05-30 21:22:56] [INFO] === INICIANDO CARGA DE DATOS DE PRUEBA ===
+[2025-05-30 21:22:56] [INFO] Se listaron 8 películas
+[2025-05-30 21:22:56] [INFO] Ya existen datos en la base de datos, omitiendo carga de datos de prueba
+[2025-05-30 21:22:56] [INFO] Datos de prueba cargados exitosamente
+[2025-05-30 21:22:56] [INFO] Se listaron 10 usuarios
+[2025-05-30 21:22:56] [INFO] Se listaron 8 películas
+[2025-05-30 21:22:56] [INFO] Se listaron 4 salas
+[2025-05-30 21:22:56] [INFO] Sistema inicializado correctamente
+[2025-05-30 21:22:56] [INFO] Servidor escuchando en puerto 5000
+[2025-05-30 21:23:37] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 21:23:37] [INFO] Cliente solicita desconexión
+[2025-05-30 21:23:37] [INFO] Servidor cerrado por comando QUIT
+[2025-05-30 21:23:37] [INFO] ===== CERRANDO SERVIDOR =====
+[2025-05-30 21:23:37] [INFO] Sistema de logging cerrado
