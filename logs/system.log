@@ -1751,3 +1751,60 @@
 [2025-05-30 20:40:59] [INFO] Servidor cerrado por comando QUIT
 [2025-05-30 20:40:59] [INFO] ===== CERRANDO SERVIDOR =====
 [2025-05-30 20:40:59] [INFO] Sistema de logging cerrado
+[2025-05-30 20:49:37] [INFO] Sistema de logging inicializado
+[2025-05-30 20:49:37] [INFO] ===== INICIANDO SERVIDOR DE CINE =====
+[2025-05-30 20:49:37] [INFO] === INICIANDO CARGA DE DATOS DE PRUEBA ===
+[2025-05-30 20:49:37] [INFO] Se listaron 8 películas
+[2025-05-30 20:49:37] [INFO] Ya existen datos en la base de datos, omitiendo carga de datos de prueba
+[2025-05-30 20:49:37] [INFO] Datos de prueba cargados exitosamente
+[2025-05-30 20:49:37] [INFO] Se listaron 5 usuarios
+[2025-05-30 20:49:37] [INFO] Se listaron 8 películas
+[2025-05-30 20:49:37] [INFO] Se listaron 4 salas
+[2025-05-30 20:49:37] [INFO] Sistema inicializado correctamente
+[2025-05-30 20:49:37] [INFO] Servidor escuchando en puerto 5000
+[2025-05-30 20:49:53] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 20:49:53] [INFO] Usuario autenticado: admin@cinegestion.com
+[2025-05-30 20:49:53] [INFO] Inicio de sesión exitoso para el usuario: admin@cinegestion.com
+[2025-05-30 20:49:53] [INFO] Usuario admin logueado correctamente
+[2025-05-30 20:51:17] [INFO] Sistema de logging inicializado
+[2025-05-30 20:51:17] [INFO] ===== INICIANDO SERVIDOR DE CINE =====
+[2025-05-30 20:51:17] [INFO] === INICIANDO CARGA DE DATOS DE PRUEBA ===
+[2025-05-30 20:51:17] [INFO] Se listaron 8 películas
+[2025-05-30 20:51:17] [INFO] Ya existen datos en la base de datos, omitiendo carga de datos de prueba
+[2025-05-30 20:51:17] [INFO] Datos de prueba cargados exitosamente
+[2025-05-30 20:51:17] [INFO] Se listaron 5 usuarios
+[2025-05-30 20:51:17] [INFO] Se listaron 8 películas
+[2025-05-30 20:51:17] [INFO] Se listaron 4 salas
+[2025-05-30 20:51:17] [INFO] Sistema inicializado correctamente
+[2025-05-30 20:51:17] [INFO] Servidor escuchando en puerto 5000
+[2025-05-30 20:51:31] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 20:51:31] [INFO] Usuario autenticado: admin@cinegestion.com
+[2025-05-30 20:51:31] [INFO] Inicio de sesión exitoso para el usuario: admin@cinegestion.com
+[2025-05-30 20:51:31] [INFO] Usuario admin logueado correctamente
+[2025-05-30 20:53:16] [INFO] Sistema de logging inicializado
+[2025-05-30 20:53:16] [INFO] ===== INICIANDO SERVIDOR DE CINE =====
+[2025-05-30 20:53:16] [INFO] === INICIANDO CARGA DE DATOS DE PRUEBA ===
+[2025-05-30 20:53:16] [INFO] Se listaron 8 películas
+[2025-05-30 20:53:16] [INFO] Ya existen datos en la base de datos, omitiendo carga de datos de prueba
+[2025-05-30 20:53:16] [INFO] Datos de prueba cargados exitosamente
+[2025-05-30 20:53:16] [INFO] Se listaron 5 usuarios
+[2025-05-30 20:53:16] [INFO] Se listaron 8 películas
+[2025-05-30 20:53:16] [INFO] Se listaron 4 salas
+[2025-05-30 20:53:16] [INFO] Sistema inicializado correctamente
+[2025-05-30 20:53:16] [INFO] Servidor escuchando en puerto 5000
+[2025-05-30 20:53:31] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 20:53:31] [INFO] Usuario autenticado: admin@cinegestion.com
+[2025-05-30 20:53:31] [INFO] Inicio de sesión exitoso para el usuario: admin@cinegestion.com
+[2025-05-30 20:53:31] [INFO] Usuario admin logueado correctamente
+[2025-05-30 20:54:05] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 20:54:05] [INFO] Se listaron 5 usuarios
+[2025-05-30 20:55:03] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 20:55:03] [INFO] Usuario creado con ID: 6
+[2025-05-30 20:56:21] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 20:56:21] [INFO] Usuario creado con ID: 7
+[2025-05-30 20:56:33] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 20:56:33] [INFO] Usuario eliminado con ID: 6
+[2025-05-30 20:56:49] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 20:56:49] [INFO] Se listaron 6 usuarios
+[2025-05-30 20:57:27] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 20:57:27] [INFO] Usuario creado con ID: 8

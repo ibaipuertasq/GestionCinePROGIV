@@ -809,6 +809,71 @@ char* procesar_comando(char* comando) {
             }
         }
     }
+    else if (strcmp(cmd, "GET_USERS") == 0) {
+        if (!auth_sesion_activa() || !auth_es_administrador()) {
+            strcpy(respuesta, "ERROR:Permiso denegado");
+        } else {
+            Usuario* lista = NULL;
+            int cantidad = 0;
+            if (usuario_listar(&lista, &cantidad)) {
+                strcpy(respuesta, "OK:");
+                for (int i = 0; i < cantidad; i++) {
+                    char linea[256];
+                    snprintf(linea, sizeof(linea), "%d|%s|%s|%s;", 
+                             lista[i].id, lista[i].nombre, 
+                             lista[i].tipo == USUARIO_ADMINISTRADOR ? "admin" : "cliente",
+                             lista[i].correo);
+                    strcat(respuesta, linea);
+                }
+                usuario_liberar_lista(lista, cantidad);
+            } else {
+                strcpy(respuesta, "ERROR:No se pudo obtener usuarios");
+            }
+        }
+    }
+    else if (strcmp(cmd, "CREATE_USER") == 0) {
+        if (!auth_sesion_activa() || !auth_es_administrador()) {
+            strcpy(respuesta, "ERROR:Permiso denegado");
+        } else {
+            char* nombre = strtok(NULL, ":");
+            char* correo = strtok(NULL, ":");
+            char* password = strtok(NULL, ":");
+            char* tipo = strtok(NULL, ":");
+
+            if (!nombre || !correo || !password || !tipo) {
+                strcpy(respuesta, "ERROR:Datos incompletos");
+            } else {
+                Usuario nuevo = {0};
+                strncpy(nuevo.nombre, nombre, sizeof(nuevo.nombre)-1);
+                strncpy(nuevo.correo, correo, sizeof(nuevo.correo)-1);
+                strncpy(nuevo.contrasena, password, sizeof(nuevo.contrasena)-1);
+                nuevo.tipo = (strcmp(tipo, "admin") == 0) ? USUARIO_ADMINISTRADOR : USUARIO_CLIENTE;
+
+                if (usuario_crear(&nuevo)) {
+                    snprintf(respuesta, MAX_BUFFER, "OK:%d", nuevo.id);
+                } else {
+                    strcpy(respuesta, "ERROR:No se pudo crear el usuario");
+                }
+            }
+        }
+    }
+    else if (strcmp(cmd, "DELETE_USER") == 0) {
+        if (!auth_sesion_activa() || !auth_es_administrador()) {
+            strcpy(respuesta, "ERROR:Permiso denegado");
+        } else {
+            char* id_str = strtok(NULL, ":");
+            if (!id_str) {
+                strcpy(respuesta, "ERROR:Falta ID");
+            } else {
+                int id = atoi(id_str);
+                if (usuario_eliminar(id)) {
+                    strcpy(respuesta, "OK:Usuario eliminado");
+                } else {
+                    strcpy(respuesta, "ERROR:No se pudo eliminar el usuario");
+                }
+            }
+        }
+    }
     else {
         snprintf(respuesta, MAX_BUFFER, "ERROR:Comando no reconocido: %s", cmd);
         printf(" DEBUG - Comando no reconocido: %s\n", cmd);

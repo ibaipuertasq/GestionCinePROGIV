@@ -191,6 +191,7 @@ void mostrarCartelera();
 void mostrarMisCompras();
 void comprarEntradas();
 void mostrarAsientos(int sesion_id);
+void menuGestionUsuarios();
 void mostrarDetalleCompra(int venta_id);
 std::vector<std::string> parsearRespuesta(const std::string& respuesta);
 
@@ -1287,7 +1288,8 @@ void menuAdmin() {
         std::cout << "\n1. Gestionar Peliculas" << std::endl;
         std::cout << "2. Gestionar Salas" << std::endl;
         std::cout << "3. Gestionar Sesiones" << std::endl;
-        std::cout << "4. Cerrar sesion" << std::endl;
+        std::cout << "4. Gestion de Usuarios" << std::endl;
+        std::cout << "5. Cerrar sesion" << std::endl;
         
         int opcion = leerEntero("Seleccione una opcion", 1, 4);
         
@@ -1302,6 +1304,9 @@ void menuAdmin() {
                 menuGestionSesiones();
                 break;
             case 4:
+                menuGestionUsuarios();
+                break;
+            case 5:
                 logout();
                 return;
         }
@@ -1561,6 +1566,70 @@ void menuGestionSesiones() {
             }
             case 4:
                 return;
+        }
+    }
+}
+
+void menuGestionUsuarios() {
+    while (true) {
+        limpiarPantalla();
+        std::cout << "=== GESTION DE USUARIOS ===\n";
+        std::cout << "1. Ver usuarios\n";
+        std::cout << "2. Anadir usuario\n";
+        std::cout << "3. Eliminar usuario\n";
+        std::cout << "4. Volver al menu anterior\n";
+
+        int opcion = leerEntero("Seleccione una opcion", 1, 4);
+        if (opcion == 1) {
+            std::string respuesta = cliente.enviarComando("GET_USERS");
+            if (respuesta.substr(0, 3) == "OK:") {
+                std::cout << "\nLISTA DE USUARIOS:\n";
+                std::stringstream ss(respuesta.substr(3));
+                std::string linea;
+                while (std::getline(ss, linea, ';')) {
+                    std::stringstream ls(linea);
+                    std::string campo;
+                    std::vector<std::string> campos;
+                    while (std::getline(ls, campo, '|')) {
+                        campos.push_back(campo);
+                    }
+                    if (campos.size() >= 4) {
+                        std::cout << "ID: " << campos[0]
+                                  << ", Nombre: " << campos[1]
+                                  << ", Tipo: " << campos[2]
+                                  << ", Correo: " << campos[3] << "\n";
+                    }
+                }
+            } else {
+                mostrarError("Error al obtener usuarios: " + respuesta);
+            }
+            pausar();
+        } else if (opcion == 2) {
+            std::string nombre = leerTexto("Nombre");
+            std::string correo = leerTexto("Correo");
+            std::string password = leerTexto("Contrasena");
+            std::string tipo = leerTexto("Tipo (admin/cliente)");
+
+            std::string comando = "CREATE_USER:" + nombre + ":" + correo + ":" + password + ":" + tipo;
+            std::string respuesta = cliente.enviarComando(comando);
+            if (respuesta.substr(0, 2) == "OK") {
+                mostrarExito("Usuario creado con exito");
+            } else {
+                mostrarError("Error al crear usuario: " + respuesta);
+            }
+            pausar();
+        } else if (opcion == 3) {
+            int user_id = leerEntero("ID del usuario a eliminar", 1, 100000);
+            std::string comando = "DELETE_USER:" + std::to_string(user_id);
+            std::string respuesta = cliente.enviarComando(comando);
+            if (respuesta.substr(0, 2) == "OK") {
+                mostrarExito("Usuario eliminado con exito");
+            } else {
+                mostrarError("Error al eliminar usuario: " + respuesta);
+            }
+            pausar();
+        } else {
+            break;
         }
     }
 }
