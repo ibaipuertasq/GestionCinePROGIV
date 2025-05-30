@@ -831,7 +831,7 @@ char* procesar_comando(char* comando) {
             }
         }
     }
-    else if (strcmp(cmd, "CREATE_USER") == 0) {
+    /*else if (strcmp(cmd, "CREATE_USER") == 0) {
         if (!auth_sesion_activa() || !auth_es_administrador()) {
             strcpy(respuesta, "ERROR:Permiso denegado");
         } else {
@@ -856,7 +856,7 @@ char* procesar_comando(char* comando) {
                 }
             }
         }
-    }
+    }*/
     else if (strcmp(cmd, "DELETE_USER") == 0) {
         if (!auth_sesion_activa() || !auth_es_administrador()) {
             strcpy(respuesta, "ERROR:Permiso denegado");
@@ -874,6 +874,35 @@ char* procesar_comando(char* comando) {
             }
         }
     }
+    else if (strcmp(cmd, "CREATE_USER") == 0) {
+    char* nombre = strtok(NULL, ":");
+    char* correo = strtok(NULL, ":");
+    char* password = strtok(NULL, ":");
+    char* tipo = strtok(NULL, ":");
+    char* telefono = strtok(NULL, ":");
+
+    if (!nombre || !correo || !password || !tipo) {
+        strcpy(respuesta, "ERROR:Datos incompletos");
+    } else {
+        Usuario nuevo = {0};
+        strncpy(nuevo.nombre, nombre, sizeof(nuevo.nombre) - 1);
+        strncpy(nuevo.correo, correo, sizeof(nuevo.correo) - 1);
+        strncpy(nuevo.contrasena, password, sizeof(nuevo.contrasena) - 1);
+        nuevo.tipo = (strcmp(tipo, "admin") == 0) ? USUARIO_ADMINISTRADOR : USUARIO_CLIENTE;
+        if (telefono)
+            strncpy(nuevo.telefono, telefono, sizeof(nuevo.telefono) - 1);
+
+        if (usuario_crear(&nuevo)) {
+            snprintf(respuesta, MAX_BUFFER, "OK:%d", nuevo.id);
+        } else {
+            strcpy(respuesta, "ERROR:No se pudo crear el usuario");
+        }
+    }
+}
+
+
+
+
     else {
         snprintf(respuesta, MAX_BUFFER, "ERROR:Comando no reconocido: %s", cmd);
         printf(" DEBUG - Comando no reconocido: %s\n", cmd);

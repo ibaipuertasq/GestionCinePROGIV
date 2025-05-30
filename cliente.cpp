@@ -776,6 +776,28 @@ void mostrarExito(const std::string& mensaje) {
     std::cout << mensaje << std::endl;
 }
 
+void registrarse() {
+    limpiarPantalla();
+    std::cout << "=== REGISTRO DE USUARIO ===\n";
+
+    std::string nombre = leerTexto("Nombre completo");
+    std::string correo = leerTexto("Correo electronico");
+    std::string password = leerTexto("Contrasena");
+    std::string telefono = leerTexto("Telefono");
+    std::string tipo = "cliente";  // Solo permitimos registrar clientes
+
+    std::string comando = "CREATE_USER:" + nombre + ":" + correo + ":" + password + ":" + tipo + ":" + telefono;
+    std::string respuesta = cliente.enviarComando(comando);
+
+    if (respuesta.substr(0, 2) == "OK") {
+        mostrarExito("Usuario registrado correctamente");
+    } else {
+        mostrarError("Error al registrar usuario: " + respuesta);
+    }
+    pausar();
+}
+
+
 // ============================================================================
 // FUNCIONES AUXILIARES PARA EL SISTEMA DE COMPRAS
 // ============================================================================
@@ -1132,7 +1154,8 @@ void mostrarMenuPrincipal() {
     std::cout << "    SISTEMA DE GESTION DE CINE" << std::endl;
     std::cout << "========================================" << std::endl;
     std::cout << "1. Iniciar sesion" << std::endl;
-    std::cout << "2. Salir" << std::endl;
+    std::cout << "2. Registrarse" << std::endl;
+    std::cout << "3. Salir" << std::endl;
     std::cout << "========================================" << std::endl;
 }
 
@@ -1666,8 +1689,10 @@ int main() {
                     usuario->mostrarMenu();
                 }
                 break;
-                
             case 2:
+                registrarse();
+                break;
+            case 3:
                 cliente.enviarComando("QUIT");
                 cliente.desconectar();
                 std::cout << "\nHasta luego!" << std::endl;

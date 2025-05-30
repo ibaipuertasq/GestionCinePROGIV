@@ -92,6 +92,11 @@ void auth_refrescar_sesion() {
     }
 }
 
+bool auth_esta_restringido() {
+    return false; // o lógica real si decides implementarla
+}
+
+
 // Comprobar si el usuario actual es admi    nistrador
 bool auth_es_administrador() {
     if (!auth_sesion_activa()) {

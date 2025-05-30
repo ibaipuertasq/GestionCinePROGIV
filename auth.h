@@ -38,4 +38,7 @@ void auth_refrescar_sesion();
 // Comprobar si el usuario actual es administrador
 bool auth_es_administrador();
 
+bool auth_esta_restringido();
+
+
 #endif // AUTH_H

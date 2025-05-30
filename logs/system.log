@@ -1808,3 +1808,67 @@
 [2025-05-30 20:56:49] [INFO] Se listaron 6 usuarios
 [2025-05-30 20:57:27] [INFO] Cliente conectado desde 127.0.0.1
 [2025-05-30 20:57:27] [INFO] Usuario creado con ID: 8
+[2025-05-30 21:07:50] [INFO] Sistema de logging inicializado
+[2025-05-30 21:07:50] [INFO] ===== INICIANDO SERVIDOR DE CINE =====
+[2025-05-30 21:07:50] [INFO] === INICIANDO CARGA DE DATOS DE PRUEBA ===
+[2025-05-30 21:07:50] [INFO] Se listaron 8 películas
+[2025-05-30 21:07:50] [INFO] Ya existen datos en la base de datos, omitiendo carga de datos de prueba
+[2025-05-30 21:07:50] [INFO] Datos de prueba cargados exitosamente
+[2025-05-30 21:07:50] [INFO] Se listaron 7 usuarios
+[2025-05-30 21:07:50] [INFO] Se listaron 8 películas
+[2025-05-30 21:07:50] [INFO] Se listaron 4 salas
+[2025-05-30 21:07:50] [INFO] Sistema inicializado correctamente
+[2025-05-30 21:07:50] [INFO] Servidor escuchando en puerto 5000
+[2025-05-30 21:08:22] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 21:10:01] [INFO] Sistema de logging inicializado
+[2025-05-30 21:10:01] [INFO] ===== INICIANDO SERVIDOR DE CINE =====
+[2025-05-30 21:10:01] [INFO] === INICIANDO CARGA DE DATOS DE PRUEBA ===
+[2025-05-30 21:10:01] [INFO] Se listaron 8 películas
+[2025-05-30 21:10:01] [INFO] Ya existen datos en la base de datos, omitiendo carga de datos de prueba
+[2025-05-30 21:10:01] [INFO] Datos de prueba cargados exitosamente
+[2025-05-30 21:10:01] [INFO] Se listaron 7 usuarios
+[2025-05-30 21:10:01] [INFO] Se listaron 8 películas
+[2025-05-30 21:10:01] [INFO] Se listaron 4 salas
+[2025-05-30 21:10:01] [INFO] Sistema inicializado correctamente
+[2025-05-30 21:10:01] [INFO] Servidor escuchando en puerto 5000
+[2025-05-30 21:10:22] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 21:12:22] [INFO] Sistema de logging inicializado
+[2025-05-30 21:12:22] [INFO] ===== INICIANDO SERVIDOR DE CINE =====
+[2025-05-30 21:12:22] [INFO] === INICIANDO CARGA DE DATOS DE PRUEBA ===
+[2025-05-30 21:12:22] [INFO] Se listaron 8 películas
+[2025-05-30 21:12:22] [INFO] Ya existen datos en la base de datos, omitiendo carga de datos de prueba
+[2025-05-30 21:12:22] [INFO] Datos de prueba cargados exitosamente
+[2025-05-30 21:12:22] [INFO] Se listaron 7 usuarios
+[2025-05-30 21:12:22] [INFO] Se listaron 8 películas
+[2025-05-30 21:12:22] [INFO] Se listaron 4 salas
+[2025-05-30 21:12:22] [INFO] Sistema inicializado correctamente
+[2025-05-30 21:12:22] [INFO] Servidor escuchando en puerto 5000
+[2025-05-30 21:12:42] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 21:14:54] [INFO] Sistema de logging inicializado
+[2025-05-30 21:14:54] [INFO] ===== INICIANDO SERVIDOR DE CINE =====
+[2025-05-30 21:14:54] [INFO] === INICIANDO CARGA DE DATOS DE PRUEBA ===
+[2025-05-30 21:14:54] [INFO] Se listaron 8 películas
+[2025-05-30 21:14:54] [INFO] Ya existen datos en la base de datos, omitiendo carga de datos de prueba
+[2025-05-30 21:14:54] [INFO] Datos de prueba cargados exitosamente
+[2025-05-30 21:14:54] [INFO] Se listaron 7 usuarios
+[2025-05-30 21:14:54] [INFO] Se listaron 8 películas
+[2025-05-30 21:14:54] [INFO] Se listaron 4 salas
+[2025-05-30 21:14:54] [INFO] Sistema inicializado correctamente
+[2025-05-30 21:14:54] [INFO] Servidor escuchando en puerto 5000
+[2025-05-30 21:15:13] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 21:15:13] [INFO] Usuario creado con ID: 9
+[2025-05-30 21:15:25] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 21:15:25] [INFO] Usuario autenticado: raul@gmail.com
+[2025-05-30 21:15:25] [INFO] Inicio de sesión exitoso para el usuario: raul@gmail.com
+[2025-05-30 21:15:25] [INFO] Usuario Raul logueado correctamente
+[2025-05-30 21:15:29] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 21:15:29] [INFO] Cierre de sesión para el usuario: raul@gmail.com
+[2025-05-30 21:15:29] [INFO] Usuario deslogueado
+[2025-05-30 21:15:47] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 21:15:47] [INFO] Usuario autenticado: admin@cinegestion.com
+[2025-05-30 21:15:47] [INFO] Inicio de sesión exitoso para el usuario: admin@cinegestion.com
+[2025-05-30 21:15:47] [INFO] Usuario admin logueado correctamente
+[2025-05-30 21:15:52] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 21:15:52] [INFO] Se listaron 8 usuarios
+[2025-05-30 21:16:13] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 21:16:13] [INFO] Usuario creado con ID: 10
