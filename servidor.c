@@ -733,6 +733,82 @@ char* procesar_comando(char* comando) {
         strcpy(respuesta, "BYE");
         log_info("Cliente solicita desconexión");
     }
+    else if (strcmp(cmd, "DELETE_MOVIE") == 0) {
+        char* id_str = strtok(NULL, ":");
+        if (!id_str) {
+            strcpy(respuesta, "ERROR:ID de película requerido");
+            free(comando_copia);
+            return respuesta;
+        }
+        int id = atoi(id_str);
+        char sql[128];
+        snprintf(sql, sizeof(sql), "DELETE FROM Pelicula WHERE ID = %d;", id);
+
+        if (db_execute(sql)) {
+            snprintf(respuesta, MAX_BUFFER, "OK:Pelicula eliminada");
+        } else {
+            snprintf(respuesta, MAX_BUFFER, "ERROR:No se pudo eliminar la pelicula");
+        }
+    }
+    else if (strcmp(cmd, "DELETE_ROOM") == 0) {
+        char* id_str = strtok(NULL, ":");
+        if (!id_str) {
+            strcpy(respuesta, "ERROR:ID de sala requerido");
+            free(comando_copia);
+            return respuesta;
+        }
+        int id = atoi(id_str);
+        char sql[128];
+        snprintf(sql, sizeof(sql), "DELETE FROM Sala WHERE ID = %d;", id);
+
+        if (db_execute(sql)) {
+            snprintf(respuesta, MAX_BUFFER, "OK:Sala eliminada");
+        } else {
+            snprintf(respuesta, MAX_BUFFER, "ERROR:No se pudo eliminar la sala");
+        }
+    }
+    else if (strcmp(cmd, "DELETE_SESSION") == 0) {
+        char* id_str = strtok(NULL, ":");
+        if (!id_str) {
+            strcpy(respuesta, "ERROR:ID de sesión requerido");
+            free(comando_copia);
+            return respuesta;
+        }
+        int id = atoi(id_str);
+        char sql[128];
+        snprintf(sql, sizeof(sql), "DELETE FROM Sesion WHERE ID = %d;", id);
+
+        if (db_execute(sql)) {
+            snprintf(respuesta, MAX_BUFFER, "OK:Sesion eliminada");
+        } else {
+            snprintf(respuesta, MAX_BUFFER, "ERROR:No se pudo eliminar la sesion");
+        }
+    }
+    else if (strcmp(cmd, "CREATE_SESSION") == 0) {
+        char* pelicula_id_str = strtok(NULL, ":");
+        char* sala_id_str = strtok(NULL, ":");
+        char* inicio = strtok(NULL, ":");
+        char* fin = strtok(NULL, ":");
+
+        if (!pelicula_id_str || !sala_id_str || !inicio || !fin) {
+            snprintf(respuesta, MAX_BUFFER, "ERROR:Formato invalido");
+        } else {
+            int pelicula_id = atoi(pelicula_id_str);
+            int sala_id = atoi(sala_id_str);
+
+            char sql[256];
+            snprintf(sql, sizeof(sql),
+                     "INSERT INTO Sesion (Pelicula_ID, Sala_ID, Hora_Inicio, Hora_Fin) "
+                     "VALUES (%d, %d, '%s', '%s');",
+                     pelicula_id, sala_id, inicio, fin);
+
+            if (db_execute(sql)) {
+                snprintf(respuesta, MAX_BUFFER, "OK:Sesion creada");
+            } else {
+                snprintf(respuesta, MAX_BUFFER, "ERROR:No se pudo crear la sesion");
+            }
+        }
+    }
     else {
         snprintf(respuesta, MAX_BUFFER, "ERROR:Comando no reconocido: %s", cmd);
         printf(" DEBUG - Comando no reconocido: %s\n", cmd);
