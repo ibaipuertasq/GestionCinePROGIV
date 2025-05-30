@@ -1343,7 +1343,7 @@ void menuGestionPeliculas() {
         limpiarPantalla();
         std::cout << "=== GESTION DE PELICULAS ===" << std::endl;
         std::cout << "1. Listar peliculas" << std::endl;
-        std::cout << "2. Añadir pelicula" << std::endl;
+        std::cout << "2. Anadir pelicula" << std::endl;
         std::cout << "3. Eliminar pelicula" << std::endl;
         std::cout << "4. Volver" << std::endl;
 
@@ -1366,9 +1366,9 @@ void menuGestionPeliculas() {
                 std::string genero = leerTexto("Genero");
 
                 if (Movie::crear(titulo, duracion, genero)) {
-                    mostrarExito("Pelicula añadida correctamente");
+                    mostrarExito("Pelicula anadida correctamente");
                 } else {
-                    mostrarError("Error al añadir pelicula");
+                    mostrarError("Error al anadir pelicula");
                 }
                 pausar();
                 break;
@@ -1410,7 +1410,7 @@ void menuGestionSalas() {
         limpiarPantalla();
         std::cout << "=== GESTION DE SALAS ===" << std::endl;
         std::cout << "1. Listar salas" << std::endl;
-        std::cout << "2. Añadir sala" << std::endl;
+        std::cout << "2. Anadir sala" << std::endl;
         std::cout << "3. Eliminar sala" << std::endl;
         std::cout << "4. Volver" << std::endl;
 
@@ -1430,7 +1430,7 @@ void menuGestionSalas() {
             case 2: {
                 int asientos = leerEntero("Numero total de asientos", 1, 300);
                 if (Room::crear(asientos)) {
-                    mostrarExito("Sala añadida correctamente");
+                    mostrarExito("Sala anadida correctamente");
                 } else {
                     mostrarError("Error al añadir sala");
                 }
@@ -1474,7 +1474,7 @@ void menuGestionSesiones() {
         limpiarPantalla();
         std::cout << "=== GESTION DE SESIONES ===" << std::endl;
         std::cout << "1. Listar sesiones" << std::endl;
-        std::cout << "2. Añadir sesion" << std::endl;
+        std::cout << "2. Anadir sesion" << std::endl;
         std::cout << "3. Eliminar sesion" << std::endl;
         std::cout << "4. Volver" << std::endl;
 
