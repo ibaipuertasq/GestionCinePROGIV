@@ -1440,3 +1440,54 @@
 [2025-05-30 19:59:29] [INFO] Servidor cerrado por comando QUIT
 [2025-05-30 19:59:29] [INFO] ===== CERRANDO SERVIDOR =====
 [2025-05-30 19:59:29] [INFO] Sistema de logging cerrado
+[2025-05-30 20:15:26] [INFO] Sistema de logging inicializado
+[2025-05-30 20:15:26] [INFO] ===== INICIANDO SERVIDOR DE CINE =====
+[2025-05-30 20:15:26] [INFO] === INICIANDO CARGA DE DATOS DE PRUEBA ===
+[2025-05-30 20:15:26] [INFO] Se listaron 7 películas
+[2025-05-30 20:15:26] [INFO] Ya existen datos en la base de datos, omitiendo carga de datos de prueba
+[2025-05-30 20:15:26] [INFO] Datos de prueba cargados exitosamente
+[2025-05-30 20:15:26] [INFO] Se listaron 5 usuarios
+[2025-05-30 20:15:26] [INFO] Se listaron 7 películas
+[2025-05-30 20:15:26] [INFO] Se listaron 4 salas
+[2025-05-30 20:15:26] [INFO] Sistema inicializado correctamente
+[2025-05-30 20:15:26] [INFO] Servidor escuchando en puerto 5000
+[2025-05-30 20:15:59] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 20:15:59] [WARNING] Intento de autenticación fallido: contraseña incorrecta para el usuario admin@cinegestion.com
+[2025-05-30 20:15:59] [WARNING] Intento de inicio de sesión fallido para el usuario: admin@cinegestion.com
+[2025-05-30 20:15:59] [WARNING] Intento de login fallido para admin@cinegestion.com
+[2025-05-30 20:16:20] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 20:16:20] [INFO] Usuario autenticado: admin@cinegestion.com
+[2025-05-30 20:16:20] [INFO] Inicio de sesión exitoso para el usuario: admin@cinegestion.com
+[2025-05-30 20:16:20] [INFO] Usuario admin logueado correctamente
+[2025-05-30 20:16:25] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 20:16:25] [INFO] Cierre de sesión para el usuario: admin@cinegestion.com
+[2025-05-30 20:16:25] [INFO] Usuario autenticado: admin@cinegestion.com
+[2025-05-30 20:16:25] [INFO] Inicio de sesión exitoso para el usuario: admin@cinegestion.com
+[2025-05-30 20:16:25] [INFO] Usuario admin logueado correctamente
+[2025-05-30 20:16:25] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 20:16:25] [INFO] Se listaron 7 películas
+[2025-05-30 20:16:25] [INFO] Enviadas 7 peliculas al cliente
+[2025-05-30 20:16:38] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 20:16:38] [INFO] Cierre de sesión para el usuario: admin@cinegestion.com
+[2025-05-30 20:16:38] [INFO] Usuario autenticado: admin@cinegestion.com
+[2025-05-30 20:16:38] [INFO] Inicio de sesión exitoso para el usuario: admin@cinegestion.com
+[2025-05-30 20:16:38] [INFO] Usuario admin logueado correctamente
+[2025-05-30 20:16:38] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 20:16:38] [INFO] Película creada con ID: 8
+[2025-05-30 20:16:38] [INFO] Pelicula 'shrek' creada con ID 8
+[2025-05-30 20:16:42] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 20:16:42] [INFO] Cierre de sesión para el usuario: admin@cinegestion.com
+[2025-05-30 20:16:42] [INFO] Usuario autenticado: admin@cinegestion.com
+[2025-05-30 20:16:42] [INFO] Inicio de sesión exitoso para el usuario: admin@cinegestion.com
+[2025-05-30 20:16:42] [INFO] Usuario admin logueado correctamente
+[2025-05-30 20:16:42] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 20:16:42] [INFO] Se listaron 8 películas
+[2025-05-30 20:16:42] [INFO] Enviadas 8 peliculas al cliente
+[2025-05-30 20:16:58] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 20:16:58] [INFO] Cierre de sesión para el usuario: admin@cinegestion.com
+[2025-05-30 20:16:58] [INFO] Usuario deslogueado
+[2025-05-30 20:17:03] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 20:17:03] [INFO] Cliente solicita desconexión
+[2025-05-30 20:17:03] [INFO] Servidor cerrado por comando QUIT
+[2025-05-30 20:17:03] [INFO] ===== CERRANDO SERVIDOR =====
+[2025-05-30 20:17:03] [INFO] Sistema de logging cerrado

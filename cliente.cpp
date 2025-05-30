@@ -1339,25 +1339,232 @@ void menuCliente() {
 
 // Implementaciones básicas para los menús de administrador
 void menuGestionPeliculas() {
-    limpiarPantalla();
-    std::cout << "=== GESTION DE PELICULAS ===" << std::endl;
-    std::cout << "Funcionalidad de administrador en desarrollo..." << std::endl;
-    pausar();
+    while (true) {
+        limpiarPantalla();
+        std::cout << "=== GESTION DE PELICULAS ===" << std::endl;
+        std::cout << "1. Listar peliculas" << std::endl;
+        std::cout << "2. Añadir pelicula" << std::endl;
+        std::cout << "3. Eliminar pelicula" << std::endl;
+        std::cout << "4. Volver" << std::endl;
+
+        int opcion = leerEntero("Seleccione una opcion", 1, 4);
+
+        switch (opcion) {
+            case 1: {
+                auto peliculas = Movie::obtenerTodas();
+                limpiarPantalla();
+                std::cout << "=== LISTA DE PELICULAS ===" << std::endl;
+                for (const auto& p : peliculas) {
+                    p.mostrar();
+                }
+                pausar();
+                break;
+            }
+            case 2: {
+                std::string titulo = leerTexto("Titulo");
+                int duracion = leerEntero("Duracion en minutos", 1, 500);
+                std::string genero = leerTexto("Genero");
+
+                if (Movie::crear(titulo, duracion, genero)) {
+                    mostrarExito("Pelicula añadida correctamente");
+                } else {
+                    mostrarError("Error al añadir pelicula");
+                }
+                pausar();
+                break;
+            }
+            case 3: {
+                auto peliculas = Movie::obtenerTodas();
+                if (peliculas.empty()) {
+                    mostrarError("No hay peliculas para eliminar");
+                    pausar();
+                    break;
+                }
+
+                for (size_t i = 0; i < peliculas.size(); ++i) {
+                    std::cout << i + 1 << ". ";
+                    peliculas[i].mostrar();
+                }
+
+                int idx = leerEntero("Seleccione pelicula a eliminar", 1, (int)peliculas.size());
+                int id = peliculas[idx - 1].getId();
+
+                std::string respuesta = cliente.enviarComando("DELETE_MOVIE:" + std::to_string(id));
+                if (respuesta.substr(0, 2) == "OK") {
+                    mostrarExito("Pelicula eliminada correctamente");
+                } else {
+                    mostrarError("Error al eliminar pelicula");
+                }
+                pausar();
+                break;
+            }
+            case 4:
+                return;
+        }
+    }
 }
+
 
 void menuGestionSalas() {
-    limpiarPantalla();
-    std::cout << "=== GESTION DE SALAS ===" << std::endl;
-    std::cout << "Funcionalidad de administrador en desarrollo..." << std::endl;
-    pausar();
+    while (true) {
+        limpiarPantalla();
+        std::cout << "=== GESTION DE SALAS ===" << std::endl;
+        std::cout << "1. Listar salas" << std::endl;
+        std::cout << "2. Añadir sala" << std::endl;
+        std::cout << "3. Eliminar sala" << std::endl;
+        std::cout << "4. Volver" << std::endl;
+
+        int opcion = leerEntero("Seleccione una opcion", 1, 4);
+
+        switch (opcion) {
+            case 1: {
+                auto salas = Room::obtenerTodas();
+                limpiarPantalla();
+                std::cout << "=== LISTA DE SALAS ===" << std::endl;
+                for (const auto& sala : salas) {
+                    sala.mostrar();
+                }
+                pausar();
+                break;
+            }
+            case 2: {
+                int asientos = leerEntero("Numero total de asientos", 1, 300);
+                if (Room::crear(asientos)) {
+                    mostrarExito("Sala añadida correctamente");
+                } else {
+                    mostrarError("Error al añadir sala");
+                }
+                pausar();
+                break;
+            }
+            case 3: {
+                auto salas = Room::obtenerTodas();
+                if (salas.empty()) {
+                    mostrarError("No hay salas para eliminar");
+                    pausar();
+                    break;
+                }
+
+                for (size_t i = 0; i < salas.size(); ++i) {
+                    std::cout << i + 1 << ". ";
+                    salas[i].mostrar();
+                }
+
+                int idx = leerEntero("Seleccione sala a eliminar", 1, (int)salas.size());
+                int id = salas[idx - 1].getId();
+
+                std::string respuesta = cliente.enviarComando("DELETE_ROOM:" + std::to_string(id));
+                if (respuesta.substr(0, 2) == "OK") {
+                    mostrarExito("Sala eliminada correctamente");
+                } else {
+                    mostrarError("Error al eliminar sala");
+                }
+                pausar();
+                break;
+            }
+            case 4:
+                return;
+        }
+    }
 }
 
+
 void menuGestionSesiones() {
-    limpiarPantalla();
-    std::cout << "=== GESTION DE SESIONES ===" << std::endl;
-    std::cout << "Funcionalidad de administrador en desarrollo..." << std::endl;
-    pausar();
+    while (true) {
+        limpiarPantalla();
+        std::cout << "=== GESTION DE SESIONES ===" << std::endl;
+        std::cout << "1. Listar sesiones" << std::endl;
+        std::cout << "2. Añadir sesion" << std::endl;
+        std::cout << "3. Eliminar sesion" << std::endl;
+        std::cout << "4. Volver" << std::endl;
+
+        int opcion = leerEntero("Seleccione una opcion", 1, 4);
+
+        switch (opcion) {
+            case 1: {
+                auto sesiones = Session::obtenerTodas();
+                limpiarPantalla();
+                std::cout << "=== LISTA DE SESIONES ===" << std::endl;
+                for (const auto& s : sesiones) {
+                    s.mostrar();
+                }
+                pausar();
+                break;
+            }
+            case 2: {
+                auto peliculas = Movie::obtenerTodas();
+                auto salas = Room::obtenerTodas();
+
+                if (peliculas.empty() || salas.empty()) {
+                    mostrarError("Debe haber al menos una pelicula y una sala");
+                    pausar();
+                    break;
+                }
+
+                std::cout << "\nPeliculas disponibles:" << std::endl;
+                for (size_t i = 0; i < peliculas.size(); ++i) {
+                    std::cout << i + 1 << ". ";
+                    peliculas[i].mostrar();
+                }
+
+                int p_idx = leerEntero("Seleccione pelicula", 1, (int)peliculas.size());
+                int pelicula_id = peliculas[p_idx - 1].getId();
+
+                std::cout << "\nSalas disponibles:" << std::endl;
+                for (size_t i = 0; i < salas.size(); ++i) {
+                    std::cout << i + 1 << ". ";
+                    salas[i].mostrar();
+                }
+
+                int s_idx = leerEntero("Seleccione sala", 1, (int)salas.size());
+                int sala_id = salas[s_idx - 1].getId();
+
+                std::string inicio = leerTexto("Hora de inicio (YYYY-MM-DD HH:MM:SS)");
+                std::string fin = leerTexto("Hora de fin (YYYY-MM-DD HH:MM:SS)");
+
+                std::string comando = "CREATE_SESSION:" + std::to_string(pelicula_id) + ":" +
+                                      std::to_string(sala_id) + ":" + inicio + ":" + fin;
+
+                std::string respuesta = cliente.enviarComando(comando);
+                if (respuesta.substr(0, 2) == "OK") {
+                    mostrarExito("Sesion creada correctamente");
+                } else {
+                    mostrarError("Error al crear sesion");
+                }
+                pausar();
+                break;
+            }
+            case 3: {
+                auto sesiones = Session::obtenerTodas();
+                if (sesiones.empty()) {
+                    mostrarError("No hay sesiones para eliminar");
+                    pausar();
+                    break;
+                }
+
+                for (size_t i = 0; i < sesiones.size(); ++i) {
+                    std::cout << i + 1 << ". ";
+                    sesiones[i].mostrar();
+                }
+
+                int idx = leerEntero("Seleccione sesion a eliminar", 1, (int)sesiones.size());
+                int id = sesiones[idx - 1].getId();
+
+                std::string respuesta = cliente.enviarComando("DELETE_SESSION:" + std::to_string(id));
+                if (respuesta.substr(0, 2) == "OK") {
+                    mostrarExito("Sesion eliminada correctamente");
+                } else {
+                    mostrarError("Error al eliminar sesion");
+                }
+                pausar();
+                break;
+            }
+            case 4:
+                return;
+        }
+    }
 }
+
 
 // ============================================================================
 // FUNCIÓN PRINCIPAL
