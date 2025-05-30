@@ -1,16 +1,17 @@
 #include "memory.h"
 #include "logger.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 // Estructura para rastrear la memoria asignada
-struct MemoryBlock {
+typedef struct MemoryBlock {
     void* ptr;              // Puntero a la memoria asignada
     size_t size;            // Tamaño de la memoria asignada
     const char* file;       // Archivo donde se asignó
     int line;               // Línea donde se asignó
-    MemoryBlock* next;      // Siguiente bloque en la lista
-};
+    struct MemoryBlock* next;      // Siguiente bloque en la lista
+} MemoryBlock;
 
 // Lista enlazada de bloques de memoria
 static MemoryBlock* memory_blocks = NULL;
@@ -21,12 +22,19 @@ static int block_count = 0;
 // Memoria total asignada
 static size_t total_allocated = 0;
 
+// Declaraciones adelantadas de funciones estáticas
+static void add_block(void* ptr, size_t size, const char* file, int line);
+static void remove_block(void* ptr);
+static MemoryBlock* find_block(void* ptr);
+void memory_leaks_report(void);
+
 // Inicializar el sistema de gestión de memoria
-void memory_init() {
+bool memory_init() {
     memory_blocks = NULL;
     block_count = 0;
     total_allocated = 0;
     log_debug("Sistema de gestión de memoria inicializado");
+    return true;
 }
 
 // Liberar todos los recursos del sistema de gestión de memoria
@@ -185,11 +193,24 @@ size_t memory_total_allocated() {
 }
 
 // Imprimir informe de memoria actual
-void memory_report() {
+void memory_print_stats() {
     printf("===== Informe de Memoria =====\n");
     printf("Bloques asignados: %d\n", block_count);
     printf("Memoria total: %zu bytes\n", total_allocated);
     printf("=============================\n");
+}
+
+// Verificar fugas de memoria
+bool memory_check_leaks() {
+    return block_count == 0;
+}
+
+// Obtener estadísticas de memoria
+MemoryStats memory_get_stats() {
+    MemoryStats stats = {0};
+    stats.current_allocations = block_count;
+    stats.current_bytes_allocated = total_allocated;
+    return stats;
 }
 
 // Imprimir fugas de memoria (bloques que no han sido liberados)

@@ -58,3 +58,404 @@
 [2025-05-29 13:29:55] [INFO] Usuario autenticado: admin@cinegestion.com
 [2025-05-29 13:29:55] [INFO] Inicio de sesión exitoso para el usuario: admin@cinegestion.com
 [2025-05-29 13:29:55] [INFO] Usuario admin logueado correctamente
+[2025-05-29 15:30:45] [INFO] Sistema de logging inicializado
+[2025-05-29 15:30:45] [INFO] ===== INICIANDO SERVIDOR DE CINE =====
+[2025-05-29 15:30:45] [INFO] Inicializando datos de prueba...
+[2025-05-29 15:30:45] [INFO] Creando usuarios de prueba...
+[2025-05-29 15:30:45] [ERROR] Error al crear usuario
+[2025-05-29 15:30:45] [WARNING] El administrador ya existe o no se pudo crear
+[2025-05-29 15:30:45] [ERROR] Error al crear usuario
+[2025-05-29 15:30:45] [ERROR] No se pudo crear cliente1
+[2025-05-29 15:30:45] [WARNING] No se pudieron inicializar datos de prueba
+[2025-05-29 15:30:45] [INFO] Sistema inicializado correctamente
+[2025-05-29 15:30:45] [INFO] Servidor escuchando en puerto 5000
+[2025-05-29 15:30:51] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-29 15:32:22] [WARNING] Intento de autenticación fallido: contraseña incorrecta para el usuario cliente@cine.com
+[2025-05-29 15:32:22] [WARNING] Intento de inicio de sesión fallido para el usuario: cliente@cine.com
+[2025-05-29 15:32:22] [WARNING] Intento de login fallido para cliente@cine.com
+[2025-05-29 15:57:00] [INFO] Sistema de logging inicializado
+[2025-05-29 15:57:00] [INFO] ===== INICIANDO SERVIDOR DE CINE =====
+[2025-05-29 15:57:00] [INFO] === INICIANDO CARGA DE DATOS DE PRUEBA ===
+[2025-05-29 15:57:00] [INFO] Se listaron 5 películas
+[2025-05-29 15:57:00] [INFO] Ya existen datos en la base de datos, omitiendo carga de datos de prueba
+[2025-05-29 15:57:00] [INFO] Sistema inicializado correctamente
+[2025-05-29 15:57:00] [INFO] Servidor escuchando en puerto 5000
+[2025-05-29 15:57:06] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-29 15:57:42] [WARNING] Intento de autenticación fallido: contraseña incorrecta para el usuario juan@email.com
+[2025-05-29 15:57:42] [WARNING] Intento de inicio de sesión fallido para el usuario: juan@email.com
+[2025-05-29 15:57:42] [WARNING] Intento de login fallido para juan@email.com
+[2025-05-29 16:02:15] [INFO] Sistema de logging inicializado
+[2025-05-29 16:02:15] [INFO] ===== INICIANDO SERVIDOR DE CINE =====
+[2025-05-29 16:02:15] [INFO] === INICIANDO CARGA DE DATOS DE PRUEBA ===
+[2025-05-29 16:02:15] [INFO] Se listaron 5 películas
+[2025-05-29 16:02:15] [INFO] Ya existen datos en la base de datos, omitiendo carga de datos de prueba
+[2025-05-29 16:02:15] [INFO] Sistema inicializado correctamente
+[2025-05-29 16:02:15] [INFO] Servidor escuchando en puerto 5000
+[2025-05-29 16:02:45] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-29 16:03:13] [INFO] Usuario autenticado: admin@cinegestion.com
+[2025-05-29 16:03:13] [INFO] Inicio de sesión exitoso para el usuario: admin@cinegestion.com
+[2025-05-29 16:03:13] [INFO] Usuario admin logueado correctamente
+[2025-05-29 16:18:24] [INFO] Sistema de logging inicializado
+[2025-05-29 16:18:24] [INFO] ===== INICIANDO SERVIDOR DE CINE =====
+[2025-05-29 16:18:24] [INFO] === INICIANDO CARGA DE DATOS DE PRUEBA ===
+[2025-05-29 16:18:24] [INFO] Se listaron 5 películas
+[2025-05-29 16:18:24] [INFO] Ya existen datos en la base de datos, omitiendo carga de datos de prueba
+[2025-05-29 16:18:24] [INFO] Sistema inicializado correctamente
+[2025-05-29 16:18:24] [INFO] Servidor escuchando en puerto 5000
+[2025-05-29 16:18:36] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-29 16:19:00] [WARNING] Intento de autenticación fallido: contraseña incorrecta para el usuario juan@email.com
+[2025-05-29 16:19:00] [WARNING] Intento de inicio de sesión fallido para el usuario: juan@email.com
+[2025-05-29 16:19:00] [WARNING] Intento de login fallido para juan@email.com
+[2025-05-30 17:29:22] [INFO] Sistema de logging inicializado
+[2025-05-30 17:29:22] [INFO] ===== INICIANDO SERVIDOR DE CINE =====
+[2025-05-30 17:29:22] [INFO] === INICIANDO CARGA DE DATOS DE PRUEBA ===
+[2025-05-30 17:29:22] [INFO] Se listaron 5 películas
+[2025-05-30 17:29:22] [INFO] Ya existen datos en la base de datos, omitiendo carga de datos de prueba
+[2025-05-30 17:29:22] [INFO] Datos de prueba cargados exitosamente
+[2025-05-30 17:29:22] [INFO] Se listaron 4 usuarios
+[2025-05-30 17:29:22] [INFO] Se listaron 5 películas
+[2025-05-30 17:29:22] [INFO] Se listaron 3 salas
+[2025-05-30 17:29:22] [INFO] Sistema inicializado correctamente
+[2025-05-30 17:29:22] [INFO] Servidor escuchando en puerto 5000
+[2025-05-30 17:29:28] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 17:30:12] [WARNING] Intento de autenticación fallido: contraseña incorrecta para el usuario juan@email.com
+[2025-05-30 17:30:12] [WARNING] Intento de inicio de sesión fallido para el usuario: juan@email.com
+[2025-05-30 17:30:12] [WARNING] Intento de login fallido para juan@email.com
+[2025-05-30 17:39:28] [INFO] Sistema de logging inicializado
+[2025-05-30 17:39:28] [INFO] ===== INICIANDO SERVIDOR DE CINE =====
+[2025-05-30 17:39:28] [INFO] === INICIANDO CARGA DE DATOS DE PRUEBA ===
+[2025-05-30 17:39:28] [INFO] Creando usuarios de prueba...
+[2025-05-30 17:39:28] [INFO] Usuario creado con ID: 2
+[2025-05-30 17:39:28] [INFO] Usuario creado con ID: 3
+[2025-05-30 17:39:28] [INFO] Usuario creado con ID: 4
+[2025-05-30 17:39:28] [INFO] Usuario creado con ID: 5
+[2025-05-30 17:39:29] [INFO] ✅ Usuarios de prueba creados (3 clientes + 1 admin adicional)
+[2025-05-30 17:39:29] [INFO] Creando películas de prueba...
+[2025-05-30 17:39:29] [INFO] Película creada con ID: 1
+[2025-05-30 17:39:29] [INFO] Película creada con ID: 2
+[2025-05-30 17:39:29] [INFO] Película creada con ID: 3
+[2025-05-30 17:39:29] [INFO] Película creada con ID: 4
+[2025-05-30 17:39:29] [INFO] Película creada con ID: 5
+[2025-05-30 17:39:29] [INFO] Película creada con ID: 6
+[2025-05-30 17:39:29] [INFO] ✅ Películas de prueba creadas (6 películas)
+[2025-05-30 17:39:29] [INFO] Creando salas de prueba...
+[2025-05-30 17:39:29] [INFO] Sala creada con ID: 1
+[2025-05-30 17:39:29] [INFO] Se crearon 50 asientos para la sala 1
+[2025-05-30 17:39:29] [INFO] Sala creada con ID: 2
+[2025-05-30 17:39:29] [INFO] Se crearon 100 asientos para la sala 2
+[2025-05-30 17:39:29] [INFO] Sala creada con ID: 3
+[2025-05-30 17:39:29] [INFO] Se crearon 150 asientos para la sala 3
+[2025-05-30 17:39:29] [INFO] Sala creada con ID: 4
+[2025-05-30 17:39:29] [INFO] Se crearon 30 asientos para la sala 4
+[2025-05-30 17:39:29] [INFO] ✅ Salas de prueba creadas (4 salas: 50, 100, 150, 30 asientos)
+[2025-05-30 17:39:29] [INFO] Creando sesiones de prueba...
+[2025-05-30 17:39:29] [INFO] Sesión creada con ID: 1
+[2025-05-30 17:39:29] [INFO] Sesión creada con ID: 2
+[2025-05-30 17:39:29] [INFO] Sesión creada con ID: 3
+[2025-05-30 17:39:29] [INFO] Sesión creada con ID: 4
+[2025-05-30 17:39:29] [INFO] Sesión creada con ID: 5
+[2025-05-30 17:39:29] [INFO] ✅ Sesiones de prueba creadas
+[2025-05-30 17:39:29] [INFO] Creando ventas de ejemplo...
+[2025-05-30 17:39:29] [INFO] Ventas de ejemplo omitidas
+[2025-05-30 17:39:29] [INFO] === DATOS DE PRUEBA CARGADOS EXITOSAMENTE ===
+[2025-05-30 17:39:29] [INFO] Datos de prueba cargados exitosamente
+[2025-05-30 17:39:29] [INFO] Se listaron 5 usuarios
+[2025-05-30 17:39:29] [INFO] Se listaron 6 películas
+[2025-05-30 17:39:29] [INFO] Se listaron 4 salas
+[2025-05-30 17:39:29] [INFO] Sistema inicializado correctamente
+[2025-05-30 17:39:29] [INFO] Servidor escuchando en puerto 5000
+[2025-05-30 17:40:01] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 17:40:36] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 17:40:36] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 17:40:36] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 17:43:03] [INFO] Sistema de logging inicializado
+[2025-05-30 17:43:03] [INFO] ===== INICIANDO SERVIDOR DE CINE =====
+[2025-05-30 17:43:03] [INFO] === INICIANDO CARGA DE DATOS DE PRUEBA ===
+[2025-05-30 17:43:03] [INFO] Se listaron 6 películas
+[2025-05-30 17:43:03] [INFO] Ya existen datos en la base de datos, omitiendo carga de datos de prueba
+[2025-05-30 17:43:03] [INFO] Datos de prueba cargados exitosamente
+[2025-05-30 17:43:03] [INFO] Se listaron 5 usuarios
+[2025-05-30 17:43:03] [INFO] Se listaron 6 películas
+[2025-05-30 17:43:03] [INFO] Se listaron 4 salas
+[2025-05-30 17:43:03] [INFO] Sistema inicializado correctamente
+[2025-05-30 17:43:03] [INFO] Servidor escuchando en puerto 5000
+[2025-05-30 17:43:11] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 17:43:43] [INFO] Sistema de logging inicializado
+[2025-05-30 17:43:43] [INFO] ===== INICIANDO SERVIDOR DE CINE =====
+[2025-05-30 17:43:43] [INFO] === INICIANDO CARGA DE DATOS DE PRUEBA ===
+[2025-05-30 17:43:43] [INFO] Se listaron 6 películas
+[2025-05-30 17:43:43] [INFO] Ya existen datos en la base de datos, omitiendo carga de datos de prueba
+[2025-05-30 17:43:43] [INFO] Datos de prueba cargados exitosamente
+[2025-05-30 17:43:43] [INFO] Se listaron 5 usuarios
+[2025-05-30 17:43:43] [INFO] Se listaron 6 películas
+[2025-05-30 17:43:43] [INFO] Se listaron 4 salas
+[2025-05-30 17:43:43] [INFO] Sistema inicializado correctamente
+[2025-05-30 17:43:43] [INFO] Servidor escuchando en puerto 5000
+[2025-05-30 17:43:48] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 17:43:59] [INFO] Usuario autenticado: admin@cinegestion.com
+[2025-05-30 17:43:59] [INFO] Inicio de sesión exitoso para el usuario: admin@cinegestion.com
+[2025-05-30 17:43:59] [INFO] Usuario admin logueado correctamente
+[2025-05-30 17:45:22] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 17:45:34] [INFO] Cierre de sesión para el usuario: admin@cinegestion.com
+[2025-05-30 17:45:34] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 17:45:34] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 17:45:34] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 17:58:49] [INFO] Sistema de logging inicializado
+[2025-05-30 17:58:49] [INFO] ===== INICIANDO SERVIDOR DE CINE =====
+[2025-05-30 17:58:49] [INFO] === INICIANDO CARGA DE DATOS DE PRUEBA ===
+[2025-05-30 17:58:49] [INFO] Se listaron 6 películas
+[2025-05-30 17:58:49] [INFO] Ya existen datos en la base de datos, omitiendo carga de datos de prueba
+[2025-05-30 17:58:49] [INFO] Datos de prueba cargados exitosamente
+[2025-05-30 17:58:49] [INFO] Se listaron 5 usuarios
+[2025-05-30 17:58:49] [INFO] Se listaron 6 películas
+[2025-05-30 17:58:49] [INFO] Se listaron 4 salas
+[2025-05-30 17:58:49] [INFO] Sistema inicializado correctamente
+[2025-05-30 17:58:49] [INFO] Servidor escuchando en puerto 5000
+[2025-05-30 18:00:11] [INFO] Sistema de logging inicializado
+[2025-05-30 18:00:11] [INFO] ===== INICIANDO SERVIDOR DE CINE =====
+[2025-05-30 18:00:11] [INFO] === INICIANDO CARGA DE DATOS DE PRUEBA ===
+[2025-05-30 18:00:11] [INFO] Se listaron 6 películas
+[2025-05-30 18:00:11] [INFO] Ya existen datos en la base de datos, omitiendo carga de datos de prueba
+[2025-05-30 18:00:11] [INFO] Datos de prueba cargados exitosamente
+[2025-05-30 18:00:11] [INFO] Se listaron 5 usuarios
+[2025-05-30 18:00:11] [INFO] Se listaron 6 películas
+[2025-05-30 18:00:11] [INFO] Se listaron 4 salas
+[2025-05-30 18:00:11] [INFO] Sistema inicializado correctamente
+[2025-05-30 18:00:11] [INFO] Servidor escuchando en puerto 5000
+[2025-05-30 18:00:47] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:00:47] [INFO] Usuario autenticado: admin@cinegestion.com
+[2025-05-30 18:00:47] [INFO] Inicio de sesión exitoso para el usuario: admin@cinegestion.com
+[2025-05-30 18:00:47] [INFO] Usuario admin logueado correctamente
+[2025-05-30 18:00:56] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:00:56] [INFO] Cierre de sesión para el usuario: admin@cinegestion.com
+[2025-05-30 18:00:56] [INFO] Usuario autenticado: admin@cinegestion.com
+[2025-05-30 18:00:56] [INFO] Inicio de sesión exitoso para el usuario: admin@cinegestion.com
+[2025-05-30 18:00:56] [INFO] Usuario admin logueado correctamente
+[2025-05-30 18:00:56] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:00:56] [INFO] Se listaron 6 películas
+[2025-05-30 18:00:56] [INFO] Enviadas 6 películas al cliente
+[2025-05-30 18:01:13] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:01:13] [INFO] Cierre de sesión para el usuario: admin@cinegestion.com
+[2025-05-30 18:01:13] [INFO] Usuario autenticado: admin@cinegestion.com
+[2025-05-30 18:01:13] [INFO] Inicio de sesión exitoso para el usuario: admin@cinegestion.com
+[2025-05-30 18:01:13] [INFO] Usuario admin logueado correctamente
+[2025-05-30 18:01:13] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:01:14] [INFO] Película creada con ID: 7
+[2025-05-30 18:01:14] [INFO] Película 'sdgsgsdf' creada con ID 7
+[2025-05-30 18:01:23] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:01:23] [INFO] Cierre de sesión para el usuario: admin@cinegestion.com
+[2025-05-30 18:01:23] [INFO] Usuario autenticado: admin@cinegestion.com
+[2025-05-30 18:01:23] [INFO] Inicio de sesión exitoso para el usuario: admin@cinegestion.com
+[2025-05-30 18:01:23] [INFO] Usuario admin logueado correctamente
+[2025-05-30 18:01:23] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:01:23] [INFO] Se listaron 7 películas
+[2025-05-30 18:01:23] [INFO] Enviadas 7 películas al cliente
+[2025-05-30 18:01:31] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:01:31] [INFO] Cierre de sesión para el usuario: admin@cinegestion.com
+[2025-05-30 18:01:31] [INFO] Usuario deslogueado
+[2025-05-30 18:01:51] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:01:51] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 18:01:51] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 18:01:51] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 18:01:56] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:01:56] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 18:01:56] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 18:01:56] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 18:01:56] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 18:01:56] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:01:56] [INFO] Se listaron 7 películas
+[2025-05-30 18:01:56] [INFO] Enviadas 7 películas al cliente
+[2025-05-30 18:01:56] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:01:56] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 18:01:56] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 18:01:56] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 18:01:56] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 18:01:56] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:01:56] [INFO] Se encontraron 2 sesiones para la película 1
+[2025-05-30 18:01:56] [INFO] Enviadas 2 sesiones para película 1
+[2025-05-30 18:01:56] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:01:56] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 18:01:56] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 18:01:56] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 18:01:56] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 18:01:56] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:01:56] [INFO] Se encontraron 2 sesiones para la película 2
+[2025-05-30 18:01:56] [INFO] Enviadas 2 sesiones para película 2
+[2025-05-30 18:01:56] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:01:56] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 18:01:56] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 18:01:56] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 18:01:56] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 18:01:56] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:01:56] [INFO] Se encontraron 1 sesiones para la película 3
+[2025-05-30 18:01:56] [INFO] Enviadas 1 sesiones para película 3
+[2025-05-30 18:01:56] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:01:56] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 18:01:56] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 18:01:56] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 18:01:56] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 18:01:56] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:01:56] [INFO] Enviadas 0 sesiones para película 4
+[2025-05-30 18:01:56] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:01:56] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 18:01:56] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 18:01:56] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 18:01:56] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 18:01:56] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:01:56] [INFO] Enviadas 0 sesiones para película 5
+[2025-05-30 18:01:56] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:01:56] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 18:01:56] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 18:01:56] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 18:01:56] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 18:01:56] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:01:56] [INFO] Enviadas 0 sesiones para película 6
+[2025-05-30 18:01:56] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:01:56] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 18:01:56] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 18:01:56] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 18:01:56] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 18:01:56] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:01:56] [INFO] Enviadas 0 sesiones para película 7
+[2025-05-30 18:02:15] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:02:15] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 18:02:15] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 18:02:15] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 18:02:15] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 18:02:15] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:02:15] [INFO] Se listaron 7 películas
+[2025-05-30 18:02:15] [INFO] Enviadas 7 películas al cliente
+[2025-05-30 18:02:15] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:02:15] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 18:02:15] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 18:02:15] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 18:02:15] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 18:02:15] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:02:15] [INFO] Se encontraron 2 sesiones para la película 1
+[2025-05-30 18:02:15] [INFO] Enviadas 2 sesiones para película 1
+[2025-05-30 18:02:15] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:02:15] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 18:02:15] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 18:02:15] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 18:02:15] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 18:02:15] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:02:15] [INFO] Se encontraron 2 sesiones para la película 2
+[2025-05-30 18:02:15] [INFO] Enviadas 2 sesiones para película 2
+[2025-05-30 18:02:15] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:02:15] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 18:02:15] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 18:02:15] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 18:02:15] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 18:02:15] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:02:15] [INFO] Se encontraron 1 sesiones para la película 3
+[2025-05-30 18:02:15] [INFO] Enviadas 1 sesiones para película 3
+[2025-05-30 18:02:15] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:02:15] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 18:02:15] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 18:02:15] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 18:02:15] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 18:02:15] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:02:15] [INFO] Enviadas 0 sesiones para película 4
+[2025-05-30 18:02:15] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:02:15] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 18:02:15] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 18:02:15] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 18:02:15] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 18:02:15] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:02:15] [INFO] Enviadas 0 sesiones para película 5
+[2025-05-30 18:02:15] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:02:15] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 18:02:15] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 18:02:15] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 18:02:15] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 18:02:15] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:02:15] [INFO] Enviadas 0 sesiones para película 6
+[2025-05-30 18:02:15] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:02:15] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 18:02:15] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 18:02:15] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 18:02:15] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 18:02:15] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:02:15] [INFO] Enviadas 0 sesiones para película 7
+[2025-05-30 18:02:20] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:02:20] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 18:02:20] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 18:02:20] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 18:02:20] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 18:02:20] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:02:20] [INFO] Se listaron 7 películas
+[2025-05-30 18:02:20] [INFO] Enviadas 7 películas al cliente
+[2025-05-30 18:02:20] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:02:20] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 18:02:20] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 18:02:20] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 18:02:20] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 18:02:20] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:02:20] [INFO] Se encontraron 2 sesiones para la película 1
+[2025-05-30 18:02:20] [INFO] Enviadas 2 sesiones para película 1
+[2025-05-30 18:02:20] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:02:21] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 18:02:21] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 18:02:21] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 18:02:21] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 18:02:21] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:02:21] [INFO] Se encontraron 2 sesiones para la película 2
+[2025-05-30 18:02:21] [INFO] Enviadas 2 sesiones para película 2
+[2025-05-30 18:02:21] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:02:21] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 18:02:21] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 18:02:21] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 18:02:21] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 18:02:21] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:02:21] [INFO] Se encontraron 1 sesiones para la película 3
+[2025-05-30 18:02:21] [INFO] Enviadas 1 sesiones para película 3
+[2025-05-30 18:02:21] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:02:21] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 18:02:21] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 18:02:21] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 18:02:21] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 18:02:21] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:02:21] [INFO] Enviadas 0 sesiones para película 4
+[2025-05-30 18:02:21] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:02:21] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 18:02:21] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 18:02:21] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 18:02:21] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 18:02:21] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:02:21] [INFO] Enviadas 0 sesiones para película 5
+[2025-05-30 18:02:21] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:02:21] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 18:02:21] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 18:02:21] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 18:02:21] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 18:02:21] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:02:21] [INFO] Enviadas 0 sesiones para película 6
+[2025-05-30 18:02:21] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:02:21] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 18:02:21] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 18:02:21] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 18:02:21] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 18:02:21] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:02:21] [INFO] Enviadas 0 sesiones para película 7
+[2025-05-30 18:04:11] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:04:11] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 18:04:11] [INFO] Usuario deslogueado
+[2025-05-30 18:05:09] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:05:09] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 18:05:09] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 18:05:09] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 18:05:14] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:05:14] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 18:05:14] [INFO] Usuario autenticado: juan@email.com
+[2025-05-30 18:05:14] [INFO] Inicio de sesión exitoso para el usuario: juan@email.com
+[2025-05-30 18:05:14] [INFO] Usuario Juan Pérez logueado correctamente
+[2025-05-30 18:05:14] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:05:14] [INFO] Enviadas 0 compras para usuario 2
+[2025-05-30 18:06:06] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:06:06] [INFO] Cierre de sesión para el usuario: juan@email.com
+[2025-05-30 18:06:06] [INFO] Usuario deslogueado
+[2025-05-30 18:06:09] [INFO] Cliente conectado desde 127.0.0.1
+[2025-05-30 18:06:09] [INFO] Cliente solicita desconexión
+[2025-05-30 18:06:09] [INFO] Servidor cerrado por comando QUIT
+[2025-05-30 18:06:09] [INFO] ===== CERRANDO SERVIDOR =====
+[2025-05-30 18:06:09] [INFO] Sistema de logging cerrado
