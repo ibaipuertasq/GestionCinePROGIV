@@ -15,19 +15,19 @@ int main() {
     // Cargar configuración
     Config config;
     if (!load_config("config/config.ini", &config)) {
-        fprintf(stderr, "Error: No se pudo cargar la configuración.\n");
+        fprintf(stderr, "Error: No se pudo cargar la configuracion.\n");
         return EXIT_FAILURE;
     }
     
     AdminConfig admin_config;
     if (!load_admin_config("config/admin.ini", &admin_config)) {
-        fprintf(stderr, "Error: No se pudo cargar la configuración de administrador.\n");
+        fprintf(stderr, "Error: No se pudo cargar la configuracion de administrador.\n");
         return EXIT_FAILURE;
     }
     
     // Validar configuración
     if (!validate_config(&config) || !validate_admin_config(&admin_config)) {
-        fprintf(stderr, "Error: Configuración inválida.\n");
+        fprintf(stderr, "Error: Configuracion invalida.\n");
         return EXIT_FAILURE;
     }
     
