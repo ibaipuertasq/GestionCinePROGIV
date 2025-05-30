@@ -22,7 +22,7 @@
 #include <unistd.h>
 #endif
 
-// Declaraciones adelantadas de funciones de menú
+// Declaraciones adelantadas de funciones de menu
 static void mostrar_menu_principal();
 static void mostrar_menu_autenticacion();
 static void mostrar_menu_admin();
