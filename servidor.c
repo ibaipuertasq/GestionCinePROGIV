@@ -307,6 +307,428 @@ char* procesar_comando(char* comando) {
             log_info("No hay compras para usuario %d", user_id);
         }
     }
+        // Comando para obtener información de una sala específica
+    else if (strcmp(cmd, "GET_ROOM_INFO") == 0) {
+        char* sala_id_str = strtok(NULL, ":");
+        
+        if (!sala_id_str) {
+            strcpy(respuesta, "ERROR:ID de sala requerido");
+            free(comando_copia);
+            return respuesta;
+        }
+        
+        int sala_id = atoi(sala_id_str);
+        Sala sala;
+        
+        if (sala_obtener_por_id(sala_id, &sala)) {
+            int asientos_libres = sala_contar_asientos_libres(sala_id);
+            snprintf(respuesta, MAX_BUFFER, "OK:%d:%d:%d", 
+                    sala.id, sala.numero_asientos, asientos_libres);
+            printf("✅ DEBUG - Info sala %d enviada\n", sala_id);
+            log_info("Información de sala %d enviada", sala_id);
+        } else {
+            strcpy(respuesta, "ERROR:Sala no encontrada");
+            printf("❌ DEBUG - Sala %d no encontrada\n", sala_id);
+            log_error("Sala %d no encontrada", sala_id);
+        }
+    }
+    
+    // Comando para obtener asientos ocupados de una sesión
+    else if (strcmp(cmd, "GET_SESSION_SEATS") == 0) {
+        char* sesion_id_str = strtok(NULL, ":");
+        
+        if (!sesion_id_str) {
+            strcpy(respuesta, "ERROR:ID de sesion requerido");
+            free(comando_copia);
+            return respuesta;
+        }
+        
+        int sesion_id = atoi(sesion_id_str);
+        Sesion sesion;
+        
+        if (!sesion_obtener_por_id(sesion_id, &sesion)) {
+            strcpy(respuesta, "ERROR:Sesion no encontrada");
+            free(comando_copia);
+            return respuesta;
+        }
+        
+        // Obtener información de la sala
+        Sala sala;
+        if (!sala_obtener_por_id(sesion.sala_id, &sala)) {
+            strcpy(respuesta, "ERROR:Sala no encontrada");
+            free(comando_copia);
+            return respuesta;
+        }
+        
+        // Obtener billetes de esta sesión para saber qué asientos están ocupados
+        Billete* billetes = NULL;
+        int num_billetes = 0;
+        
+        if (billete_listar_por_sesion(sesion_id, &billetes, &num_billetes)) {
+            // Crear lista de asientos ocupados
+            char asientos_ocupados[512] = "";
+            bool first = true;
+            
+            for (int i = 0; i < num_billetes; i++) {
+                Asiento asiento;
+                if (asiento_obtener_por_id(billetes[i].asiento_id, &asiento)) {
+                    if (!first) {
+                        strcat(asientos_ocupados, ",");
+                    }
+                    char num_str[10];
+                    snprintf(num_str, sizeof(num_str), "%d", asiento.numero);
+                    strcat(asientos_ocupados, num_str);
+                    first = false;
+                }
+            }
+            
+            if (strlen(asientos_ocupados) == 0) {
+                strcpy(asientos_ocupados, "NONE");
+            }
+            
+            snprintf(respuesta, MAX_BUFFER, "OK:%d:%d:%s", 
+                    sala.id, sala.numero_asientos, asientos_ocupados);
+            
+            billete_liberar_lista(billetes, num_billetes);
+            printf("✅ DEBUG - Asientos de sesión %d enviados\n", sesion_id);
+            log_info("Asientos de sesión %d enviados", sesion_id);
+        } else {
+            snprintf(respuesta, MAX_BUFFER, "OK:%d:%d:NONE", 
+                    sala.id, sala.numero_asientos);
+            printf("✅ DEBUG - Info asientos sesión %d (sin billetes)\n", sesion_id);
+        }
+    }
+    
+    // Comando para verificar si un asiento específico está disponible
+    else if (strcmp(cmd, "CHECK_SEAT_AVAILABLE") == 0) {
+        char* sesion_id_str = strtok(NULL, ":");
+        char* numero_asiento_str = strtok(NULL, ":");
+        
+        if (!sesion_id_str || !numero_asiento_str) {
+            strcpy(respuesta, "ERROR:Parametros incompletos");
+            free(comando_copia);
+            return respuesta;
+        }
+        
+        int sesion_id = atoi(sesion_id_str);
+        int numero_asiento = atoi(numero_asiento_str);
+        
+        // Obtener sesión
+        Sesion sesion;
+        if (!sesion_obtener_por_id(sesion_id, &sesion)) {
+            strcpy(respuesta, "ERROR:Sesion no encontrada");
+            free(comando_copia);
+            return respuesta;
+        }
+        
+        // Buscar el asiento por número en la sala
+        Asiento* asientos = NULL;
+        int num_asientos = 0;
+        
+        if (!asiento_listar_por_sala(sesion.sala_id, &asientos, &num_asientos)) {
+            strcpy(respuesta, "ERROR:Error al obtener asientos");
+            free(comando_copia);
+            return respuesta;
+        }
+        
+        int asiento_id = -1;
+        for (int i = 0; i < num_asientos; i++) {
+            if (asientos[i].numero == numero_asiento) {
+                asiento_id = asientos[i].id;
+                break;
+            }
+        }
+        
+        asiento_liberar_lista(asientos, num_asientos);
+        
+        if (asiento_id == -1) {
+            strcpy(respuesta, "ERROR:Asiento no existe");
+            free(comando_copia);
+            return respuesta;
+        }
+        
+        // Verificar disponibilidad
+        if (billete_esta_disponible(sesion_id, asiento_id)) {
+            strcpy(respuesta, "OK:AVAILABLE");
+            printf("✅ DEBUG - Asiento %d disponible en sesión %d\n", numero_asiento, sesion_id);
+        } else {
+            strcpy(respuesta, "OK:OCCUPIED");
+            printf("⚠️ DEBUG - Asiento %d ocupado en sesión %d\n", numero_asiento, sesion_id);
+        }
+    }
+    
+    // Comando para procesar compra de entradas
+    else if (strcmp(cmd, "PURCHASE_TICKETS") == 0) {
+        printf("🛒 DEBUG - Procesando compra de entradas...\n");
+        
+        if (!auth_sesion_activa()) {
+            strcpy(respuesta, "ERROR:Debe iniciar sesion");
+            free(comando_copia);
+            return respuesta;
+        }
+        
+        char* usuario_id_str = strtok(NULL, ":");
+        char* sesion_id_str = strtok(NULL, ":");
+        char* num_entradas_str = strtok(NULL, ":");
+        
+        if (!usuario_id_str || !sesion_id_str || !num_entradas_str) {
+            strcpy(respuesta, "ERROR:Parametros incompletos");
+            free(comando_copia);
+            return respuesta;
+        }
+        
+        int usuario_id = atoi(usuario_id_str);
+        int sesion_id = atoi(sesion_id_str);
+        int num_entradas = atoi(num_entradas_str);
+        
+        if (num_entradas <= 0 || num_entradas > 10) {
+            strcpy(respuesta, "ERROR:Numero de entradas invalido");
+            free(comando_copia);
+            return respuesta;
+        }
+        
+        // Verificar que el usuario actual puede hacer esta compra
+        Usuario* current_user = auth_obtener_usuario_actual();
+        if (current_user->tipo != USUARIO_ADMINISTRADOR && current_user->id != usuario_id) {
+            strcpy(respuesta, "ERROR:No puede comprar para otros usuarios");
+            log_warning("Usuario %d intentó comprar para usuario %d", current_user->id, usuario_id);
+            free(comando_copia);
+            return respuesta;
+        }
+        
+        // Verificar que la sesión existe
+        Sesion sesion;
+        if (!sesion_obtener_por_id(sesion_id, &sesion)) {
+            strcpy(respuesta, "ERROR:Sesion no encontrada");
+            free(comando_copia);
+            return respuesta;
+        }
+        
+        // Obtener los números de asientos seleccionados
+        int asientos_seleccionados[10];
+        for (int i = 0; i < num_entradas; i++) {
+            char* asiento_str = strtok(NULL, ":");
+            if (!asiento_str) {
+                strcpy(respuesta, "ERROR:Faltan asientos seleccionados");
+                free(comando_copia);
+                return respuesta;
+            }
+            asientos_seleccionados[i] = atoi(asiento_str);
+        }
+        
+        // Iniciar transacción
+        if (!db_begin_transaction()) {
+            strcpy(respuesta, "ERROR:Error al iniciar transaccion");
+            log_error("Error al iniciar transacción para compra");
+            free(comando_copia);
+            return respuesta;
+        }
+        
+        // Crear billetes para cada asiento
+        Billete billetes[10];
+        bool error = false;
+        double precio_unitario = 8.50;
+        
+        for (int i = 0; i < num_entradas && !error; i++) {
+            // Buscar el ID del asiento por su número
+            Asiento* asientos = NULL;
+            int num_asientos = 0;
+            
+            if (!asiento_listar_por_sala(sesion.sala_id, &asientos, &num_asientos)) {
+                log_error("Error al obtener asientos de la sala");
+                error = true;
+                break;
+            }
+            
+            int asiento_id = -1;
+            for (int j = 0; j < num_asientos; j++) {
+                if (asientos[j].numero == asientos_seleccionados[i]) {
+                    asiento_id = asientos[j].id;
+                    break;
+                }
+            }
+            
+            asiento_liberar_lista(asientos, num_asientos);
+            
+            if (asiento_id == -1) {
+                log_error("Asiento %d no encontrado", asientos_seleccionados[i]);
+                error = true;
+                break;
+            }
+            
+            // Verificar disponibilidad
+            if (!billete_esta_disponible(sesion_id, asiento_id)) {
+                log_error("Asiento %d no disponible", asientos_seleccionados[i]);
+                error = true;
+                break;
+            }
+            
+            // Crear el billete
+            memset(&billetes[i], 0, sizeof(Billete));
+            billetes[i].sesion_id = sesion_id;
+            billetes[i].asiento_id = asiento_id;
+            billetes[i].precio = precio_unitario;
+            
+            if (!billete_crear(&billetes[i])) {
+                log_error("Error al crear billete para asiento %d", asientos_seleccionados[i]);
+                error = true;
+                break;
+            }
+            
+            printf("✅ DEBUG - Billete creado: ID %d, Asiento %d\n", billetes[i].id, asientos_seleccionados[i]);
+        }
+        
+        if (error) {
+            db_rollback_transaction();
+            strcpy(respuesta, "ERROR:Error al crear billetes");
+            free(comando_copia);
+            return respuesta;
+        }
+        
+        // Crear la venta
+        Venta venta = {0};
+        venta.usuario_id = usuario_id;
+        venta.descuento = 0.0;
+        venta.precio_total = precio_unitario * num_entradas;
+        
+        // Establecer fecha actual
+        time_t now = time(NULL);
+        struct tm* tm_info = localtime(&now);
+        strftime(venta.fecha, sizeof(venta.fecha), "%Y-%m-%d %H:%M:%S", tm_info);
+        
+        // Insertar la venta
+        char sql[512];
+        snprintf(sql, sizeof(sql),
+                "INSERT INTO Venta (Usuario_ID, Fecha, Descuento, PrecioTotal) "
+                "VALUES (%d, '%s', %.2f, %.2f);",
+                venta.usuario_id, venta.fecha, venta.descuento, venta.precio_total);
+        
+        if (!db_execute(sql)) {
+            log_error("Error al crear la venta");
+            db_rollback_transaction();
+            strcpy(respuesta, "ERROR:Error al crear venta");
+            free(comando_copia);
+            return respuesta;
+        }
+        
+        venta.id = db_last_insert_id();
+        
+        // Asociar billetes a la venta
+        for (int i = 0; i < num_entradas; i++) {
+            snprintf(sql, sizeof(sql),
+                    "INSERT INTO Venta_Billetes (Venta_ID, Billete_ID) "
+                    "VALUES (%d, %d);",
+                    venta.id, billetes[i].id);
+            
+            if (!db_execute(sql)) {
+                log_error("Error al asociar billete %d a venta %d", billetes[i].id, venta.id);
+                db_rollback_transaction();
+                strcpy(respuesta, "ERROR:Error al asociar billetes");
+                free(comando_copia);
+                return respuesta;
+            }
+        }
+        
+        // Confirmar transacción
+        if (!db_commit_transaction()) {
+            log_error("Error al confirmar transacción de compra");
+            db_rollback_transaction();
+            strcpy(respuesta, "ERROR:Error al finalizar compra");
+            free(comando_copia);
+            return respuesta;
+        }
+        
+        snprintf(respuesta, MAX_BUFFER, "OK:%d", venta.id);
+        printf("✅ DEBUG - Compra completada: Venta ID %d, %d entradas, Total %.2f\n", 
+               venta.id, num_entradas, venta.precio_total);
+        log_info("Compra completada: Usuario %d, Venta %d, %d entradas", 
+                usuario_id, venta.id, num_entradas);
+    }
+    
+    // Comando para obtener detalles de una compra específica
+    else if (strcmp(cmd, "GET_PURCHASE_DETAILS") == 0) {
+        char* venta_id_str = strtok(NULL, ":");
+        
+        if (!venta_id_str) {
+            strcpy(respuesta, "ERROR:ID de venta requerido");
+            free(comando_copia);
+            return respuesta;
+        }
+        
+        int venta_id = atoi(venta_id_str);
+        
+        // Verificar autenticación
+        if (!auth_sesion_activa()) {
+            strcpy(respuesta, "ERROR:Debe iniciar sesion");
+            free(comando_copia);
+            return respuesta;
+        }
+        
+        // Obtener la venta
+        Venta venta;
+        if (!venta_obtener_por_id(venta_id, &venta)) {
+            strcpy(respuesta, "ERROR:Venta no encontrada");
+            free(comando_copia);
+            return respuesta;
+        }
+        
+        // Verificar permisos
+        Usuario* current_user = auth_obtener_usuario_actual();
+        if (current_user->tipo != USUARIO_ADMINISTRADOR && current_user->id != venta.usuario_id) {
+            strcpy(respuesta, "ERROR:No puede ver compras de otros usuarios");
+            log_warning("Usuario %d intentó ver compra de usuario %d", current_user->id, venta.usuario_id);
+            free(comando_copia);
+            return respuesta;
+        }
+        
+        // Obtener billetes de esta venta
+        Billete* billetes = NULL;
+        int num_billetes = 0;
+        
+        if (!venta_obtener_billetes(venta_id, &billetes, &num_billetes)) {
+            snprintf(respuesta, MAX_BUFFER, "OK:%s:%.2f:0:", venta.fecha, venta.precio_total);
+            free(comando_copia);
+            return respuesta;
+        }
+        
+        // Construir información detallada de billetes
+        char billetes_info[2048] = "";
+        bool first = true;
+        
+        for (int i = 0; i < num_billetes; i++) {
+            Sesion sesion;
+            Pelicula pelicula;
+            Asiento asiento;
+            
+            if (sesion_obtener_por_id(billetes[i].sesion_id, &sesion) &&
+                pelicula_obtener_por_id(sesion.pelicula_id, &pelicula) &&
+                asiento_obtener_por_id(billetes[i].asiento_id, &asiento)) {
+                
+                if (!first) {
+                    strcat(billetes_info, ";");
+                }
+                
+                char billete_str[300];
+                char fecha_sesion[11];
+                strncpy(fecha_sesion, sesion.hora_inicio, 10);
+                fecha_sesion[10] = '\0';
+                
+                snprintf(billete_str, sizeof(billete_str), "%d|%s|%s|%d|%d",
+                        billetes[i].id, pelicula.titulo, fecha_sesion, 
+                        sesion.sala_id, asiento.numero);
+                
+                strcat(billetes_info, billete_str);
+                first = false;
+            }
+        }
+        
+        snprintf(respuesta, MAX_BUFFER, "OK:%s:%.2f:%d:%s", 
+                venta.fecha, venta.precio_total, num_billetes, billetes_info);
+        
+        billete_liberar_lista(billetes, num_billetes);
+        printf("✅ DEBUG - Detalles de venta %d enviados\n", venta_id);
+        log_info("Detalles de venta %d enviados a usuario %d", venta_id, current_user->id);
+    }
     else if (strcmp(cmd, "QUIT") == 0) {
         strcpy(respuesta, "BYE");
         log_info("Cliente solicita desconexión");
@@ -503,7 +925,7 @@ int main() {
     log_close();
     memory_cleanup();
     
-    printf("✅ Servidor cerrado correctamente\n");
+    printf("Servidor cerrado correctamente\n");
     #ifdef _WIN32
     WSACleanup();
     #endif

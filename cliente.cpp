@@ -4,6 +4,9 @@
 #include <sstream>
 #include <memory>
 #include <cstring>
+#include <set>
+#include <cmath>
+#include <iomanip>
 
 // Includes específicos para Windows
 #ifdef _WIN32
@@ -51,7 +54,7 @@ public:
         struct sockaddr_in serv_addr;
         
         if ((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
-            std::cout << "❌ Error creando socket" << std::endl;
+            std::cout << "Error creando socket" << std::endl;
             return false;
         }
         
@@ -61,18 +64,18 @@ public:
         #ifdef _WIN32
             serv_addr.sin_addr.s_addr = inet_addr("127.0.0.1");
             if (serv_addr.sin_addr.s_addr == INADDR_NONE) {
-                std::cout << "❌ Dirección inválida" << std::endl;
+                std::cout << "Direccion invalida" << std::endl;
                 return false;
             }
         #else
             if(inet_pton(AF_INET, "127.0.0.1", &serv_addr.sin_addr) <= 0) {
-                std::cout << "❌ Dirección inválida" << std::endl;
+                std::cout << "Direccion invalida" << std::endl;
                 return false;
             }
         #endif
         
         if (connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0) {
-            std::cout << "❌ Error conectando al servidor" << std::endl;
+            std::cout << "Error conectando al servidor" << std::endl;
             return false;
         }
         
@@ -89,7 +92,7 @@ public:
             
             // Enviar comando
             if (send(sock, comando.c_str(), comando.length(), 0) < 0) {
-                std::cout << "⚠️  Error enviando, reintentando..." << std::endl;
+                std::cout << "Error enviando, reintentando..." << std::endl;
                 connected = false;
                 continue;
             }
@@ -107,12 +110,12 @@ public:
                 
                 return std::string(buffer);
             } else {
-                std::cout << "⚠️  Sin respuesta del servidor, reintentando..." << std::endl;
+                std::cout << "Sin respuesta del servidor, reintentando..." << std::endl;
                 connected = false;
             }
         }
         
-        return "ERROR:Sin respuesta del servidor después de varios intentos";
+        return "ERROR:Sin respuesta del servidor despues de varios intentos";
     }
     
     void desconectar() {
@@ -186,6 +189,10 @@ void menuGestionSalas();
 void menuGestionSesiones();
 void mostrarCartelera();
 void mostrarMisCompras();
+void comprarEntradas();
+void mostrarAsientos(int sesion_id);
+void mostrarDetalleCompra(int venta_id);
+std::vector<std::string> parsearRespuesta(const std::string& respuesta);
 
 // Clase AdminUser (hereda de User)
 class AdminUser : public User {
@@ -195,8 +202,8 @@ public:
         : User(id, nombre, correo, telefono) {}
     
     void mostrar() const override {
-        std::cout << "👑 ADMINISTRADOR: " << nombre << " (" << correo << ")" << std::endl;
-        std::cout << "   Permisos: Gestión completa del sistema" << std::endl;
+        std::cout << "ADMINISTRADOR: " << nombre << " (" << correo << ")" << std::endl;
+        std::cout << "   Permisos: Gestion completa del sistema" << std::endl;
     }
     
     std::string getTipo() const override { return "AdminUser"; }
@@ -233,8 +240,8 @@ public:
         : User(id, nombre, correo, telefono), saldo(saldo) {}
     
     void mostrar() const override {
-        std::cout << "👤 CLIENTE: " << nombre << " (" << correo << ")" << std::endl;
-        std::cout << "   Saldo disponible: " << saldo << "€" << std::endl;
+        std::cout << "CLIENTE: " << nombre << " (" << correo << ")" << std::endl;
+        std::cout << "   Saldo disponible: " << saldo << " euros" << std::endl;
     }
     
     std::string getTipo() const override { return "ClientUser"; }
@@ -331,7 +338,7 @@ public:
         : Entity(id), pelicula_id(pid), sala_id(sid), hora_inicio(inicio), hora_fin(fin) {}
     
     void mostrar() const override {
-        std::cout << "Sesión " << id << " - Película: " << pelicula_id 
+        std::cout << "Sesion " << id << " - Pelicula: " << pelicula_id 
                   << ", Sala: " << sala_id << ", " << hora_inicio << " - " << hora_fin << std::endl;
     }
     
@@ -356,7 +363,7 @@ public:
         : Entity(id), fecha(fecha), precio_total(precio) {}
     
     void mostrar() const override {
-        std::cout << "Compra " << id << " - " << fecha << " - " << precio_total << "€" << std::endl;
+        std::cout << "Compra " << id << " - " << fecha << " - " << precio_total << " euros" << std::endl;
     }
     
     std::string getTipo() const override { return "Sale"; }
@@ -402,7 +409,7 @@ public:
         std::string comando = "LOGIN:" + email + ":" + password;
         std::string respuesta = cliente.enviarComando(comando);
         
-        std::cout << "🔍 Debug - Respuesta del servidor: " << respuesta << std::endl;
+        std::cout << "Debug - Respuesta del servidor: " << respuesta << std::endl;
         
         if (respuesta.substr(0, 3) == "OK:") {
             // Parsear respuesta: "OK:id:nombre:tipo:correo:telefono:saldo"
@@ -433,7 +440,7 @@ public:
     static bool reautenticar(NetworkClient& cliente) {
         if (email_actual.empty()) return false;
         
-        std::cout << "🔄 Reautenticando..." << std::endl;
+        std::cout << "Reautenticando..." << std::endl;
         return login(email_actual, password_actual, cliente);
     }
     
@@ -502,7 +509,7 @@ std::vector<Movie> Movie::obtenerTodas() {
     }
     
     std::string respuesta = cliente.enviarComando("GET_MOVIES");
-    std::cout << "🔍 Debug GET_MOVIES - Respuesta: " << respuesta << std::endl;
+    std::cout << "Debug GET_MOVIES - Respuesta: " << respuesta << std::endl;
     
     if (respuesta.substr(0, 3) == "OK:") {
         std::string datos = respuesta.substr(3);
@@ -542,7 +549,7 @@ bool Movie::crear(const std::string& titulo, int duracion, const std::string& ge
     
     std::string comando = "CREATE_MOVIE:" + titulo + ":" + std::to_string(duracion) + ":" + genero;
     std::string respuesta = cliente.enviarComando(comando);
-    std::cout << "🔍 Debug CREATE_MOVIE - Respuesta: " << respuesta << std::endl;
+    std::cout << "Debug CREATE_MOVIE - Respuesta: " << respuesta << std::endl;
     
     return respuesta.substr(0, 2) == "OK";
 }
@@ -738,7 +745,7 @@ int leerEntero(const std::string& prompt, int min, int max) {
         if (std::cin.fail() || valor < min || valor > max) {
             std::cin.clear();
             std::cin.ignore(10000, '\n');
-            std::cout << "❌ Valor inválido. Intente de nuevo." << std::endl;
+            std::cout << "Valor invalido. Intente de nuevo." << std::endl;
         } else {
             std::cin.ignore();
             return valor;
@@ -761,11 +768,357 @@ bool confirmar(const std::string& prompt) {
 }
 
 void mostrarError(const std::string& mensaje) {
-    std::cout << "❌ Error: " << mensaje << std::endl;
+    std::cout << "Error: " << mensaje << std::endl;
 }
 
 void mostrarExito(const std::string& mensaje) {
-    std::cout << "✅ " << mensaje << std::endl;
+    std::cout << mensaje << std::endl;
+}
+
+// ============================================================================
+// FUNCIONES AUXILIARES PARA EL SISTEMA DE COMPRAS
+// ============================================================================
+
+// Función auxiliar para parsear respuestas del servidor
+std::vector<std::string> parsearRespuesta(const std::string& respuesta) {
+    std::vector<std::string> resultado;
+    std::stringstream ss(respuesta);
+    std::string item;
+    
+    while (std::getline(ss, item, ':')) {
+        resultado.push_back(item);
+    }
+    
+    return resultado;
+}
+
+// ============================================================================
+// FUNCIONES DEL SISTEMA DE COMPRAS
+// ============================================================================
+
+// Función para mostrar asientos de una sesión
+void mostrarAsientos(int sesion_id) {
+    if (AuthenticationService::isLoggedIn()) {
+        AuthenticationService::reautenticar(cliente);
+    }
+    
+    std::string comando = "GET_SESSION_SEATS:" + std::to_string(sesion_id);
+    std::string respuesta = cliente.enviarComando(comando);
+    
+    if (respuesta.substr(0, 3) != "OK:") {
+        std::cout << "Error al obtener informacion de asientos" << std::endl;
+        return;
+    }
+    
+    // Parsear respuesta: "OK:sala_id:num_asientos:asientos_ocupados"
+    std::vector<std::string> datos = parsearRespuesta(respuesta);
+    if (datos.size() < 4) {
+        std::cout << "Error en formato de respuesta" << std::endl;
+        return;
+    }
+    
+    int sala_id = std::stoi(datos[1]);
+    int num_asientos = std::stoi(datos[2]);
+    std::string asientos_ocupados_str = datos[3];
+    
+    // Parsear asientos ocupados (formato: "1,3,5,7")
+    std::set<int> asientos_ocupados;
+    if (!asientos_ocupados_str.empty() && asientos_ocupados_str != "NONE") {
+        std::stringstream ss(asientos_ocupados_str);
+        std::string asiento;
+        while (std::getline(ss, asiento, ',')) {
+            if (!asiento.empty()) {
+                asientos_ocupados.insert(std::stoi(asiento));
+            }
+        }
+    }
+    
+    // Mostrar layout de asientos
+    std::cout << "\n\n";
+    std::cout << "                  PANTALLA" << std::endl;
+    std::cout << "       ";
+    for (int j = 0; j < 30; j++) std::cout << "-";
+    std::cout << "\n\n" << std::endl;
+    
+    // Calcular filas y columnas para visualización
+    int filas = (int)sqrt(num_asientos) + 1;
+    int columnas = (num_asientos / filas) + 1;
+    
+    for (int fila = 0; fila < filas; fila++) {
+        std::cout << std::setw(3) << (fila + 1) << "   ";
+        
+        for (int col = 0; col < columnas; col++) {
+            int asiento_num = fila * columnas + col + 1;
+            
+            if (asiento_num <= num_asientos) {
+                if (asientos_ocupados.find(asiento_num) != asientos_ocupados.end()) {
+                    std::cout << " XX  ";  // Ocupado
+                } else {
+                    std::cout << "[" << std::setw(2) << asiento_num << "] ";  // Libre
+                }
+            } else {
+                std::cout << "     ";  // No hay asiento
+            }
+        }
+        std::cout << std::endl;
+    }
+    
+    std::cout << "\nLeyenda: [##] Asiento libre, XX Asiento ocupado\n" << std::endl;
+}
+
+// Función para comprar entradas
+void comprarEntradas() {
+    limpiarPantalla();
+    std::cout << "=== COMPRAR ENTRADAS ===" << std::endl;
+    
+    // Verificar autenticación
+    if (!AuthenticationService::isLoggedIn() || !AuthenticationService::isClient()) {
+        std::cout << "Debe estar logueado como cliente para comprar entradas" << std::endl;
+        pausar();
+        return;
+    }
+    
+    // Obtener películas disponibles
+    auto peliculas = Movie::obtenerTodas();
+    if (peliculas.empty()) {
+        std::cout << "No hay peliculas disponibles" << std::endl;
+        pausar();
+        return;
+    }
+    
+    std::cout << "\nPELICULAS DISPONIBLES:\n" << std::endl;
+    for (size_t i = 0; i < peliculas.size(); i++) {
+        std::cout << (i + 1) << ". " << peliculas[i].getTitulo() 
+                 << " (" << peliculas[i].getGenero() << ", " 
+                 << peliculas[i].getDuracion() << " min)" << std::endl;
+    }
+    
+    int opcion_pelicula = leerEntero("Seleccione una pelicula", 1, (int)peliculas.size());
+    int pelicula_id = peliculas[opcion_pelicula - 1].getId();
+    
+    // Obtener sesiones para la película seleccionada
+    auto sesiones = Session::obtenerPorPelicula(pelicula_id);
+    if (sesiones.empty()) {
+        std::cout << "No hay sesiones disponibles para esta pelicula" << std::endl;
+        pausar();
+        return;
+    }
+    
+    std::cout << "\nSESIONES DISPONIBLES:\n" << std::endl;
+    for (size_t i = 0; i < sesiones.size(); i++) {
+        std::string fecha = sesiones[i].getHoraInicio().substr(0, 10);
+        std::string hora_inicio = sesiones[i].getHoraInicio().substr(11, 5);
+        std::string hora_fin = sesiones[i].getHoraFin().substr(11, 5);
+        
+        // Obtener información de asientos libres
+        if (AuthenticationService::isLoggedIn()) {
+            AuthenticationService::reautenticar(cliente);
+        }
+        
+        std::string respuesta = cliente.enviarComando("GET_ROOM_INFO:" + std::to_string(sesiones[i].getSalaId()));
+        int asientos_libres = 0;
+        if (respuesta.substr(0, 3) == "OK:") {
+            std::vector<std::string> datos = parsearRespuesta(respuesta);
+            if (datos.size() >= 3) {
+                asientos_libres = std::stoi(datos[2]);
+            }
+        }
+        
+        std::cout << (i + 1) << ". Fecha: " << fecha 
+                 << " | Hora: " << hora_inicio << "-" << hora_fin 
+                 << " | Sala: " << sesiones[i].getSalaId() 
+                 << " | Asientos libres: " << asientos_libres << std::endl;
+    }
+    
+    int opcion_sesion = leerEntero("Seleccione una sesion", 1, (int)sesiones.size());
+    int sesion_id = sesiones[opcion_sesion - 1].getId();
+    
+    // Mostrar asientos y permitir selección
+    limpiarPantalla();
+    std::cout << "=== SELECCIONAR ASIENTOS ===" << std::endl;
+    
+    mostrarAsientos(sesion_id);
+    
+    // Obtener información de la sala
+    if (AuthenticationService::isLoggedIn()) {
+        AuthenticationService::reautenticar(cliente);
+    }
+    
+    std::string respuesta = cliente.enviarComando("GET_ROOM_INFO:" + std::to_string(sesiones[opcion_sesion - 1].getSalaId()));
+    if (respuesta.substr(0, 3) != "OK:") {
+        std::cout << "Error al obtener informacion de la sala" << std::endl;
+        pausar();
+        return;
+    }
+    
+    std::vector<std::string> datos = parsearRespuesta(respuesta);
+    int num_asientos = std::stoi(datos[1]);
+    
+    // Preguntar cuántas entradas
+    int num_entradas = leerEntero("Cuantas entradas desea comprar?", 1, 10);
+    
+    std::vector<int> asientos_seleccionados;
+    
+    // Seleccionar asientos
+    for (int i = 0; i < num_entradas; i++) {
+        bool asiento_valido = false;
+        
+        while (!asiento_valido) {
+            std::cout << "\nEntrada #" << (i + 1) << ":" << std::endl;
+            int numero_asiento = leerEntero("Ingrese el numero de asiento", 1, num_asientos);
+            
+            // Verificar si el asiento está disponible
+            if (AuthenticationService::isLoggedIn()) {
+                AuthenticationService::reautenticar(cliente);
+            }
+            
+            std::string comando = "CHECK_SEAT_AVAILABLE:" + std::to_string(sesion_id) + ":" + std::to_string(numero_asiento);
+            std::string respuesta_disponible = cliente.enviarComando(comando);
+            
+            if (respuesta_disponible == "OK:AVAILABLE") {
+                // Verificar que no hayamos seleccionado ya este asiento
+                bool ya_seleccionado = false;
+                for (int asiento : asientos_seleccionados) {
+                    if (asiento == numero_asiento) {
+                        ya_seleccionado = true;
+                        break;
+                    }
+                }
+                
+                if (!ya_seleccionado) {
+                    asientos_seleccionados.push_back(numero_asiento);
+                    asiento_valido = true;
+                    std::cout << "Asiento " << numero_asiento << " seleccionado" << std::endl;
+                } else {
+                    std::cout << "Ya ha seleccionado ese asiento. Elija otro." << std::endl;
+                }
+            } else {
+                std::cout << "El asiento " << numero_asiento << " no esta disponible. Elija otro." << std::endl;
+            }
+        }
+    }
+    
+    // Mostrar resumen
+    limpiarPantalla();
+    std::cout << "=== RESUMEN DE COMPRA ===" << std::endl;
+    
+    double precio_unitario = 8.50; // Precio base
+    double total = precio_unitario * num_entradas;
+    
+    std::cout << "\nPelicula: " << peliculas[opcion_pelicula - 1].getTitulo() << std::endl;
+    std::cout << "Sesion: " << sesiones[opcion_sesion - 1].getHoraInicio().substr(0, 16) << std::endl;
+    std::cout << "Sala: " << sesiones[opcion_sesion - 1].getSalaId() << std::endl;
+    
+    std::cout << "\nAsientos seleccionados:" << std::endl;
+    for (size_t i = 0; i < asientos_seleccionados.size(); i++) {
+        std::cout << "- Asiento " << asientos_seleccionados[i] << ": " << precio_unitario << " euros" << std::endl;
+    }
+    
+    std::cout << "\nTotal: " << total << " euros" << std::endl;
+    
+    if (confirmar("Confirmar compra?")) {
+        // Procesar la compra
+        if (AuthenticationService::isLoggedIn()) {
+            AuthenticationService::reautenticar(cliente);
+        }
+        
+        User* usuario = AuthenticationService::getUsuarioActual();
+        
+        // Crear comando de compra
+        std::string comando = "PURCHASE_TICKETS:" + std::to_string(usuario->getId()) + 
+                             ":" + std::to_string(sesion_id) + ":" + std::to_string(num_entradas);
+        
+        // Añadir asientos al comando
+        for (int asiento : asientos_seleccionados) {
+            comando += ":" + std::to_string(asiento);
+        }
+        
+        std::string respuesta_compra = cliente.enviarComando(comando);
+        
+        if (respuesta_compra.substr(0, 2) == "OK") {
+            mostrarExito("Compra realizada con exito!");
+            std::cout << "ID de compra: " << respuesta_compra.substr(3) << std::endl;
+        } else {
+            mostrarError("Error al procesar la compra: " + respuesta_compra.substr(6));
+        }
+    } else {
+        std::cout << "Compra cancelada" << std::endl;
+    }
+    
+    pausar();
+}
+
+// Función para mostrar detalles de una compra
+void mostrarDetalleCompra(int venta_id) {
+    limpiarPantalla();
+    std::cout << "=== DETALLE DE COMPRA ===" << std::endl;
+    
+    if (AuthenticationService::isLoggedIn()) {
+        AuthenticationService::reautenticar(cliente);
+    }
+    
+    std::string comando = "GET_PURCHASE_DETAILS:" + std::to_string(venta_id);
+    std::string respuesta = cliente.enviarComando(comando);
+    
+    if (respuesta.substr(0, 3) != "OK:") {
+        std::cout << "Error al obtener detalles de la compra" << std::endl;
+        pausar();
+        return;
+    }
+    
+    // Parsear respuesta con detalles de la compra
+    // Formato: "OK:fecha:total:num_billetes:billete1_info;billete2_info;..."
+    std::vector<std::string> datos = parsearRespuesta(respuesta);
+    if (datos.size() < 4) {
+        std::cout << "Error en formato de respuesta" << std::endl;
+        pausar();
+        return;
+    }
+    
+    std::string fecha = datos[1];
+    double total = std::stod(datos[2]);
+    int num_billetes = std::stoi(datos[3]);
+    
+    std::cout << "Fecha: " << fecha << std::endl;
+    std::cout << "Total: " << total << " euros\n" << std::endl;
+    
+    if (num_billetes > 0 && datos.size() > 4) {
+        std::cout << "ENTRADAS:\n" << std::endl;
+        std::cout << std::left << std::setw(5) << "ID"
+                 << std::setw(20) << "Pelicula"
+                 << std::setw(15) << "Fecha"
+                 << std::setw(10) << "Sala"
+                 << std::setw(10) << "Asiento" << std::endl;
+        std::cout << "---------------------------------------------------------------------" << std::endl;
+        
+        // Parsear información de billetes
+        std::string billetes_info = datos[4];
+        std::stringstream ss(billetes_info);
+        std::string billete_str;
+        
+        while (std::getline(ss, billete_str, ';')) {
+            if (billete_str.empty()) continue;
+            
+            // Formato de cada billete: "id|pelicula|fecha_sesion|sala|asiento"
+            std::stringstream bs(billete_str);
+            std::string campo;
+            std::vector<std::string> campos_billete;
+            
+            while (std::getline(bs, campo, '|')) {
+                campos_billete.push_back(campo);
+            }
+            
+            if (campos_billete.size() >= 5) {
+                std::cout << std::left << std::setw(5) << campos_billete[0]
+                         << std::setw(20) << campos_billete[1]
+                         << std::setw(15) << campos_billete[2]
+                         << std::setw(10) << campos_billete[3]
+                         << std::setw(10) << campos_billete[4] << std::endl;
+            }
+        }
+    }
+    
+    pausar();
 }
 
 // ============================================================================
@@ -775,22 +1128,22 @@ void mostrarExito(const std::string& mensaje) {
 void mostrarMenuPrincipal() {
     limpiarPantalla();
     std::cout << "========================================" << std::endl;
-    std::cout << "    🎬 SISTEMA DE GESTIÓN DE CINE 🎬" << std::endl;
+    std::cout << "    SISTEMA DE GESTION DE CINE" << std::endl;
     std::cout << "========================================" << std::endl;
-    std::cout << "1. Iniciar sesión" << std::endl;
+    std::cout << "1. Iniciar sesion" << std::endl;
     std::cout << "2. Salir" << std::endl;
     std::cout << "========================================" << std::endl;
 }
 
 bool login() {
     limpiarPantalla();
-    std::cout << "=== 🔐 INICIAR SESIÓN ===" << std::endl;
+    std::cout << "=== INICIAR SESION ===" << std::endl;
     
-    std::string email = leerTexto("Correo electrónico");
-    std::string password = leerTexto("Contraseña");
+    std::string email = leerTexto("Correo electronico");
+    std::string password = leerTexto("Contrasena");
     
     if (AuthenticationService::login(email, password, cliente)) {
-        std::cout << "\n🎉 ¡Bienvenido!" << std::endl;
+        std::cout << "\nBienvenido!" << std::endl;
         AuthenticationService::getUsuarioActual()->mostrar();
         pausar();
         return true;
@@ -803,181 +1156,140 @@ bool login() {
 
 void logout() {
     AuthenticationService::logout(cliente);
-    mostrarExito("Sesión cerrada correctamente");
+    mostrarExito("Sesion cerrada correctamente");
     pausar();
 }
 
-// ============================================================================
-// MENÚS ESPECÍFICOS PARA ADMINISTRADOR
-// ============================================================================
-
-void menuGestionPeliculas() {
-    while (true) {
-        limpiarPantalla();
-        std::cout << "=== 🎬 GESTIÓN DE PELÍCULAS ===" << std::endl;
-        std::cout << "1. Ver todas las películas" << std::endl;
-        std::cout << "2. Añadir película" << std::endl;
-        std::cout << "3. Volver al menú anterior" << std::endl;
+// Función para mostrar la cartelera
+void mostrarCartelera() {
+    limpiarPantalla();
+    std::cout << "=== CARTELERA ===" << std::endl;
+    
+    // Reautenticar antes de obtener datos
+    if (AuthenticationService::isLoggedIn()) {
+        AuthenticationService::reautenticar(cliente);
+    }
+    
+    // Obtener películas
+    auto peliculas = Movie::obtenerTodas();
+    if (peliculas.empty()) {
+        std::cout << "No hay peliculas en cartelera actualmente." << std::endl;
+        pausar();
+        return;
+    }
+    
+    std::cout << "\nPELICULAS EN CARTELERA:\n" << std::endl;
+    
+    // Mostrar cada película con sus sesiones
+    for (const auto& pelicula : peliculas) {
+        std::cout << "\n" << pelicula.getId() << ". " << pelicula.getTitulo() << std::endl;
+        std::cout << "   Genero: " << pelicula.getGenero() << " | Duracion: " << pelicula.getDuracion() << " minutos" << std::endl;
         
-        int opcion = leerEntero("Seleccione una opción", 1, 3);
-        
-        switch (opcion) {
-            case 1: {
-                limpiarPantalla();
-                std::cout << "=== 📋 LISTA DE PELÍCULAS ===" << std::endl;
+        // Obtener sesiones para esta película
+        auto sesiones = Session::obtenerPorPelicula(pelicula.getId());
+        if (!sesiones.empty()) {
+            std::cout << "   Sesiones disponibles:" << std::endl;
+            
+            for (const auto& sesion : sesiones) {
+                // Obtener información de la sala
+                if (AuthenticationService::isLoggedIn()) {
+                    AuthenticationService::reautenticar(cliente);
+                }
                 
-                auto peliculas = Movie::obtenerTodas();
-                if (peliculas.empty()) {
-                    std::cout << "📭 No hay películas registradas." << std::endl;
-                } else {
-                    for (const auto& pelicula : peliculas) {
-                        pelicula.mostrar();
+                std::string respuesta = cliente.enviarComando("GET_ROOM_INFO:" + std::to_string(sesion.getSalaId()));
+                
+                int asientos_libres = 0;
+                if (respuesta.substr(0, 3) == "OK:") {
+                    std::vector<std::string> datos = parsearRespuesta(respuesta);
+                    if (datos.size() >= 3) {
+                        asientos_libres = std::stoi(datos[2]);
                     }
                 }
-                pausar();
-                break;
-            }
-            case 2: {
-                limpiarPantalla();
-                std::cout << "=== ➕ AÑADIR PELÍCULA ===" << std::endl;
                 
-                std::string titulo = leerTexto("Título de la película");
-                int duracion = leerEntero("Duración en minutos", 1, 500);
-                std::string genero = leerTexto("Género");
+                // Formatear hora (quitar segundos)
+                std::string hora_inicio = sesion.getHoraInicio();
+                std::string hora_fin = sesion.getHoraFin();
                 
-                if (Movie::crear(titulo, duracion, genero)) {
-                    mostrarExito("Película creada exitosamente");
-                } else {
-                    mostrarError("No se pudo crear la película");
+                // Extraer solo HH:MM de "YYYY-MM-DD HH:MM:SS"
+                if (hora_inicio.length() >= 16) {
+                    hora_inicio = hora_inicio.substr(11, 5);
                 }
-                pausar();
-                break;
+                if (hora_fin.length() >= 16) {
+                    hora_fin = hora_fin.substr(11, 5);
+                }
+                
+                // Extraer fecha
+                std::string fecha = sesion.getHoraInicio().substr(0, 10);
+                
+                std::cout << "     - Sesion ID: " << sesion.getId() 
+                         << " | Fecha: " << fecha 
+                         << " | Hora: " << hora_inicio << "-" << hora_fin 
+                         << " | Sala: " << sesion.getSalaId() 
+                         << " | Asientos libres: " << asientos_libres << std::endl;
             }
-            case 3:
-                return;
+        } else {
+            std::cout << "   No hay sesiones disponibles para esta pelicula." << std::endl;
         }
+        
+        std::cout << "\n-------------------------------------------------" << std::endl;
     }
+    
+    pausar();
 }
 
-void menuGestionSalas() {
-    while (true) {
-        limpiarPantalla();
-        std::cout << "=== 🏢 GESTIÓN DE SALAS ===" << std::endl;
-        std::cout << "1. Ver todas las salas" << std::endl;
-        std::cout << "2. Añadir sala" << std::endl;
-        std::cout << "3. Volver al menú anterior" << std::endl;
-        
-        int opcion = leerEntero("Seleccione una opción", 1, 3);
-        
-        switch (opcion) {
-            case 1: {
-                limpiarPantalla();
-                std::cout << "=== 📋 LISTA DE SALAS ===" << std::endl;
-                
-                auto salas = Room::obtenerTodas();
-                if (salas.empty()) {
-                    std::cout << "📭 No hay salas registradas." << std::endl;
-                } else {
-                    for (const auto& sala : salas) {
-                        sala.mostrar();
-                    }
-                }
-                pausar();
-                break;
-            }
-            case 2: {
-                limpiarPantalla();
-                std::cout << "=== ➕ AÑADIR SALA ===" << std::endl;
-                
-                int num_asientos = leerEntero("Número de asientos", 1, 1000);
-                
-                if (Room::crear(num_asientos)) {
-                    mostrarExito("Sala creada exitosamente");
-                } else {
-                    mostrarError("No se pudo crear la sala");
-                }
-                pausar();
-                break;
-            }
-            case 3:
-                return;
-        }
+// Función para mostrar compras del usuario
+void mostrarMisCompras() {
+    limpiarPantalla();
+    std::cout << "=== MIS COMPRAS ===" << std::endl;
+    
+    if (!AuthenticationService::isLoggedIn()) {
+        std::cout << "Debe estar logueado para ver sus compras" << std::endl;
+        pausar();
+        return;
     }
-}
-
-void menuGestionSesiones() {
-    while (true) {
-        limpiarPantalla();
-        std::cout << "=== 🎭 GESTIÓN DE SESIONES ===" << std::endl;
-        std::cout << "1. Ver todas las sesiones" << std::endl;
-        std::cout << "2. Ver sesiones por película" << std::endl;
-        std::cout << "3. Volver al menú anterior" << std::endl;
+    
+    User* usuario = AuthenticationService::getUsuarioActual();
+    auto compras = Sale::obtenerPorUsuario(usuario->getId());
+    
+    if (compras.empty()) {
+        std::cout << "No ha realizado ninguna compra aun." << std::endl;
+        pausar();
+        return;
+    }
+    
+    std::cout << "\nHISTORIAL DE COMPRAS:\n" << std::endl;
+    std::cout << std::left << std::setw(5) << "ID" 
+             << std::setw(20) << "Fecha" 
+             << std::setw(10) << "Total" << std::endl;
+    std::cout << "---------------------------------------------" << std::endl;
+    
+    for (const auto& compra : compras) {
+        std::string fecha = compra.getFecha().substr(0, 10); // Solo la fecha, sin hora
         
-        int opcion = leerEntero("Seleccione una opción", 1, 3);
-        
-        switch (opcion) {
-            case 1: {
-                limpiarPantalla();
-                std::cout << "=== 📋 LISTA DE SESIONES ===" << std::endl;
-                
-                auto sesiones = Session::obtenerTodas();
-                if (sesiones.empty()) {
-                    std::cout << "📭 No hay sesiones registradas." << std::endl;
-                } else {
-                    for (const auto& sesion : sesiones) {
-                        sesion.mostrar();
-                    }
-                }
-                pausar();
-                break;
-            }
-            case 2: {
-                limpiarPantalla();
-                std::cout << "=== 🔍 SESIONES POR PELÍCULA ===" << std::endl;
-                
-                auto peliculas = Movie::obtenerTodas();
-                if (peliculas.empty()) {
-                    std::cout << "📭 No hay películas disponibles." << std::endl;
-                    pausar();
-                    break;
-                }
-                
-                std::cout << "Películas disponibles:" << std::endl;
-                for (const auto& pelicula : peliculas) {
-                    pelicula.mostrar();
-                }
-                
-                int movie_id = leerEntero("ID de la película", 1, 9999);
-                
-                auto sesiones = Session::obtenerPorPelicula(movie_id);
-                if (sesiones.empty()) {
-                    std::cout << "\n📭 No hay sesiones para esta película." << std::endl;
-                } else {
-                    std::cout << "\n✅ Sesiones encontradas:" << std::endl;
-                    for (const auto& sesion : sesiones) {
-                        sesion.mostrar();
-                    }
-                }
-                pausar();
-                break;
-            }
-            case 3:
-                return;
-        }
+        std::cout << std::left << std::setw(5) << compra.getId()
+                 << std::setw(20) << fecha
+                 << std::setw(10) << compra.getPrecioTotal() << " euros" << std::endl;
+    }
+    
+    std::cout << std::endl;
+    int opcion = leerEntero("Seleccione una compra para ver detalles (0 para volver)", 0, (int)compras.size());
+    
+    if (opcion > 0) {
+        mostrarDetalleCompra(compras[opcion - 1].getId());
     }
 }
 
 void menuAdmin() {
     while (true) {
         limpiarPantalla();
-        std::cout << "=== 👑 MENÚ ADMINISTRADOR ===" << std::endl;
+        std::cout << "=== MENU ADMINISTRADOR ===" << std::endl;
         AuthenticationService::getUsuarioActual()->mostrar();
-        std::cout << "\n1. Gestionar Películas" << std::endl;
+        std::cout << "\n1. Gestionar Peliculas" << std::endl;
         std::cout << "2. Gestionar Salas" << std::endl;
         std::cout << "3. Gestionar Sesiones" << std::endl;
-        std::cout << "4. Cerrar sesión" << std::endl;
+        std::cout << "4. Cerrar sesion" << std::endl;
         
-        int opcion = leerEntero("Seleccione una opción", 1, 4);
+        int opcion = leerEntero("Seleccione una opcion", 1, 4);
         
         switch (opcion) {
             case 1:
@@ -996,77 +1308,55 @@ void menuAdmin() {
     }
 }
 
-// ============================================================================
-// MENÚS ESPECÍFICOS PARA CLIENTE
-// ============================================================================
-
-void mostrarCartelera() {
-    limpiarPantalla();
-    std::cout << "=== 🎬 CARTELERA ===" << std::endl;
-    
-    auto peliculas = Movie::obtenerTodas();
-    if (peliculas.empty()) {
-        std::cout << "📭 No hay películas en cartelera." << std::endl;
-    } else {
-        for (const auto& pelicula : peliculas) {
-            pelicula.mostrar();
-            
-            auto sesiones = Session::obtenerPorPelicula(pelicula.getId());
-            if (!sesiones.empty()) {
-                std::cout << "  🎭 Sesiones disponibles:" << std::endl;
-                for (const auto& sesion : sesiones) {
-                    std::cout << "    ";
-                    sesion.mostrar();
-                }
-            } else {
-                std::cout << "  ❌ No hay sesiones disponibles." << std::endl;
-            }
-            std::cout << std::endl;
-        }
-    }
-    pausar();
-}
-
-void mostrarMisCompras() {
-    limpiarPantalla();
-    std::cout << "=== 🛒 MIS COMPRAS ===" << std::endl;
-    
-    User* usuario = AuthenticationService::getUsuarioActual();
-    auto compras = Sale::obtenerPorUsuario(usuario->getId());
-    
-    if (compras.empty()) {
-        std::cout << "📭 No has realizado ninguna compra." << std::endl;
-    } else {
-        for (const auto& compra : compras) {
-            compra.mostrar();
-        }
-    }
-    pausar();
-}
-
 void menuCliente() {
     while (true) {
         limpiarPantalla();
-        std::cout << "=== 👤 MENÚ CLIENTE ===" << std::endl;
+        std::cout << "=== MENU CLIENTE ===" << std::endl;
         AuthenticationService::getUsuarioActual()->mostrar();
         std::cout << "\n1. Ver Cartelera" << std::endl;
-        std::cout << "2. Mis Compras" << std::endl;
-        std::cout << "3. Cerrar sesión" << std::endl;
+        std::cout << "2. Comprar Entradas" << std::endl;
+        std::cout << "3. Mis Compras" << std::endl;
+        std::cout << "4. Cerrar sesion" << std::endl;
         
-        int opcion = leerEntero("Seleccione una opción", 1, 3);
+        int opcion = leerEntero("Seleccione una opcion", 1, 4);
         
         switch (opcion) {
             case 1:
                 mostrarCartelera();
                 break;
             case 2:
-                mostrarMisCompras();
+                comprarEntradas();
                 break;
             case 3:
+                mostrarMisCompras();
+                break;
+            case 4:
                 logout();
                 return;
         }
     }
+}
+
+// Implementaciones básicas para los menús de administrador
+void menuGestionPeliculas() {
+    limpiarPantalla();
+    std::cout << "=== GESTION DE PELICULAS ===" << std::endl;
+    std::cout << "Funcionalidad de administrador en desarrollo..." << std::endl;
+    pausar();
+}
+
+void menuGestionSalas() {
+    limpiarPantalla();
+    std::cout << "=== GESTION DE SALAS ===" << std::endl;
+    std::cout << "Funcionalidad de administrador en desarrollo..." << std::endl;
+    pausar();
+}
+
+void menuGestionSesiones() {
+    limpiarPantalla();
+    std::cout << "=== GESTION DE SESIONES ===" << std::endl;
+    std::cout << "Funcionalidad de administrador en desarrollo..." << std::endl;
+    pausar();
 }
 
 // ============================================================================
@@ -1077,21 +1367,21 @@ int main() {
     #ifdef _WIN32
     WSADATA wsaData;
     if (WSAStartup(MAKEWORD(2,2), &wsaData) != 0) {
-        std::cout << "❌ Error inicializando Winsock" << std::endl;
+        std::cout << "Error inicializando Winsock" << std::endl;
         return -1;
     }
     #endif
     
-    std::cout << "🎬 === CLIENTE SISTEMA DE CINE === 🎬" << std::endl;
-    std::cout << "Preparando conexión al servidor..." << std::endl;
+    std::cout << "=== CLIENTE SISTEMA DE CINE ===" << std::endl;
+    std::cout << "Preparando conexion al servidor..." << std::endl;
     
-    std::cout << "✅ ¡Sistema listo para conectar!" << std::endl;
+    std::cout << "Sistema listo para conectar!" << std::endl;
     pausar();
     
     while (true) {
         mostrarMenuPrincipal();
         
-        int opcion = leerEntero("Seleccione una opción", 1, 2);
+        int opcion = leerEntero("Seleccione una opcion", 1, 2);
         
         switch (opcion) {
             case 1:
@@ -1104,7 +1394,7 @@ int main() {
             case 2:
                 cliente.enviarComando("QUIT");
                 cliente.desconectar();
-                std::cout << "\n👋 ¡Hasta luego!" << std::endl;
+                std::cout << "\nHasta luego!" << std::endl;
                 #ifdef _WIN32
                 WSACleanup();
                 #endif
