@@ -16,7 +16,7 @@ typedef enum {
     MENU_REPORTES
 } TipoMenu;
 
-// Funcion para mostrar un menu específico
+// Funcion para mostrar un menu especifico
 void menu_mostrar(TipoMenu tipo);
 
 // Funcion para limpiar la pantalla
@@ -25,7 +25,7 @@ void menu_limpiar_pantalla();
 // Funcion para mostrar un mensaje de error
 void menu_mostrar_error(const char* mensaje);
 
-// Funcion para mostrar un mensaje de éxito
+// Funcion para mostrar un mensaje de exito
 void menu_mostrar_exito(const char* mensaje);
 
 // Funcion para pausar y esperar a que el usuario presione una tecla
