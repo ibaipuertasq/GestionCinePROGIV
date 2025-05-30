@@ -16,37 +16,37 @@ typedef enum {
     MENU_REPORTES
 } TipoMenu;
 
-// Función para mostrar un menú específico
+// Funcion para mostrar un menu específico
 void menu_mostrar(TipoMenu tipo);
 
-// Función para limpiar la pantalla
+// Funcion para limpiar la pantalla
 void menu_limpiar_pantalla();
 
-// Función para mostrar un mensaje de error
+// Funcion para mostrar un mensaje de error
 void menu_mostrar_error(const char* mensaje);
 
-// Función para mostrar un mensaje de éxito
+// Funcion para mostrar un mensaje de éxito
 void menu_mostrar_exito(const char* mensaje);
 
-// Función para pausar y esperar a que el usuario presione una tecla
+// Funcion para pausar y esperar a que el usuario presione una tecla
 void menu_pausar();
 
-// Función para leer una cadena de texto
+// Funcion para leer una cadena de texto
 void menu_leer_texto(char* buffer, int tamano, const char* prompt);
 
-// Función para leer un número entero
+// Funcion para leer un numero entero
 int menu_leer_entero(const char* prompt, int min, int max);
 
-// Función para leer un número decimal
+// Funcion para leer un numero decimal
 double menu_leer_decimal(const char* prompt, double min, double max);
 
-// Función para confirmar una acción (Sí/No)
+// Funcion para confirmar una accion (Si/No)
 bool menu_confirmar(const char* prompt);
 
-// Inicializar el sistema de menús
+// Inicializar el sistema de menus
 void menu_init();
 
-// Ejecutar el bucle principal del menú
+// Ejecutar el bucle principal del meno
 void menu_ejecutar();
 
 #endif // MENU_H
